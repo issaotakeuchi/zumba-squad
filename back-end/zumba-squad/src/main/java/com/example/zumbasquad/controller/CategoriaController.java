@@ -1,8 +1,16 @@
 package com.example.zumbasquad.controller;
 
+import com.example.zumbasquad.exceptions.BadRequestException;
+import com.example.zumbasquad.exceptions.ResourceNotFoundException;
+import com.example.zumbasquad.model.Categoria;
 import com.example.zumbasquad.service.CategoriaService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")
@@ -20,10 +28,10 @@ public class CategoriaController {
     public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody Categoria categoria) throws BadRequestException {
         try {
             log.info("Cadastrado nova categoria com sucesso.");
-            return ResponseEntity.ok(service.add(categoria))
+            return ResponseEntity.ok(service.add(categoria));
         } catch (Exception e) {
             log.info("Não foi possível cadstrar a categoria com base nas informações recebidas.");
-            throw  new BadRequestException("Não foi possível cadastrar a consulta.")
+            throw  new BadRequestException("Não foi possível cadastrar a consulta.");
         }
     }
 
