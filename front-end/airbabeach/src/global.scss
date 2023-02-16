@@ -1,0 +1,86 @@
+:root {
+  /* Cor primária */
+  --green-light: #1dbeb4;
+  --green-medium: #22958d;
+  --green-dark: #226e68;
+
+  /* Cor secundária */
+  --navy-light: #383b58;
+  --navy-medium: #2e3047;
+  --navy-dark: #242536;
+
+  /* Cor terciária*/
+  --coral-light: #545776;
+  --coral-medium: #44465e;
+  --coral-dark: #343546;
+
+  /* Cor de fundo*/
+  --gray-light: #f3f1ed;
+  --gray-medium: #bdbcb9;
+  --gray-dark: #8a8987;
+  --gray-darker: #5a5a58;
+  --gray-darkest: #2e2e2e;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+h4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+h6 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.text-normal {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.text-small {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
