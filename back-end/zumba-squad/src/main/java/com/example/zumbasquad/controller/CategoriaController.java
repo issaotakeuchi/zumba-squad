@@ -52,7 +52,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> excluirConsulta(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<String> excluirCategoria(@PathVariable Long id) throws ResourceNotFoundException {
         try {
             service.remove(id);
             log.info("A categoria de id: " + id + " foi localizada no banco de dados e removida com sucesso.");
