@@ -4,17 +4,28 @@ import { Link } from "react-router-dom";
 import { Eye, EyeSlash } from 'phosphor-react'
 
 
-
-
-
-
 export function CreateUser() {
+    
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.*[0-9]).{8,}$");
     const [firstName, setFirstName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirnPassword, setConfirnPassword] = useState("");
     const [show, setShow] = useState(false);
+
+    useEffect(() => {
+      
+    console.log(password);
+    
+    if(password.match( strongRegex )){
+        console.log(true);
+    }
+     
+    }, [password])
+    
+
+
 
     const [status, setStatus] = useState({
         type: '',
@@ -44,36 +55,44 @@ export function CreateUser() {
         setConfirnPassword('')
     }
 
-    function validate() {
-        /* if (
-            firstName === '' ||
-            surname === '' ||
-            email === '' ||
-            password === '' ||
-            confirnPassword === ''
-        ) return setStatus({ type: 'error', message: 'Este campo é obrigatório' }); */
-        //if (valueLoginUser.loginUser.length < 5) return setStatus({ type: 'error', message: 'Login deve ser maior ou igual a que 5' });
-        //if (valueLoginUser.password === '') return setStatus({ type: 'error', message: 'Necessario preencher o campo senha' });
-        //if (valueLoginUser.password.length < 8) return setStatus({ type: 'error', message: 'Tamanho minimo da senha insuficiente' });
+    function validate(input) {
+
+        switch (input) {
+            case 'firstName':
+                if (firstName === '') return setStatus({ type: 'firstNameError', message: 'Este campo é obrigatório' });
+                if (firstName.length < 4) return setStatus({ type: 'firstNameError', message: 'O nome precisa ter mais de 3 letras' });
+                break;
+            case 'surname':
+                if (surname === '') return setStatus({ type: 'surnameError', message: 'Este campo é obrigatório' });
+                if (surname.length < 4) return setStatus({ type: 'surnameError', message: 'O sobrenome precisa ter mais de 3 letras' });
+                break;
+            case 'email':
+                if (email === '') return setStatus({ type: 'emailError', message: 'Este campo é obrigatório' });
+                break;
+            case 'password':
+                if (password === '') return setStatus({ type: 'passwordError', message: 'Este campo é obrigatório' });
+                if (!password.match( strongRegex )) return setStatus({ type: 'passwordError', message: 'A senha deve conter pelo menos um caracter especial, número, 7 letras, letra maiúscula e múscula ' });
+                if (confirnPassword !== '' && confirnPassword !== password) return setStatus({ type: 'confirnPasswordError', message: 'As duas senhas devem ser iguais' });
+                break;
+            case 'confirnPassword':
+
+                if (confirnPassword === '') return setStatus({ type: 'confirnPasswordError', message: 'Este campo é obrigatório' });
+                if (confirnPassword !== password) return setStatus({ type: 'confirnPasswordError', message: 'As duas senhas devem ser iguais' });
+                break;
+            default:
+                if (firstName === '') return setStatus({ type: 'firstNameError', message: 'Este campo é obrigatório' });
+                if (firstName.length < 4) return setStatus({ type: 'firstNameError', message: 'O nome precisa ter mais de 3 letras' });
+                if (surname === '') return setStatus({ type: 'surnameError', message: 'Este campo é obrigatório' });
+                if (surname.length < 4) return setStatus({ type: 'surnameError', message: 'O sobrenome precisa ter mais de 3 letras' });
+                if (email === '') return setStatus({ type: 'emailError', message: 'Este campo é obrigatório' });
+                if (password === '') return setStatus({ type: 'passwordError', message: 'Este campo é obrigatório' });
+                if (!password.match( strongRegex )) return setStatus({ type: 'passwordError', message: 'A senha deve conter pelo menos um caracter especial, número, 7 letras, letra maiúscula e múscula ' });
+                if (confirnPassword === '') return setStatus({ type: 'confirnPasswordError', message: 'Este campo é obrigatório' });
+                if (confirnPassword === password) return setStatus({ type: 'confirnPasswordError', message: 'As duas senhas devem ser iguais' });
+                break;
+        }
 
 
-        if (firstName === '') return setStatus({ type: 'firstNameNull', message: 'Este campo é obrigatório' });
-        if (surname === '') return setStatus({ type: 'surnameNull', message: 'Este campo é obrigatório' });
-        if (email === '') return setStatus({ type: 'emailNull', message: 'Este campo é obrigatório' });
-        if (password === '') return setStatus({ type: 'passwordNull', message: 'Este campo é obrigatório' });
-        if (confirnPassword === '') return setStatus({ type: 'confirnPasswordNull', message: 'Este campo é obrigatório' });
-
-
-
-
-
-
-
-
-
-
-
-        
         //apagar o status da mensagen
         setStatus({
             type: '',
@@ -81,8 +100,6 @@ export function CreateUser() {
         })
         return true;
     }
-
-
 
 
     return (
@@ -97,11 +114,13 @@ export function CreateUser() {
                             type="text"
                             name="firstName"
                             id="firstName"
-                            value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            onBlur={()=>validate('firstName')}
                         />
                     </div>
-                    {status.type === 'firstNameNull' ? <p className="text-small errorMsg">{status.message}</p> : ""}
-                    {status.type === 'surnameNull' ? <p className="text-small" style={{color: '#ffffff00'}}>{status.message}</p> : ""}
+                    {status.type === 'firstNameError' ? <p className="text-small errorMsg">{status.message}</p> : ""}
+                    {status.type === 'surnameError' ? <p className="text-small errorSpace" style={{ color: '#ffffff00' }}>{status.message}</p> : ""}
                 </div>
 
                 <div className="errorContainer">
@@ -112,11 +131,13 @@ export function CreateUser() {
                             type="text"
                             name="surname"
                             id="surname"
-                            value={surname} onChange={(e) => setSurname(e.target.value)}
+                            value={surname}
+                            onChange={(e) => setSurname(e.target.value)}
+                            onBlur={()=>validate('surname')}
                         />
                     </div>
-                    {status.type === 'surnameNull' ? <p className="text-small errorMsg">{status.message}</p> : ""}
-                    {status.type === 'firstNameNull' ? <p className="text-small" style={{color: '#ffffff00'}}>{status.message}</p> : ""}
+                    {status.type === 'surnameError' ? <p className="text-small errorMsg">{status.message}</p> : ""}
+                    {status.type === 'firstNameError' ? <p className="text-small errorSpace" style={{ color: '#ffffff00' }}>{status.message}</p> : ""}
                 </div>
             </div>
 
@@ -128,10 +149,12 @@ export function CreateUser() {
                     type="email"
                     name="email"
                     id="email"
-                    value={email} onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={()=>validate('email')}
                 />
             </div>
-            {status.type === 'emailNull' ? <p className="text-small errorMsg">{status.message}</p> : ""}
+            {status.type === 'emailError' ? <p className="text-small errorMsg">{status.message}</p> : ""}
 
             <div className="inputs">
                 <label htmlFor="password" className="text-small">Senha</label>
@@ -140,17 +163,19 @@ export function CreateUser() {
                     type={show ? 'text' : 'password'}
                     name="password"
                     id="password"
-                    value={password} onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onBlur={()=>validate('password')}
                 />
                 <div className="icontainer">
                     {
                         show ?
                             <Eye size={24} className="iconStyle" onClick={changeVisibility} /> :
-                            <EyeSlash size={24}  className="iconStyle" onClick={changeVisibility} />
+                            <EyeSlash size={24} className="iconStyle" onClick={changeVisibility} />
                     }
                 </div>
             </div>
-            {status.type === 'passwordNull' ? <p className="text-small errorMsg">{status.message}</p> : ""}
+            {status.type === 'passwordError' ? <p className="text-small errorMsg">{status.message}</p> : ""}
 
             <div className="inputs">
                 <label htmlFor="confirnPassword" className="text-small">Confirmar senha</label>
@@ -159,10 +184,12 @@ export function CreateUser() {
                     type={show ? 'text' : 'Password'}
                     name="confirnPassword"
                     id="confirnPassword"
-                    value={confirnPassword} onChange={(e) => setConfirnPassword(e.target.value)}
+                    value={confirnPassword}
+                    onChange={(e) => setConfirnPassword(e.target.value)}
+                    onBlur={()=>validate('confirnPassword')}
                 />
             </div>
-            {status.type === 'confirnPasswordNull' ? <p className="text-small errorMsg" style={{ alignSelf: 'flex-end' }}>{status.message}</p> : ""}
+            {status.type === 'confirnPasswordError' ? <p className="text-small errorMsg" style={{ alignSelf: 'flex-end' }}>{status.message}</p> : ""}
 
             <button className="btn" type="submit"> Criar conta </button>
 

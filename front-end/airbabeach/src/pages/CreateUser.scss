@@ -1,8 +1,8 @@
 .formulario {
     margin: 0 auto;
-    max-width: 28rem;
+    max-width: 29rem;
     width: 100%;
-    padding: 5rem 0;
+    padding: 5rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,8 +82,6 @@
         }
     }
 
-    .error {}
-
     .errorMsg {
         color: #FF0000;
         align-self: flex-end;
@@ -92,9 +90,12 @@
 
     .btn {
         margin: 3.25rem 0 1rem 0;
-        width: 13rem;
-        height: 2.5rem;
-        padding: 0rem 2.25rem;
+        max-width: 13rem;
+        width: 100%;
+
+        min-height: 2.5rem;
+        height: 100%;
+        padding: 0.5rem 2.25rem;
         border: none;
         border-radius: 5px;
         background-color: var(--green-light);
@@ -118,5 +119,34 @@
         color: #4285F4;
         text-decoration: none;
         margin-left: 0.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .formulario {
+        max-width: 22rem;
+
+        .containerInputs {
+            flex-direction: column;
+
+            .errorSpace {
+                display: none;
+            }
+        }
+
+        .btn {
+            max-width: 22rem;
+        }
+    }
+}
+
+@media (max-width: 414px) {
+
+    .formulario {
+        max-width: 18.75rem;
+
+        .btn {
+            max-width: 18.75rem;
+        }
     }
 }
