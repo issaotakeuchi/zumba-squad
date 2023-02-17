@@ -1,5 +1,6 @@
 :root {
   /* Cor primária */
+  --green-hover: #73c2bd;
   --green-light: #1dbeb4;
   --green-medium: #22958d;
   --green-dark: #226e68;
@@ -20,62 +21,66 @@
   --gray-dark: #8a8987;
   --gray-darker: #5a5a58;
   --gray-darkest: #2e2e2e;
+
+  --white-background:#c4c4c41A;
+  --red-error: #FF0000;
+
 }
 
 h1 {
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem; //24px
+  line-height: 1.75rem; //28px
 }
 
 h2 {
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 23px;
+  font-size: 1.25rem; //20px
+  line-height: 1.5rem; //24px
 }
 
 h3 {
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1rem; //16px
+  line-height: 1.25rem; //20px
 }
 
 h4 {
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 0.875rem; //14px
+  line-height: 1rem; //16px
 }
 
 h5 {
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1rem; //16px
+  line-height: 1.25rem; //20px
 }
 
 h6 {
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 0.875rem;//14px
+  line-height: 1rem; //16px
 }
 
 .text-normal {
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 0.875rem;//14px
+  line-height: 1rem; //16px
 }
 
 .text-small {
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 0.75rem; //12px
+  line-height: 0.875rem; //14px
 }
 
 * {
@@ -83,4 +88,12 @@ h6 {
   margin: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+}
+
+
+
+main {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--white-background);
+  
 }
