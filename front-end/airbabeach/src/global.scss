@@ -22,7 +22,7 @@
   --gray-darker: #5a5a58;
   --gray-darkest: #2e2e2e;
 
-  --white-background:#c4c4c41A;
+  --white-background: #c4c4c41A;
   --red-error: #FF0000;
 
 }
@@ -65,14 +65,14 @@ h5 {
 h6 {
   font-style: normal;
   font-weight: 700;
-  font-size: 0.875rem;//14px
+  font-size: 0.875rem; //14px
   line-height: 1rem; //16px
 }
 
 .text-normal {
   font-style: normal;
   font-weight: 500;
-  font-size: 0.875rem;//14px
+  font-size: 0.875rem; //14px
   line-height: 1rem; //16px
 }
 
@@ -90,10 +90,52 @@ h6 {
   -webkit-font-smoothing: antialiased;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
 
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+    //transform: none;
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+    //transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 100%, 0);
+  }
+}
 
 main {
   font-family: "Roboto", sans-serif;
   background-color: var(--white-background);
-  
+
+  scroll-behavior: smooth;
+
+  //animações para suavizar a transição de telas
+  animation-duration: 0.25s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+
 }
