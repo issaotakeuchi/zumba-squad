@@ -82,9 +82,15 @@
         }
     }
 
+
     .errorMsg {
         color: #FF0000;
         align-self: flex-end;
+
+        animation-duration: 0.8s;
+        transition-timing-function: ease-in;
+        animation-fill-mode: both;
+        animation-name: fadeIn;
     }
 
 

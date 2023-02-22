@@ -19,7 +19,7 @@ const appRouter = createBrowserRouter([
   {
     path: "",
     element: <App />,
-    children:[
+    children: [
       {
         path: '',
         loader: () => redirect('/home')
@@ -46,9 +46,11 @@ const appRouter = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={appRouter} />
-    </AuthProvider>
+    
+      <AuthProvider>
+        <RouterProvider router={appRouter} />
+      </AuthProvider>
+    
   </React.StrictMode>
 )
 
