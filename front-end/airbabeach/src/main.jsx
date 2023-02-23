@@ -12,8 +12,10 @@ import { App } from './App'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { CreateUser } from './pages/CreateUser'
+import { ProtectedRoute } from "./utils/ProtectedRoute"
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 
 const appRouter = createBrowserRouter([
   {
@@ -40,17 +42,24 @@ const appRouter = createBrowserRouter([
         path: "createUser",
         element: <CreateUser />,
       },
+      {
+        path: "rotaProtegida",
+        element:
+          <ProtectedRoute redirectPath="/home">
+            <CreateUser />
+          </ProtectedRoute>,
+      },
     ]
   }
 ])
 
 root.render(
   <React.StrictMode>
-    
-      <AuthProvider>
-        <RouterProvider router={appRouter} />
-      </AuthProvider>
-    
+
+    <AuthProvider>
+      <RouterProvider router={appRouter} />
+    </AuthProvider>
+
   </React.StrictMode>
 )
 

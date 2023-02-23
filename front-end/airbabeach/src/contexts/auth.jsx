@@ -24,7 +24,7 @@ export function AuthProvider(props) {
 
   }
   //método 1
-  //axios.defaults.headers.common['Authorization'] = 'teste'
+  axios.defaults.headers.common['Authorization'] = auth
 
   //método 2
   //axios.defaults.headers.common['Auth_Token'] = 'teste 2'

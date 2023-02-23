@@ -9,6 +9,10 @@
     align-items: center;
     gap: 0.75rem;
 
+    animation-duration: 0.5s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
 
     h1 {
         color: var(--green-light);
@@ -95,10 +99,10 @@
 
 
     .btn {
+
         margin: 3.25rem 0 1rem 0;
         max-width: 13rem;
         width: 100%;
-
         min-height: 2.5rem;
         height: 100%;
         padding: 0.5rem 2.25rem;
