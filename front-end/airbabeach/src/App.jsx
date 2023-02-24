@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { Header } from './Components/Header'
 import { Footer } from './Components/Footer'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
 
@@ -13,6 +14,18 @@ export function App() {
         <Outlet />
       </main>
 
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Footer />
     </>
   );

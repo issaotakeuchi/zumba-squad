@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import './Form.scss'
+import { toast } from 'react-toastify';
+
 
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeSlash } from 'phosphor-react'
@@ -71,49 +73,34 @@ export function Form({ type }) {
             headers: { 'X-Custom-Header': 'value' }
         }
 
-        /* axios({
-            method: 'post',
-            url: url,
-            data: data
-        }).then((response) => {
-            console.log(response);
-        }, (error) => {
-            console.log(error);
-
-
-            if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
-            if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
-            //{ status.type === 'loginError' ? <p className="text-small errorMsg">{erro.status}</p> : "" }
-        }); */
-
         axios.post(url, data, options).then((response) => {
             console.log(response);
 
             if (type === 'login') {
                 saveToken(response.token)
-                alert("Usuário logado com sucesso")
+                toast.success("Usuário logado com sucesso")
                 navigate('/home')
-            }else {
-                alert("Usuário criado com sucesso")
+            } else {
+                toast.success("Usuário criado com sucesso")
                 navigate('/login')
             }
 
         }, (error) => {
-            console.log(error);
+            console.log(error.code);
 
             if (type === 'login') {
-                if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
-                if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
-                alert("Usuário logado com sucesso")
-                navigate('/home')
-            }else {
-                if (error.status == 404) return setStatus({ type: 'loginError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
-                alert("Usuário criado com sucesso")
-                navigate('/login')
+                //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
+                //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
+
+                if (error.status == 404) return toast.error('Usuário não encontrado');
+                if (error.status == 404) return toast.error('Usuário não encontrado');
+                if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
+
+            } else {
+                //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
+                if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
+                if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
             }
-            //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
-            //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
-            //{ status.type === 'loginError' ? <p className="text-small errorMsg">{erro.status}</p> : "" }
         });
 
         cleanForm();
@@ -185,7 +172,6 @@ export function Form({ type }) {
         })
         return true;
     }
-
 
     return (
         <form className="formulario" onSubmit={handleSubmit}>
@@ -298,15 +284,12 @@ export function Form({ type }) {
             {type && type === "login" &&
                 <>
                     <button className="btn" type="submit"> Entrar </button>
-                    {status.type === 'loginError' ? <p className="text-small errorMsg">{erro.status}</p> : ""}
-
                     <p className="text-small">
                         Ainda não tem conta?
                         <Link to={'/createUser'} className='linkStyle'>Registre-se.</Link>
                     </p>
                 </>
             }
-
 
         </form>
 
