@@ -1,3 +1,80 @@
-.header{
-    border: 1px solid blue;
+.headerFull {
+    width: 100vw;
+    height: 5rem;   
+    background-color: white;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    
+    .logoTagline {
+        font-family: Roboto;
+        color: var(--gray-darker);
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    .logoHolder {
+        display: flex;
+        gap: 1.25rem;
+        padding: .9rem 2.5rem ;
+        align-items: center;
+    }
+
+    .btnHolder{
+        display: inline-flex;
+        gap: 0.625rem;
+        padding: 0 2.5rem;
+    }
+
+    .btn {
+
+        margin: 1.25rem 0 1rem 0;      
+        min-width: 13rem;
+        max-height: 2.5rem;
+        height: 100%;
+        padding:0.5rem 3.25rem;
+        border: 1px solid var(--green-light);
+        border-radius: 5px;
+        background-color: transparent;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+        color: var(--green-light);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1rem; 
+        line-height: 1.25rem; 
+
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--green-light);
+            color: white;
+        }
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0 2rem;
+
+        .socialMidia {
+            gap: 1rem;
+        }
+    }
+}
+
+@media (max-width: 414px) {
+
+    .header {
+        justify-content: flex-start;
+        padding: 0 1.2rem;
+
+        .socialMidia {
+            display: none;
+        }
+    }
 }
