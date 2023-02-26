@@ -28,8 +28,13 @@
         padding: 0 2.5rem;
     }
 
-    .btn {
+    .btnHolder{
+        display: flex;
+        flex-direction: row;
+        gap: .625rem;
+    }
 
+    .btn {
         margin: 1.25rem 0 1rem 0;
         min-width: 13rem;
         max-height: 2.5rem;
@@ -44,7 +49,6 @@
         font-weight: 700;
         font-size: 1rem;
         line-height: 1.25rem;
-
         cursor: pointer;
         transition: background-color 0.2s;
 
@@ -53,11 +57,43 @@
             color: white;
         }
     }
+
+    .loggedIn{
+
+        display: flex;
+        gap: 0.625rem;
+        align-items: center;
+        .greetingAndName{
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 19px;
+            color: var(--grey-dark);
+            &Green{
+                color: var(--green-light);
+            }
+        }
+        .btnLoggout{
+            transition: all 0.3s;
+            &:hover{
+                cursor: pointer;
+                color: rebeccapurple;
+                transform: scale(1.1);
+                transition: all 0.3s;
+            }
+        }
+        @media screen and (max-width: 414px) {
+            z-index: -10;
+            display: none;
+          }
+    }
+
+
     .hamburgerMenu {
         display: none;
     }
 }
-
 
 @media (max-width: 768px) {
     .headerFull {
@@ -70,7 +106,6 @@
     }
 
 }
-
 
 @media (max-width: 1024px) {
     .headerFull {
