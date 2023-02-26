@@ -1,0 +1,136 @@
+.hamburger {
+    width: 2rem;
+    height: 1.5rem;
+    position: fixed;
+    z-index: 5;
+    right: 1.25rem;
+    top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.line {
+    width: 100%;
+    height: .1rem;
+    padding: .125rem 0;
+    border-radius: 10px;
+    background-color: var(--coral-light);
+    transition: transform .7s;
+}
+
+.sidebar {
+    width: 19rem;
+    height: 100vh;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 7rem;
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 1.5s ease-in-out;
+    transform: translateX(19rem);
+    &.active {
+        transform: translateX(0);
+        transition: transform 1.5s;
+    }
+
+    .sidebarHeader {
+        width: 19rem;
+        height: 11rem;
+        top: 0;
+        background-color: var(--green-light);
+        align-items: end;
+
+        h2 {
+            text-align: end;
+            bottom: 0;
+            position: relative;
+            padding: 9.2rem .75rem;
+            font-family: "Roboto";
+            color: white;
+            font-weight: 400;
+            font-size: 1.25rem;
+        }
+    }
+
+    .menuHolder {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        height: 35rem;
+
+        .socialMidia {
+            display: flex;
+            gap: 1rem;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: flex-start;
+            align-content: flex-end;
+            flex-wrap: wrap;
+            padding: 1rem 1rem;
+
+            a {
+                color: var(--coral-light);
+
+            }
+        }
+    }
+    #btnFechar{
+        left: .5rem;
+        top: .5rem;       
+        position: absolute;
+        z-index: 100;
+    }
+
+}
+
+.menu {
+    margin-top: 1.75rem;
+    right: 1rem;
+    position: inherit;
+
+    hr {
+        margin: .75rem 0;
+    }
+
+    li {
+        padding: 0 1rem;
+    }
+}
+
+.menu-item {
+    text-align: right;
+    margin-bottom: .5rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.menu-link {
+    color: var(--coral-light);
+    font-family: 'Roboto';
+    font-weight: bold;
+    transition: color .7s;
+    text-decoration: none;
+    text-align: right;
+}
+
+.menu-link:hover {
+    color: rgb(0, 255, 255);
+    transition: color .7s;
+}
+
+@media (min-width: 415px) {
+    .hamburger {
+        display: none;
+    }
+}

@@ -1,21 +1,33 @@
-import "./Header.scss"
+import { useState } from "react";
+import "./Header.scss";
 
 export function Header() {
-    let year = new Date().getFullYear()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    return (
+  function handleHamburgerClick() {
+    setIsSidebarOpen(!isSidebarOpen);
+  }
 
-        <header className="headerFull">
-            <div className="logoHolder">
-                <img src="src/img/logo.png" alt="logotipo" />
-                <h2 className="logoTagline">Sinta-se em casa</h2>
-            </div>
+  return (
+    <header className="headerFull">
+      <div className="logoHolder">
+        <img src="src/img/logo.png" alt="logotipo" />
+        <h2 className="logoTagline">Sinta-se em casa</h2>
+      </div>
 
-            <div className="btnHolder">
-                <button className="btn" type="submit">Criar conta</button>
-                <button className="btn" type="submit">Iniciar sessão</button>
-            </div>
-        </header>
+      <div className="asideHolder">
+        <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+        </div>
+        <div className="hamburger" onClick={handleHamburgerClick}>
+        </div>
 
-    )
+        <button className="btn" type="submit">
+          Criar conta
+        </button>
+        <button className="btn" type="submit">
+          Iniciar sessão
+        </button>
+      </div>
+    </header>
+  );
 }

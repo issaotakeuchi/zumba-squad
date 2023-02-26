@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
-import { Header } from './Components/Header'
-import { Footer } from './Components/Footer'
+import { Header } from './Components/Header';
+import { Footer } from './Components/Footer';
+import { Sidebar } from './Components/Sidebar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,6 +10,7 @@ export function App() {
   return (
     <>
       <Header />
+      <Sidebar/>
 
       <main>
         <Outlet />
