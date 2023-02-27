@@ -1,0 +1,565 @@
+.cardBodyStyle[type="category"] {
+    height: 15.5rem;
+    width: 19.5rem;
+    background-color: #ffffff;
+    border: 1px solid var(--gray-medium);
+    border-radius: 10px;
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    .thumbStyle {
+        display: flex;
+
+        .imgStyle {
+            height: 11.5rem;
+            width: 19.5rem;
+            border-radius: 10px 10px 0 0;
+        }
+    }
+
+    .textSection {
+        height: 100%;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+}
+
+.cardBodyStyle[type="recomendations"] {
+    display: flex;
+    gap: 0.875rem;
+    min-height: 17.75rem;
+    height: auto;
+    max-width: 39.75rem;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid var(--gray-medium);
+    border-radius: 10px;
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+
+    .thumbStyle {
+        display: flex;
+
+        .heartIconStyle {
+            margin: 2px 14px 0px -34px;
+            cursor: pointer;
+        }
+
+        .imgStyle {
+            margin-bottom: -1px;
+            margin-left: -1px;
+            min-height: 17.75rem;
+            max-width: 20.5rem;
+            width: auto;
+            //width: 20.5rem;
+            border-radius: 10px;
+        }
+    }
+
+    .detailsStyle {
+        padding: 0.75rem 0.75em 0.75rem 0.25rem;
+        display: flex;
+        gap: 0.5rem;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .section1 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+
+            .titleStyle {
+
+                >h1 {
+                    letter-spacing: -2px;
+                }
+
+                .starsStyle {
+                    margin-bottom: 0.25rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 0.5rem;
+                    flex-wrap: wrap;
+
+                    >h4 {
+                        color: var(--navy-light);
+                    }
+
+                    .stars {
+                        display: flex;
+                        gap: 0.25rem;
+                    }
+
+                }
+
+            }
+
+            .gradesStyle {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+                .grade {
+                    width: 2rem;
+                    height: 1.75rem;
+                    padding-top: 0.25rem;
+                    background-color: var(--navy-light);
+                    color: var(--gray-light);
+                    text-align: center;
+                    border-radius: 10px;
+                }
+
+                .gradeText {
+                    text-align: end;
+                    color: var(--navy-light);
+                }
+            }
+        }
+
+        .section2 {
+            margin-bottom: 1.25rem;
+
+            .locationText {
+                letter-spacing: -0.75px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin-bottom: 0.25rem;
+
+                .linkStyle {
+                    text-decoration: none;
+                    color: var(--green-light);
+                    margin-left: 0.25rem;
+                    text-transform: uppercase;
+                }
+            }
+
+            .diferentialsStyle {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+        }
+
+        .section3 {
+            display: flex;
+            flex-direction: column;
+            max-height: 3.25rem;
+            margin-bottom: 0.5rem;
+
+            .textStyle {
+                display: inline-flexbox;
+                color: var(--navy-light);
+            }
+
+            .maisTexto {
+                margin-left: 0.25rem;
+                color: var(--green-light);
+            }
+        }
+
+        .btn {
+            height: 2.5rem;
+            max-width: 18.5rem;
+            width: 100%;
+            align-self: flex-end;
+            justify-self: end;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--green-light);
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.12);
+            color: var(--gray-light);
+            cursor: pointer;
+
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1rem; //16px
+            line-height: 1.25rem; //20px
+
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: var(--green-medium);
+            }
+        }
+    }
+
+}
+
+@media (max-width: 768px) {
+    .cardBodyStyle[type="category"] {
+        height: 15.5rem;
+        width: 20.75rem;
+
+        .thumbStyle {
+            .imgStyle {
+                height: 11.5rem;
+                width: 20.75rem;
+                border-radius: 10px 10px 0 0;
+            }
+        }
+    }
+
+    .cardBodyStyle[type="recomendations"] {
+        min-height: 17.5rem;
+        max-width: 44.5rem;
+
+        .thumbStyle {
+            .imgStyle {
+                max-width: 21.5rem;
+            }
+        }
+
+        .detailsStyle {
+            .btn {
+                max-width: 20.75rem;
+                align-self: center;
+            }
+        }
+    }
+}
+
+//de 590px a 414px o layout fica ruim, por isso o mobile está iniciando com 590px
+@media (max-width: 605px) {
+    .cardBodyStyle[type="category"] {
+        height: 17.25rem;
+        height: auto;
+        max-width: 24.75rem;
+
+        .thumbStyle {
+
+            .imgStyle {
+                height: 12.875rem;
+                height: auto;
+                max-width: 24.75rem;
+                width: 100%;
+                border-radius: 10px 10px 0 0;
+            }
+        }
+    }
+
+    .cardBodyStyle[type="recomendations"] {
+        max-width: 24.75rem;
+        flex-direction: column;
+
+        .thumbStyle {
+            .imgStyle {
+                object-fit: cover;
+                max-height: 14.5rem;
+                max-width: 24.75rem;
+                width: 101%;
+            }
+        }
+
+        .detailsStyle {
+            padding: 0rem 0.5em 0.5rem 0.5rem;
+            .btn {
+                max-width: 23.5rem;
+            }
+        }
+    }
+}
+
+/* @media (max-width: 414px) {
+    .cardBodyStyle[type="recomendations"] {
+        max-width: 24.75rem;
+        flex-direction: column;
+
+        .thumbStyle {
+
+            .imgStyle {
+                max-height: 14.5rem;
+                height: auto;
+                max-width: 24.75rem;
+                width: 101%;
+            }
+        }
+
+        .detailsStyle {
+            padding: 0rem 0.5em 0.5rem 0.5rem;
+
+            .btn {
+                max-width: 22.5rem;
+            }
+        }
+    }
+} */
+
+
+
+//animação do coração S2
+svg {
+    cursor: pointer;
+    overflow: visible;
+    width: 40px;
+    margin-left: -12px;
+    margin-right: -8px;
+
+    
+    .heart {
+        transform-origin: center;
+        animation: animateHeartOut .3s linear forwards;
+        fill: var(--gray-light);
+        transition: 0.2s;
+
+        &:hover {
+            fill: var(--red-favorite);
+        }
+    }
+
+    .main-circ {
+        transform-origin: 29.5px 29.5px;
+    }
+}
+
+.inputFavStyle {
+    display: none;
+}
+
+.inputFavStyle:checked+.labelStyle svg {
+    .heart {
+        transform: scale(.2);
+        fill: #E2264D;
+        animation: animateHeart .3s linear forwards .25s;
+    }
+
+    .main-circ {
+        transition: all 2s;
+        animation: animateCircle .3s linear forwards;
+        opacity: 1;
+    }
+
+    .grp1 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(0, -30px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(10px, -50px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    #grp2 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(30px, -15px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(60px, -15px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    .grp3 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(30px, 0px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(60px, 10px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    .grp4 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(30px, 15px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(40px, 50px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    .grp5 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(-10px, 20px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(-60px, 30px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    .grp6 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(-30px, 0px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(-60px, -5px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    .grp7 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        .oval1 {
+            transform: scale(0) translate(-30px, -15px);
+            transform-origin: 0 0 0;
+            transition: .5s transform .3s;
+        }
+
+        .oval2 {
+            transform: scale(0) translate(-55px, -30px);
+            transform-origin: 0 0 0;
+            transition: 1.5s transform .3s;
+        }
+    }
+
+    .grp2 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+    }
+
+    .grp3 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+    }
+
+    .grp4 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+    }
+
+    .grp5 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+    }
+
+    .grp6 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+    }
+
+    .grp7 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+    }
+}
+
+@keyframes animateCircle {
+    40% {
+        transform: scale(10);
+        opacity: 1;
+        fill: #DD4688;
+    }
+
+    55% {
+        transform: scale(11);
+        opacity: 1;
+        fill: #D46ABF;
+    }
+
+    65% {
+        transform: scale(12);
+        opacity: 1;
+        fill: #CC8EF5;
+    }
+
+    75% {
+        transform: scale(13);
+        opacity: 1;
+        fill: transparent;
+        stroke: #CC8EF5;
+        stroke-width: .5;
+    }
+
+    85% {
+        transform: scale(17);
+        opacity: 1;
+        fill: transparent;
+        stroke: #CC8EF5;
+        stroke-width: .2;
+    }
+
+    95% {
+        transform: scale(18);
+        opacity: 1;
+        fill: transparent;
+        stroke: #CC8EF5;
+        stroke-width: .1;
+    }
+
+    100% {
+        transform: scale(19);
+        opacity: 1;
+        fill: transparent;
+        stroke: #CC8EF5;
+        stroke-width: 0;
+    }
+}
+
+@keyframes animateHeart {
+    0% {
+        transform: scale(.2);
+    }
+
+    40% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes animateHeartOut {
+    0% {
+        transform: scale(1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
