@@ -1,3 +1,164 @@
-.header{
-    border: 1px solid blue;
+.headerFull {
+    width: 100vw;
+    height: 5rem;
+    margin: 1.25rem 0 1.25rem 0;
+    background-color: white;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+
+    .logoTagline {
+        font-family: Roboto;
+        color: var(--gray-darker);
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    .logoHolder {
+        display: flex;
+        gap: 1.25rem;
+        padding: .9rem 2.5rem;
+        align-items: center;
+    }
+
+    .asideHolder {
+        display: inline-flex;
+        gap: 0.625rem;
+        padding: 0 2.5rem;
+    }
+
+    .btnHolder{
+        display: flex;
+        flex-direction: row;
+        gap: .625rem;
+    }
+
+    .btn {
+        margin: 1.25rem 0 1rem 0;
+        min-width: 13rem;
+        max-height: 2.5rem;
+        height: 100%;
+        padding: 0.5rem 3.25rem;
+        border: 1px solid var(--green-light);
+        border-radius: 5px;
+        background-color: transparent;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+        color: var(--green-light);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--green-light);
+            color: white;
+        }
+    }
+
+    .loggedIn{
+
+        display: flex;
+        gap: 0.625rem;
+        align-items: center;
+        .greetingAndName{
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 19px;
+            color: var(--grey-dark);
+            &Green{
+                color: var(--green-light);
+            }
+        }
+        .btnLoggout{
+            transition: all 0.3s;
+            &:hover{
+                cursor: pointer;
+                color: rebeccapurple;
+                transform: scale(1.1);
+                transition: all 0.3s;
+            }
+        }
+        @media screen and (max-width: 414px) {
+            z-index: -10;
+            display: none;
+          }
+    }
+
+
+    .hamburgerMenu {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .headerFull {
+        margin-top: 1.2rem;
+
+        .logoTagline {
+            display: none;
+        }
+
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .headerFull {
+        padding: 0rem .08rem;
+
+        .btn {
+            min-width: 8rem;
+            max-width: 9rem;
+            padding: 0;
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .btn {
+        min-width: fit-content;
+        max-width: 12rem;
+        padding: 0.5rem 3.25rem;
+    }
+
+}
+
+@media (max-width: 414px) {
+    .headerFull {
+        margin-left: 0;
+        padding-left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+     
+        .asideHolder {
+            padding: 0 1rem;
+        }
+
+        .logoHolder {
+            padding-left: 1.25rem;
+        }
+
+        .sidebarMenu {
+            padding: 1.25rem 0rem;
+            display: block;
+            align-items: center;
+        }
+
+        .sidebarBody{
+            height: 100%;
+            
+        }
+        
+        .btn {
+            display: none;
+        }
+        
+    }
 }

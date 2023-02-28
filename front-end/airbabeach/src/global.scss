@@ -16,11 +16,11 @@
   --coral-dark: #343546;
 
   /* Cor de fundo*/
-  --gray-light: #f3f1ed;
-  --gray-medium: #bdbcb9;
-  --gray-dark: #8a8987;
-  --gray-darker: #5a5a58;
-  --gray-darkest: #2e2e2e;
+  --grey-light: #f3f1ed;
+  --grey-medium: #bdbcb9;
+  --grey-dark: #8a8987;
+  --grey-darker: #5a5a58;
+  --grey-darkest: #2e2e2e;
 
   --white-background: #c4c4c41A;
   --red-error: #FF0000;
@@ -72,6 +72,7 @@ h6 {
 }
 
 .text-normal {
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 0.875rem; //14px
