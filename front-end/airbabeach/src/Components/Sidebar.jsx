@@ -43,7 +43,7 @@ export function Sidebar() {
                 </div>
 
                 <div className="loggout">
-                  <p className="loggoutText">Deseja <a href="#" className="loggoutLink">encerrar a sessão</a>?<hr /></p>
+                  <p className="loggoutText">Deseja <a href="#" className="loggoutLink">encerrar a sessão</a>?</p><hr />
 
                 </div>
               </div>

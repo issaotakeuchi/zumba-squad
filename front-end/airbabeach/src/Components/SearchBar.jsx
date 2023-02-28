@@ -1,16 +1,31 @@
 import './SearchBar.scss'
 import { toast } from 'react-toastify';
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { MapPin } from 'phosphor-react'
-
+import { MapPin, Calendar } from 'phosphor-react'
+import Litepicker from 'litepicker';
 
 
 export function SearchBar() {
     const navigate = useNavigate();
     const [city, setCity] = useState('');
     const [date, setDate] = useState('');
+    const [calendarId, setCalendarId] = useState('');
+    const datepickerRef = useRef(null);
+
+    useEffect(() => {
+        const datepicker = new Litepicker({
+            element: datepickerRef.current,
+            numberOfMonths: 2,
+            selectForward: true,
+            onSelect: (date1, date2) => {
+                setSelectedDates([date1.format('DD/MM/YYYY'), date2.format('DD/MM/YYYY')]);
+                datepickerRef.current.value = `${date1.format('DD/MM/YYYY')} - ${date2.format('DD/MM/YYYY')}`;
+            },
+        });
+    }, []);
+
 
     function cleanForm() {
         setCity('')
@@ -41,7 +56,7 @@ export function SearchBar() {
         }
 
         console.log(data);
-        
+
         const options = {
             headers: { 'X-Custom-Header': 'value' }
         }
@@ -85,7 +100,23 @@ export function SearchBar() {
                         placeholder='Onde vamos?'
                     />
                 </div>
+                <div className='dateSection'>
+                    <label htmlFor="date" >
+                        <Calendar size={20} color="#545776" weight="fill" className='mapIcon' />
+                    </label>
 
+                    <input
+                        className="text-small inputSearchStyle"
+                        type="text"
+                        name="date"
+                        id={calendarId} // usa o ID gerado para o calendário
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        placeholder="Escolha a data"
+                        ref={datepickerRef}
+                    />
+
+                </div>
 
                 <button className="btn" type="submit"> Buscar </button>
             </form>
