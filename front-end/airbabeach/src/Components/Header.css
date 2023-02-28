@@ -1,0 +1,194 @@
+.headerFull {
+  width: 100vw;
+  height: 5rem;
+  margin: 1.25rem 0 1.25rem 0;
+  background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.headerFull .logoTagline {
+  font-family: Roboto;
+  color: var(--gray-darker);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.headerFull .logoHolder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.25rem;
+  padding: .9rem 2.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.headerFull .asideHolder {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 0.625rem;
+  padding: 0 2.5rem;
+}
+
+.headerFull .btnHolder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: .625rem;
+}
+
+.headerFull .btn {
+  margin: 1.25rem 0 1rem 0;
+  min-width: 13rem;
+  max-height: 2.5rem;
+  height: 100%;
+  padding: 0.5rem 3.25rem;
+  border: 1px solid var(--green-light);
+  border-radius: 5px;
+  background-color: transparent;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+  color: var(--green-light);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.headerFull .btn:hover {
+  background-color: var(--green-light);
+  color: white;
+}
+
+.headerFull .loggedIn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.625rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.headerFull .loggedIn .greetingAndName {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--grey-dark);
+}
+
+.headerFull .loggedIn .greetingAndNameGreen {
+  color: var(--green-light);
+}
+
+.headerFull .loggedIn .btnLoggout {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.headerFull .loggedIn .btnLoggout:hover {
+  cursor: pointer;
+  color: rebeccapurple;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 414px) {
+  .headerFull .loggedIn {
+    z-index: -10;
+    display: none;
+  }
+}
+
+.headerFull .hamburgerMenu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .headerFull {
+    margin-top: 1.2rem;
+  }
+  .headerFull .logoTagline {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .headerFull {
+    padding: 0rem .08rem;
+  }
+  .headerFull .btn {
+    min-width: 8rem;
+    max-width: 9rem;
+    padding: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .btn {
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    max-width: 12rem;
+    padding: 0.5rem 3.25rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .headerFull {
+    margin-left: 0;
+    padding-left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+  .headerFull .asideHolder {
+    padding: 0 1rem;
+  }
+  .headerFull .logoHolder {
+    padding-left: 1.25rem;
+  }
+  .headerFull .sidebarMenu {
+    padding: 1.25rem 0rem;
+    display: block;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .headerFull .sidebarBody {
+    height: 100%;
+  }
+  .headerFull .btn {
+    display: none;
+  }
+}
+/*# sourceMappingURL=Header.css.map */
