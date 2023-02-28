@@ -93,7 +93,7 @@ export function Form({ type }) {
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
 
                 if (error.status == 404) return toast.error('Usuário não encontrado');
-                if (error.status == 404) return toast.error('Usuário não encontrado');
+                if (error.status == 404) return toast.error('Usuário ou senha não encontrados');
                 if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
 
             } else {

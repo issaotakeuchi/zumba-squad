@@ -38,9 +38,9 @@ export function Card({
         }
     }
 
-    /* function saibaMais() {
+    function saibaMais() {
         navigate('/login')
-    } */
+    }
 
     function chooseCategory(id, category) {
         console.log(id);
