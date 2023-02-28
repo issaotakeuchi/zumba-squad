@@ -1,14 +1,18 @@
 .mainStyle {
-    padding: 0.875rem 0rem 0rem 0rem;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+
+    animation-duration: 0.5s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+
 
     .categoriesSection {
         padding: 0 2.5rem 0 2.5rem;
         background-color: #ffffff;
         margin-bottom: 0.75rem;
-        //min-height: 19.25rem; //308px a ser confirmado
 
         >h1 {
             margin: 0.75rem 0 0.5rem 0;
@@ -35,17 +39,17 @@
 
 @media (max-width: 768px) {
     .mainStyle {
-        
+
         .categoriesSection {
-            
+
             margin-bottom: 1.75rem;
-            
+
             >h1 {
-                
+
                 margin: 0.75rem 0 0.5rem 0;
             }
         }
-    
+
     }
 }
 
@@ -53,14 +57,14 @@
     .mainStyle {
         .categoriesSection {
             >h1 {
-                text-align: center;   
+                text-align: center;
             }
         }
     }
 }
 
 @media (max-width: 590px) {
-    .mainStyle {  
+    .mainStyle {
         .recomendationsSection {
             >h1 {
                 text-align: center;

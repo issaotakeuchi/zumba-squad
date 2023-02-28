@@ -1,7 +1,7 @@
 import './Home.scss'
 import { Card } from "../Components/Card";
 import { cards, recomendations } from '../../public/cardsMock.js'
-import { SearchBar } from '../Components/SearchBar'
+import { SearchBar } from '../Components/SearchBar' 
 
 export function Home() {
 
