@@ -1,7 +1,7 @@
 import './Home.scss'
 import { Card } from "../Components/Card";
 import { cards, recomendations } from '../../public/cardsMock.js'
-
+import { SearchBar } from '../Components/SearchBar'
 
 export function Home() {
 
@@ -9,6 +9,9 @@ export function Home() {
 
     return (
         <main className="mainStyle">
+
+            <SearchBar />
+
             <section className="categoriesSection">
                 <h1>Buscar por tipo de acomodação</h1>
                 <div className="cardsContainer">
