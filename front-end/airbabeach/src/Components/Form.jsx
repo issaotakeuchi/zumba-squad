@@ -10,7 +10,7 @@ import { useAuth } from "../contexts/auth";
 
 export function Form({ type }) {
 
-    const { saveToken } = useAuth();
+    const { saveToken, saveUser  } = useAuth();
     const navigate = useNavigate();
 
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.*[0-9]).{8,}$");
@@ -78,6 +78,7 @@ export function Form({ type }) {
 
             if (type === 'login') {
                 saveToken(response.token)
+                saveUser(response.user)
                 toast.success("Usuário logado com sucesso")
                 navigate('/home')
             } else {
@@ -91,7 +92,7 @@ export function Form({ type }) {
             if (type === 'login') {
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
-
+                saveUser()
                 if (error.status == 404) return toast.error('Usuário não encontrado');
                 if (error.status == 404) return toast.error('Usuário ou senha não encontrados');
                 if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');

@@ -9,8 +9,9 @@ export function AuthProvider(props) {
 
   const authLocalStorage = localStorage.getItem('auth')
 
-
   const [auth, setAuth] = useState(authLocalStorage === null ? '' : authLocalStorage)
+
+  const [user, setUser] = useState('')
 
   // Função responsavel por salvar o token
   function saveToken(tokenReceived) {
@@ -23,6 +24,24 @@ export function AuthProvider(props) {
     }
 
   }
+
+  function deleteToken(){
+    localStorage.removeItem('auth')
+  }
+
+  function saveUser(userReceived){
+    setUser(userReceived)
+    setUser({
+      name: 'Bruno Rocha',
+      shortName: 'BR'
+    })
+  }
+
+  function deleteUser(){
+    setUser('');
+    deleteToken();
+  }
+
   //método 1
   axios.defaults.headers.common['Authorization'] = auth
 
@@ -61,9 +80,20 @@ export function AuthProvider(props) {
   }); */
 
 
+
+
+
+
+
+
+
+
+
+  
+
   return (
 
-    <AuthContext.Provider value={{ auth, saveToken }}>
+    <AuthContext.Provider value={{ auth, saveToken, deleteToken, user, saveUser, deleteUser}}>
       {props.children}
     </AuthContext.Provider>
 
