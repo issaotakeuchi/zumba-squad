@@ -5,7 +5,7 @@ import "./Header.scss";
 
 export function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLogged, setLogged] = useState(true);
+  const [isLogged, setLogged] = useState(false);
 
   function handleHamburgerClick() {
     setIsSidebarOpen(!isSidebarOpen);
