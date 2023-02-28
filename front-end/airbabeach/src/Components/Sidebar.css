@@ -1,0 +1,279 @@
+.hamburger {
+  width: 2rem;
+  height: 1.5rem;
+  position: fixed;
+  z-index: 5;
+  right: 1.25rem;
+  top: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 415px) {
+  .hamburger {
+    z-index: -10;
+    display: none;
+  }
+}
+
+.line {
+  width: 100%;
+  height: .1rem;
+  padding: .125rem 0;
+  border-radius: 10px;
+  background-color: var(--coral-light);
+}
+
+@media screen and (min-width: 415px) {
+  .line {
+    z-index: -10;
+    display: none;
+  }
+}
+
+.sidebar {
+  width: 19rem;
+  height: 100vh;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 7rem;
+  z-index: 10;
+  display: inherit;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.05);
+          box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.05);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  -webkit-transform: translateX(19rem);
+          transform: translateX(19rem);
+}
+
+.sidebar.active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.sidebar .h2Menu {
+  text-align: end;
+  top: -2rem;
+  position: relative;
+  padding: 0rem .75rem;
+  font-family: "Roboto";
+  color: white;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.sidebar .sidebarHeader {
+  width: 19rem;
+  height: 11rem;
+  top: 0;
+  background-color: var(--green-light);
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+}
+
+.sidebar .menuHolder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  height: 35rem;
+}
+
+.sidebar .menuHolder .socialMidia {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem 1rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.sidebar .menuHolder .socialMidia a {
+  color: var(--coral-light);
+}
+
+.sidebar #btnFechar {
+  left: .5rem;
+  top: .5rem;
+  position: absolute;
+  z-index: 100;
+}
+
+.sidebar .loggedIn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.625rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0px 0.875rem;
+}
+
+.sidebar .loggedIn .greeting {
+  color: white;
+}
+
+.sidebar .loggedIn .profilePicture {
+  margin-top: 4.375rem;
+}
+
+.sidebar .loggedIn .greetingAndName {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--grey-dark);
+  text-align: right;
+}
+
+.sidebar .loggedIn .greetingAndNameCoral {
+  color: var(--coral-light);
+}
+
+.sidebar .loggedIn .btnLoggout {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.sidebar .loggedIn .btnLoggout:hover {
+  cursor: pointer;
+  color: rebeccapurple;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 414px) {
+  .sidebar .loggedIn {
+    z-index: -10;
+  }
+}
+
+.sidebar .loggoutText {
+  bottom: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: .875rem;
+  line-height: 14px;
+  text-align: right;
+  padding: .625rem .875rem 5rem;
+  position: absolute;
+  right: 0;
+}
+
+.sidebar .loggoutText hr {
+  color: var(--coral-light);
+  width: 140%;
+  position: absolute;
+  right: .325rem;
+  margin: .325rem 0.625rem;
+}
+
+.sidebar .loggoutText .loggoutLink {
+  text-decoration: none;
+  color: var(--green-light);
+}
+
+.menu {
+  margin-top: 0rem;
+  right: 1rem;
+  position: inherit;
+}
+
+.menu hr {
+  margin: .75rem 0;
+}
+
+.menu li {
+  padding: 0 1rem;
+}
+
+.menu-item {
+  text-align: right;
+  margin-bottom: .5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.menu-link {
+  color: var(--coral-light);
+  font-family: 'Roboto';
+  font-weight: bold;
+  -webkit-transition: color .7s;
+  transition: color .7s;
+  text-decoration: none;
+  text-align: right;
+}
+
+.menu-link:hover {
+  color: cyan;
+  -webkit-transition: color .7s;
+  transition: color .7s;
+}
+/*# sourceMappingURL=Sidebar.css.map */
