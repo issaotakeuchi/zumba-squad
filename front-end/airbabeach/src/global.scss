@@ -24,6 +24,8 @@
 
   --white-background: #c4c4c41A;
   --red-error: #FF0000;
+  --red-favorite: #f73f3f;
+  --yellow-gold: #ffbf00;
 
 }
 
@@ -127,10 +129,9 @@ h6 {
   }
 }
 
-main {
+.main {
   font-family: "Roboto", sans-serif;
   background-color: var(--white-background);
-
   scroll-behavior: smooth;
 
   //animações para suavizar a transição de telas
@@ -140,3 +141,4 @@ main {
   animation-name: fadeIn;
 
 }
+

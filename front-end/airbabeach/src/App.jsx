@@ -12,7 +12,7 @@ export function App() {
       <Header />
       <Sidebar/>
 
-      <main>
+      <main className="main">
         <Outlet />
       </main>
 
