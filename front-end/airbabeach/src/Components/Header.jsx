@@ -1,57 +1,58 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
 import { X } from 'phosphor-react'
 import "./Header.scss";
+import { useAuth } from "../contexts/auth";
 
 export function Header() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLogged, setLogged] = useState(false);
+  const { auth, user, deleteUser } = useAuth();
+  const navigate = useNavigate();
 
-  function handleHamburgerClick() {
-    setIsSidebarOpen(!isSidebarOpen);
+  
+  function logout() {
+    deleteUser()
+    navigate('/home')
   }
 
+  function changeScreen(type) {
+    if (type === 'login') {
+      navigate('/login')
+    }
+    if (type === 'createUser') {
+      navigate('/createUser')
+    }
+  }
+
+
   return (
-    <header className="headerFull">
-      <div className="logoHolder">
-        <img src="src/img/logo.png" alt="logotipo" />
-        <h2 className="logoTagline">Sinta-se em casa</h2>
-      </div>
+    <section className="headerFull">
+
+      <img src="src/img/logo.png" alt="logotipo" />
+      <h2 className="logoTagline">Sinta-se em casa</h2>
 
       <div className="asideHolder">
 
-        {isLogged && (
+        {user !== '' && (
           <div className="loggedIn">
-            <div className="profilePicture">
-              <img src="src/img/profile.png" alt="logotipo" />
-            </div>
+            <p className="profilePicture">{user.shortName}</p>
+
             <div className="greetingAndName">
               <p className="">Olá,</p>
               <p className="greetingAndNameGreen">Bruno Rocha</p>
             </div>
-            <div className="btnLoggout">
-              <X size={26} onClick={setLogged} alt="Sair" color="var(--grey-darkest)" weight="bold" id="btnFechar" />
-            </div>
+            <X size={26} onClick={logout} alt="Sair" weight="bold" className="btnLoggout" />
           </div>
         )}
 
-
-        <div className="hamburger" onClick={handleHamburgerClick}>
-        <Sidebar />
-        </div>
-
-        {!isLogged && (
-          <div className="btnHolder">
-            <button className="btn" type="submit">
-              Criar conta
-            </button>
-            <button className="btn" type="submit">
-              Iniciar sessão
-            </button>
-          </div>
-        )}
+        {user=='' &&
+          <>
+            <button className='btnHeader' onClick={() => changeScreen('createUser')}>Criar conta</button>
+            <button className='btnHeader' onClick={() => changeScreen('login')}>Iniciar sessão</button>
+          </>
+        }
 
       </div>
-    </header>
+    </section>
   );
 }

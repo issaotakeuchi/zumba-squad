@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { convertNumber } from '../utils/convertNumber'
 import axios from "axios";
 
-import { Heart, Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
+import { Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
 
 
 import { Link, useNavigate } from "react-router-dom";
@@ -26,21 +26,19 @@ export function Card({
 }) {
     const navigate = useNavigate();
     const [favorites, setFavorites] = useState(favorite);
-    //const [descriptionText, setDescriptionText] = useState(description);
-
 
 
     function descriptionText() {
-        if (description.length > 82) {
+        if (description.length > 75) {
             return description.slice(0, 75)
         } else {
             return description
         }
     }
 
-    function saibaMais() {
+    /* function saibaMais() {
         navigate('/login')
-    }
+    } */
 
     function chooseCategory(id, category) {
         console.log(id);
@@ -176,7 +174,7 @@ export function Card({
                         <section className='section3 text-normal'>
                             <p className='textStyle'>
                                 {descriptionText()}
-                                {description.length > 82 && <Link to={'/login'} className='maisTexto '>mais...</Link>}
+                                {description.length > 75 && <Link to={'/login'} className='maisTexto '>mais...</Link>}
                             </p>
                         </section>
 
