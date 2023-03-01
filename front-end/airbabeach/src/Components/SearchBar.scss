@@ -1,3 +1,62 @@
+.litepicker {
+    .container__days {
+        .day-item.is-end-date {
+            background-color: var(--green-light);
+        }
+
+        .day-item.is-start-date {
+            background-color: var(--green-light);
+        }
+
+        .day-item.is-in-range {
+            background-color: #1dbeb450;
+        }
+    }
+    .container__footer {
+        .button-apply {
+            width: 5rem;
+            height: 2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--green-light);
+            box-shadow: 0px 2px 4px rgb(0 0 0 / 12%);
+            color: var(--grey-light);
+            font-style: normal;
+            font-weight: 700;
+            font-size: .875rem;
+            line-height: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            &:hover{
+                background-color: var(--green-medium);
+            }
+        }
+        .button-cancel {
+            width: 5rem;
+            height: 2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--grey-light);
+            box-shadow: 0px 2px 4px rgb(0 0 0 / 12%);
+            color: var(--grey-darker);
+            font-style: normal;
+            font-weight: 700;
+            font-size: .875rem;
+            line-height: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            &:hover{
+                background-color: var(--grey-medium);
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .calendar-container {
+      width: 100%;
+    }
+  }
+
 .searchBarStyle {
     background-color: var(--coral-light);
     height: 9.5rem;
@@ -44,7 +103,7 @@
                 border: none;
                 outline: none;
             }
-          
+
         }
 
         .dateSection {
@@ -67,7 +126,7 @@
                 border: none;
                 outline: none;
             }
-          
+
         }
 
         .btn {
@@ -100,11 +159,6 @@
 
 }
 
-@media (max-width: 768px) {
-    
-}
+@media (max-width: 768px) {}
 
-@media (max-width: 414px) {
-
-    
-}
+@media (max-width: 414px) {}
