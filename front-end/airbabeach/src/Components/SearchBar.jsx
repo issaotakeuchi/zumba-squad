@@ -6,30 +6,52 @@ import { Link, useNavigate } from "react-router-dom";
 import { MapPin, Calendar } from 'phosphor-react'
 import Litepicker from 'litepicker';
 
-
 export function SearchBar() {
     const navigate = useNavigate();
     const [city, setCity] = useState('');
     const [date, setDate] = useState('');
     const [calendarId, setCalendarId] = useState('');
+    const [datesSelected, setDatesSelected] = useState(false);
     const datepickerRef = useRef(null);
+    const litepickerRef = useRef(null);
 
     useEffect(() => {
-        const datepicker = new Litepicker({
-            element: datepickerRef.current,
-            numberOfMonths: 2,
-            selectForward: true,
-            onSelect: (date1, date2) => {
-                setSelectedDates([date1.format('DD/MM/YYYY'), date2.format('DD/MM/YYYY')]);
-                datepickerRef.current.value = `${date1.format('DD/MM/YYYY')} - ${date2.format('DD/MM/YYYY')}`;
-            },
-        });
+        if (!litepickerRef.current) {
+            litepickerRef.current = new Litepicker({
+                element: datepickerRef.current,
+                numberOfMonths: 2,
+                numberOfColumns: 2,
+                selectForward: true,
+                singleMode: false,
+                lang: "pt-BR",
+                format: "DD MMM",
+                autoApply: false,
+                autoClose: true,
+                tooltipText: { "one": "dia", "other": "dias" },
+                buttonText: {
+                    apply: 'Aplicar', cancel: 'Cancelar',
+                },
+                onSelect: (startDate, endDate) => {
+                    setDatesSelected(true);
+                    if (endDate) {
+                        litepickerRef.current.close();
+                    }
+                },
+                onCancel: () => {
+                    handleHideCalendar();
+                },
+                onApply: (startDate, endDate) => {
+                    handleHideCalendar();
+                }
+            });
+        }
     }, []);
 
 
     function cleanForm() {
-        setCity('')
-        setDate('')
+        setCity('');
+        setDate('');
+        setDatesSelected(false);
     }
 
     function validateForm() {
@@ -52,7 +74,14 @@ export function SearchBar() {
 
         let data = {
             city: city,
-            date: date
+            startDate:"",
+            endDate: ""
+        }
+
+        if (datesSelected) {
+            const dates = litepickerRef.current.getDate();
+            data.startDate = dates[0].toISOString();
+            data.endDate = dates[1].toISOString();
         }
 
         console.log(data);
@@ -76,6 +105,12 @@ export function SearchBar() {
         });
 
         cleanForm();
+    }
+
+    function handleHideCalendar() {
+        if (!litepickerRef.current.isVisible()) return;
+        setDatesSelected(true);
+        litepickerRef.current.close();
     }
 
     return (
@@ -112,7 +147,8 @@ export function SearchBar() {
                         id={calendarId} // usa o ID gerado para o calendário
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
-                        placeholder="Escolha a data"
+                        autoComplete="off"
+                        placeholder="Check in  -  Check out"
                         ref={datepickerRef}
                     />
 
