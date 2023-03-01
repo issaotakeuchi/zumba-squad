@@ -16,7 +16,17 @@
     animation-fill-mode: both;
     animation-name: fadeIn;
 
+    .logoImg {
+        width: 9rem;
+        border: 1px solid var(--green-light);
+        border-radius: 10px;
+        padding: 0.4rem;
+        cursor: pointer;
+    }
+
     .logoTagline {
+        max-width: fit-content;
+        width: 100%;
         font-family: Roboto;
         color: var(--gray-darker);
         font-style: italic;
@@ -26,6 +36,20 @@
     .asideHolder {
         display: flex;
         gap: 0.625rem;
+        width: 100%;
+        justify-content: flex-end;
+
+        &[type='/home']{
+            max-width: 26.625rem;  
+        }
+        &[type='/login']{
+            max-width: 13rem;  
+        }
+        &[type='/createUser']{
+            max-width: 13rem;  
+        }
+
+
 
         .profilePicture {
             height: 2.5rem;
@@ -72,12 +96,12 @@
             }
         }
 
-
-
         .btnHeader {
-            width: 13rem;
+            max-width: 13rem;
+            width: 100%;
+            padding: 0 0.25rem;
+
             height: 2.5rem;
-   
             border: 1px solid var(--green-light);
             border-radius: 5px;
             background-color: transparent;
@@ -91,7 +115,7 @@
             font-weight: 700;
             font-size: 1rem; //16px
             line-height: 1.25rem; //20px
-            
+
             cursor: pointer;
             transition: background-color 0.2s;
 
@@ -100,6 +124,8 @@
                 color: #ffffff;
             }
         }
+
+
 
     }
 }
@@ -112,10 +138,10 @@
 }
 
 @media (max-width: 414px) {
-   
+
     .headerFull {
         padding: 0 0.75rem;
-     
+
         .asideHolder {
 
             .loggedIn {

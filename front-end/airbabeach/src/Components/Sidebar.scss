@@ -44,18 +44,17 @@
     align-items: flex-end;
     transform: translateX(19rem);
     transition: 0.3s ease-in-out;
+    z-index: 6;
 
-    
     &.active {
         transform: translateX(0);
         visibility: visible;
-        z-index: 6;
 
-    
     }
 
     &.none {
         visibility: hidden;
+
     }
 
     .sidebarNav1 {
@@ -147,13 +146,24 @@
 
             .h2Menu {
                 text-align: end;
-                margin: 8.75rem 0.75rem 0 0;
-
                 font-family: "Roboto";
                 color: white;
                 font-weight: 400;
                 font-size: 1.25rem;
+
+                &[type="/home"] {
+                    margin: 8.75rem 0.75rem 0 0;
+                }
+
+                &[type="/login"] {
+                    margin: 4.75rem 0.75rem 0 0;
+                }
+
+                &[type="/createUser"] {
+                    margin: 4.75rem 0.75rem 0 0;
+                }
             }
+
 
             .menu {
                 list-style: none;
@@ -215,6 +225,13 @@
     }
 }
 
-/* .sideSection{
-    
-} */
+
+@media (min-width: 414px) {
+    .sidebar {
+        
+        &.active {
+            transform: translateX(19rem);
+            visibility: hidden;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import {
   redirect
 } from "react-router-dom"
 
+import 'sweetalert2/src/sweetalert2.scss'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { AuthProvider } from './contexts/auth'

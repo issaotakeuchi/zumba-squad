@@ -6,30 +6,39 @@ import { createContext, useContext } from "react"
 const AuthContext = createContext()
 
 export function AuthProvider(props) {
-
+  const [user, setUser] = useState('')
   const authLocalStorage = localStorage.getItem('auth')
-
   const [auth, setAuth] = useState(authLocalStorage === null ? '' : authLocalStorage)
 
-  const [user, setUser] = useState('')
 
-  // Função responsavel por salvar o token
   function saveToken(tokenReceived) {
-
     if (tokenReceived !== auth) {
-
       setAuth(tokenReceived)
       localStorage.setItem('auth', tokenReceived)
-
     }
-
   }
 
-  function deleteToken(){
+  function deleteToken() {
     localStorage.removeItem('auth')
   }
 
-  function saveUser(userReceived){
+  function compareToken() {
+    let token = localStorage.getItem('auth')
+
+    if (
+      auth === token &&
+      auth.replace(/\s/g, '').length > 0 &&
+      auth !== undefined &&
+      auth !== null &&
+      auth !== ''
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  function saveUser(userReceived) {
     setUser(userReceived)
     setUser({
       name: 'Bruno Rocha',
@@ -37,11 +46,12 @@ export function AuthProvider(props) {
     })
   }
 
-  function deleteUser(){
+  function deleteUser() {
     setUser('');
     deleteToken();
   }
 
+  //metodos para gerar o autorizathin automatiamente em cada requisição
   //método 1
   axios.defaults.headers.common['Authorization'] = auth
 
@@ -79,21 +89,9 @@ export function AuthProvider(props) {
     return Promise.reject(error);
   }); */
 
-
-
-
-
-
-
-
-
-
-
-  
-
   return (
 
-    <AuthContext.Provider value={{ auth, saveToken, deleteToken, user, saveUser, deleteUser}}>
+    <AuthContext.Provider value={{ auth, saveToken, deleteToken, compareToken, user, saveUser, deleteUser }}>
       {props.children}
     </AuthContext.Provider>
 
