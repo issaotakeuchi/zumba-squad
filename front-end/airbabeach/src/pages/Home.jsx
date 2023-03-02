@@ -1,6 +1,6 @@
 import './Home.scss'
 import { Card } from "../Components/Card";
-import { cards, recomendations } from '../../public/cardsMock.js'
+import { cards, recomendations } from '/public/cardsMock.js'
 import { SearchBar } from '../Components/SearchBar' 
 
 export function Home() {
@@ -24,7 +24,7 @@ export function Home() {
                             img={element.img}
                             category={element.category}
                             quantity={element.quantity}
-                            hostings={element.hostings}
+                            
                         />
                     ))}
                 </div>

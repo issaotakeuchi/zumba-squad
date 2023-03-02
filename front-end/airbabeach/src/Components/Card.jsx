@@ -10,7 +10,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function Card({
     id,
-    hostings,
     type,
     category,
     quantity,
@@ -25,7 +24,7 @@ export function Card({
 
 }) {
     const navigate = useNavigate();
-    const [favorites, setFavorites] = useState(favorite);
+
 
 
     function descriptionText() {
@@ -47,7 +46,6 @@ export function Card({
     }
 
     function favoriteToggle() {
-        //setFavorites(!favorites)
         console.log(id);
     }
 
@@ -74,7 +72,8 @@ export function Card({
 
             {type === 'category' &&
 
-                <div type='category' onClick={() => chooseCategory(id, category)} className='cardBodyStyle'>
+
+                <Link to={`/category/${id}`} type='category' className='cardBodyStyle'>
                     <section className='thumbStyle'>
                         <img className='imgStyle' src={img} />
                     </section>
@@ -83,7 +82,7 @@ export function Card({
                         <h2 >{category}</h2>
                         <p>{convertNumber(quantity)} hotéis</p>
                     </section>
-                </div>}
+                </Link>}
 
 
             {(type === 'recomendations') &&
@@ -174,12 +173,10 @@ export function Card({
                         <section className='section3 text-normal'>
                             <p className='textStyle'>
                                 {descriptionText()}
-                                {description.length > 75 && <Link to={'/login'} className='maisTexto '>mais...</Link>}
+                                {description.length > 75 && <Link to={`/product/${id}`} className='maisTexto '>mais...</Link>}
                             </p>
                         </section>
-
-                        <button className='btn'>Ver mais</button>
-
+                        <Link to={`/product/${id}`}><button className='btn'>Ver mais</button></Link>
                     </section>
                 </div>
 

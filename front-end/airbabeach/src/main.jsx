@@ -14,6 +14,8 @@ import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { CreateUser } from './pages/CreateUser'
 import { ProtectedRoute } from "./utils/ProtectedRoute"
+import { Product } from "./pages/Product"
+import { Category } from "./pages/Category"
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -42,6 +44,14 @@ const appRouter = createBrowserRouter([
       {
         path: "createUser",
         element: <CreateUser />,
+      },
+      {
+        path: "product/:id",
+        element: <Product />,
+      },
+      {
+        path: "category/:id",
+        element: <Category />,
       },
       {
         path: "rotaProtegida",

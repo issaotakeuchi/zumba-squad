@@ -16,21 +16,29 @@
     animation-fill-mode: both;
     animation-name: fadeIn;
 
-    .logoImg {
-        width: 9rem;
-        border: 1px solid var(--green-light);
-        border-radius: 10px;
-        padding: 0.4rem;
-        cursor: pointer;
-    }
+    .logoSection{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;       
 
-    .logoTagline {
-        max-width: fit-content;
-        width: 100%;
-        font-family: Roboto;
-        color: var(--grey-darker);
-        font-style: italic;
-        font-weight: 400;
+        .logoImg {
+            width: 9rem;
+            border: 1px solid var(--green-light);
+            border-radius: 10px;
+            padding: 0.4rem;
+            cursor: pointer;
+        }
+    
+        .logoTagline {
+            max-width: fit-content;
+            width: 100%;
+            font-family: Roboto;
+            color: var(--grey-darker);
+            font-style: italic;
+            font-weight: 500;
+            font-size: 1.25rem;
+            text-align: center;
+        }
     }
 
     .asideHolder {
