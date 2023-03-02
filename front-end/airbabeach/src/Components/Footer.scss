@@ -8,12 +8,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
     font-family: 'Roboto';
     font-size: .875rem;
 
     .footerParagraph {
-        color: var(--gray-light);
+        color: var(--grey-light);
     }
 
     .socialMidia {
@@ -21,8 +20,7 @@
         gap: 1.875rem;
 
         a {
-            color: var(--gray-light);
-
+            color: var(--grey-light);
         }
     }
 }
