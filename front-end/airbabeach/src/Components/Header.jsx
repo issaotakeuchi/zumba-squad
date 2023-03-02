@@ -22,7 +22,7 @@ export function Header() {
       title: 'Deseja realmente sair?',
       width: '360',
       color: '#545776',
-      icon:'question',
+      icon: 'question',
       focusCancel: true,
       showCancelButton: true,
       confirmButtonText: 'Sim',
@@ -50,7 +50,7 @@ export function Header() {
       navigate('/home')
     }
 
-    setTimeout(()=>{setUrlPath('')},1)
+    setTimeout(() => { setUrlPath('') }, 1)
   }
 
 
@@ -58,10 +58,10 @@ export function Header() {
   //devemos trocar o 'user' pelo 'auth' na verificação para ver se tem alguém logado
   return (
     <section className="headerFull">
-
-      <img onClick={()=>changeScreen('home')} className="logoImg" src="src/assets/logo1-3.svg" alt="logotipo" />
-
-      <h2 className="logoTagline">Sinta-se em casa</h2>
+      <section className="logoSection">
+        <img onClick={() => changeScreen('home')} className="logoImg" src="src/assets/logo1-3.svg" alt="logotipo" />
+        <h2 className="logoTagline">Sinta-se em casa</h2>
+      </section>
 
       <div className="asideHolder" type={urlPath}>
 
@@ -71,7 +71,7 @@ export function Header() {
 
             <div className="greetingAndName">
               <p className="">Olá,</p>
-              <p className="greetingAndNameGreen">Bruno Rocha</p>
+              <p className="greetingAndNameGreen">{user.name}</p>
             </div>
             <X size={26} onClick={logout} alt="Sair" weight="bold" className="btnLoggout" />
           </div>
