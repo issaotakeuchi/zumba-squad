@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,4 +20,14 @@ public class Produto {
     private Long id;
     private String nome;
     private String descricao;
+    @OneToMany(mappedBy = "produto")
+    private Set<Imagem> imagens;
+    @ManyToMany(mappedBy = "produtos")
+    private Set<Caracteristica> caracteristicas = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "cidade_id")
+    private Cidade cidade;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 }
