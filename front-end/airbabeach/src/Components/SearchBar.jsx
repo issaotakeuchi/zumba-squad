@@ -16,6 +16,7 @@ export function SearchBar() {
     const litepickerRef = useRef(null);
 
     useEffect(() => {
+
         if (!litepickerRef.current) {
             litepickerRef.current = new Litepicker({
                 element: datepickerRef.current,
@@ -67,14 +68,14 @@ export function SearchBar() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        console.log(date);
         //if (!validateForm()) return;
 
         let url = 'https://www.airbabeach/searchAcomodations';
 
         let data = {
             city: city,
-            startDate:"",
+            startDate: "",
             endDate: ""
         }
 
@@ -122,7 +123,7 @@ export function SearchBar() {
 
                 <div className='citySection'>
                     <label htmlFor="city" >
-                        <MapPin size={20} color="#545776" weight="fill" className='mapIcon' />
+                        <MapPin size={20} color="#54577689" weight="fill" className='mapIcon' />
                     </label>
 
                     <input
@@ -154,7 +155,7 @@ export function SearchBar() {
 
                 </div>
 
-                <button className="btn" type="submit"> Buscar </button>
+                <button className="btnSearchBar" type="submit"> Buscar </button>
             </form>
 
         </section>

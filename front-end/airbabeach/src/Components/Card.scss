@@ -51,6 +51,7 @@
         .heartIconStyle {
             margin: 2px 14px 0px -34px;
             cursor: pointer;
+            height: fit-content;
         }
 
         .imgStyle {
@@ -59,7 +60,6 @@
             min-height: 17.75rem;
             max-width: 20.5rem;
             width: auto;
-            //width: 20.5rem;
             border-radius: 10px;
         }
     }
@@ -269,32 +269,6 @@
     }
 }
 
-/* @media (max-width: 414px) {
-    .cardBodyStyle[type="recomendations"] {
-        max-width: 24.75rem;
-        flex-direction: column;
-
-        .thumbStyle {
-
-            .imgStyle {
-                max-height: 14.5rem;
-                height: auto;
-                max-width: 24.75rem;
-                width: 101%;
-            }
-        }
-
-        .detailsStyle {
-            padding: 0rem 0.5em 0.5rem 0.5rem;
-
-            .btn {
-                max-width: 22.5rem;
-            }
-        }
-    }
-} */
-
-
 
 //animação do coração S2
 svg {
@@ -305,12 +279,13 @@ svg {
     margin-right: -8px;
 
     
+    
     .heart {
         transform-origin: center;
         animation: animateHeartOut .3s linear forwards;
-        fill: var(--gray-light);
+        fill: var(--grey-light);
         transition: 0.2s;
-
+        
         &:hover {
             fill: var(--red-favorite);
         }
@@ -326,6 +301,7 @@ svg {
 }
 
 .inputFavStyle:checked+.labelStyle svg {
+    z-index: 1000;
     .heart {
         transform: scale(.2);
         fill: #E2264D;

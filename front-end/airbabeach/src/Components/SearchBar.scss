@@ -12,6 +12,7 @@
             background-color: #1dbeb450;
         }
     }
+
     .container__footer {
         .button-apply {
             width: 5rem;
@@ -27,10 +28,12 @@
             line-height: 1.25rem;
             cursor: pointer;
             transition: background-color 0.2s;
-            &:hover{
+
+            &:hover {
                 background-color: var(--green-medium);
             }
         }
+
         .button-cancel {
             width: 5rem;
             height: 2rem;
@@ -45,17 +48,19 @@
             line-height: 1.25rem;
             cursor: pointer;
             transition: background-color 0.2s;
-            &:hover{
+
+            &:hover {
                 background-color: var(--grey-medium);
             }
         }
     }
 }
+
 @media (max-width: 768px) {
     .calendar-container {
-      width: 100%;
+        width: 100%;
     }
-  }
+}
 
 .searchBarStyle {
     background-color: var(--coral-light);
@@ -84,13 +89,20 @@
         flex-wrap: nowrap;
 
         .citySection {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
 
             .mapIcon {
+                height: 1.7rem;
+                width: 1.7rem;
                 position: relative;
-                top: 0.3rem;
-                right: -2.25rem;
-                margin: 0 -0rem 0 0;
-                //z-index: 10;
+                top: 0.1rem;
+                right: -1.75rem;
+                margin: 0 ;
+                padding: 0;
+                z-index: 100;
             }
 
             .inputSearchStyle {
@@ -129,12 +141,13 @@
 
         }
 
-        .btn {
+        .btnSearchBar {
 
             //max-width: 13rem;
             width: 13rem;
             height: 2.5rem;
             //padding: 0.5rem 2.25rem;
+            margin-right: 1.75rem;
 
             border: none;
             border-radius: 5px;
