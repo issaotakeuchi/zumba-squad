@@ -18,4 +18,8 @@ public class ProdutoService {
 
     public Produto getById(Long id) { return repository.findById(id).get(); }
 
+    public List<Produto> getAllProductsByCity(Long cidade_id) { return repository.findAllProductsByCity(cidade_id); }
+
+    public List<Produto> getAllProductsByCategory(Long categoria_id) { return repository.findAllProductsByCategory(categoria_id); }
+
 }
