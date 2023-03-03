@@ -48,6 +48,16 @@ public class ProdutoController {
         }
     }
 
+    @GetMapping("/por_cidade/{cidade_id}")
+    public List<Produto> buscarProdutosPorCidade(Long cidade_id) {
+        return service.getAllProductsByCity(cidade_id);
+    }
+
+    @GetMapping("/por_categoria/{categoria_id}")
+    public List<Produto> buscarProdutosPorCategoria(Long categoria_id) {
+        return service.getAllProductsByCategory(categoria_id);
+    }
+
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> processErrorBadRequest(BadRequestException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
