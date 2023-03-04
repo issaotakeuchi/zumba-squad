@@ -50,14 +50,26 @@ public class ProdutoController {
         }
     }
 
-    @GetMapping("/por_cidade/{cidade_id}")
-    public List<Produto> buscarProdutosPorNomeCidade(Cidade cidade) {
-        return service.getAllProductsByCity(cidade);
+    @GetMapping("/por_cidade/{id}")
+    public List<Produto> buscarProdutosPorCidadeId(@PathVariable Long id) throws ResourceNotFoundException {
+        try {
+            log.info("Encontrado a lista de produtos solicitado");
+            return service.getAllProductsByCityId(id);
+        } catch (Exception e) {
+            log.info("Não foi encontrado a lista de produtos solicitado");
+            throw new ResourceNotFoundException("Não foi encontrado a lista de produtos solicitado.");
+        }
     }
 
-    @GetMapping("/por_categoria/{categoria_id}")
-    public List<Produto> buscarProdutosPorNomeCategoria(Categoria categoria) {
-        return service.getAllProductsByCategory(categoria);
+    @GetMapping("/por_categoria/{id}")
+    public List<Produto> buscarProdutosPorCategoriaId(@PathVariable Long id) throws ResourceNotFoundException {
+        try {
+            log.info("Encontrado a lista de produtos solicitado");
+            return service.getAllProductsByCategoryId(id);
+        } catch (Exception e) {
+            log.info("Não foi encontrado a lista de produtos solicitado");
+            throw new ResourceNotFoundException("Não foi encontrado a lista de produtos solicitado.");
+        }
     }
 
     @ExceptionHandler({BadRequestException.class})
