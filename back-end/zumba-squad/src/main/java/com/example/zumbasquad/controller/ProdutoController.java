@@ -2,6 +2,8 @@ package com.example.zumbasquad.controller;
 
 import com.example.zumbasquad.exceptions.BadRequestException;
 import com.example.zumbasquad.exceptions.ResourceNotFoundException;
+import com.example.zumbasquad.model.Categoria;
+import com.example.zumbasquad.model.Cidade;
 import com.example.zumbasquad.model.Produto;
 import com.example.zumbasquad.service.ProdutoService;
 import org.slf4j.Logger;
@@ -49,13 +51,13 @@ public class ProdutoController {
     }
 
     @GetMapping("/por_cidade/{cidade_id}")
-    public List<Produto> buscarProdutosPorCidade(Long cidade_id) {
-        return service.getAllProductsByCity(cidade_id);
+    public List<Produto> buscarProdutosPorNomeCidade(Cidade cidade) {
+        return service.getAllProductsByCity(cidade);
     }
 
     @GetMapping("/por_categoria/{categoria_id}")
-    public List<Produto> buscarProdutosPorCategoria(Long categoria_id) {
-        return service.getAllProductsByCategory(categoria_id);
+    public List<Produto> buscarProdutosPorNomeCategoria(Categoria categoria) {
+        return service.getAllProductsByCategory(categoria);
     }
 
     @ExceptionHandler({BadRequestException.class})
