@@ -1,7 +1,5 @@
 package com.example.zumbasquad.service;
 
-import com.example.zumbasquad.model.Categoria;
-import com.example.zumbasquad.model.Cidade;
 import com.example.zumbasquad.model.Produto;
 import com.example.zumbasquad.repository.IProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -20,8 +18,7 @@ public class ProdutoService {
 
     public Produto getById(Long id) { return repository.findById(id).get(); }
 
-    public List<Produto> getAllProductsByCity(Cidade cidade) { return repository.findByCidade(cidade); }
+    public List<Produto> getAllProductsByCityId(Long id) { return repository.findByCidadeId(id); }
 
-    public List<Produto> getAllProductsByCategory(Categoria categoria) { return repository.findByCategoria(categoria); }
-
+    public List<Produto> getAllProductsByCategoryId(Long id) { return repository.findByCategoriaId(id); }
 }
