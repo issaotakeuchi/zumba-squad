@@ -5,22 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "categorias")
-public class Categoria {
+@Table(name = "imagens")
+public class Imagem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String qualificacao;
-    private String descricao;
-    private String urlImagem;
-    @OneToMany(mappedBy = "categoria")
-    private Set<Produto> produtos;
-
-
+    private String titulo;
+    private String url;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 }

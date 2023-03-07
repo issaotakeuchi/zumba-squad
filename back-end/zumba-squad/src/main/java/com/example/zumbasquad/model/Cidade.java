@@ -11,16 +11,14 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "categorias")
-public class Categoria {
+@Table(name = "cidades")
+public class Cidade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String qualificacao;
-    private String descricao;
-    private String urlImagem;
-    @OneToMany(mappedBy = "categoria")
+    private String nome;
+    private String pais;
+    @OneToMany(mappedBy = "cidade")
     private Set<Produto> produtos;
-
-
 }
