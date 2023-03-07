@@ -14,6 +14,7 @@ export function Sidebar() {
   const [sidebarDisplay, setSidebarDisplay] = useState(false);
   const [animation, setAnimation] = useState("");
 
+  console.log(urlPath);
 
   useEffect(() => {
     setUrlPath(window.location.pathname)
@@ -83,13 +84,14 @@ export function Sidebar() {
           {!user &&
             <div className="loggedOut">
               <h2 type={urlPath} className="h2Menu">MENU</h2>
+
               <ul className="menu">
 
-                {(urlPath === '/login' || urlPath === '/home') && <li className="menu-item"><Link to={'/createUser'} className="menu-link" onClick={toggleSidebar}>Criar conta</Link></li>}
+                {urlPath !== '/createUser' && <li className="menu-item"><Link to={'/createUser'} className="menu-link" onClick={toggleSidebar}>Criar conta</Link></li>}
 
-                {urlPath === '/home' && <hr className="hrStyle1" />}
+                {(urlPath !== '/createUser' && urlPath !== '/login') && <hr className="hrStyle1" />}
 
-                {(urlPath === '/createUser' || urlPath === '/home') && <li className="menu-item"><Link to={'/login'} className="menu-link" onClick={toggleSidebar}>Fazer login</Link></li>}
+                {urlPath !== '/login' && <li className="menu-item"><Link to={'/login'} className="menu-link" onClick={toggleSidebar}>Fazer login</Link></li>}
 
               </ul>
             </div>

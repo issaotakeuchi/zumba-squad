@@ -14,7 +14,7 @@ export function Home() {
 
             <section className="categoriesSection">
                 <h1>Buscar por tipo de acomodação</h1>
-                <div className="cardsContainer">
+                <div className="cardsContainer categoryContainer">
                     {cards.map((element, index) => (
                         <Card
                             className='cardStyle'
@@ -33,7 +33,7 @@ export function Home() {
             <section className="recomendationsSection">
                 <h1>Recomendações</h1>
 
-                <div className="cardsContainer">
+                <div className="cardsContainer recomendationContainer">
                     {recomendations.map((element, index) => (
                         <Card
                             key={index}

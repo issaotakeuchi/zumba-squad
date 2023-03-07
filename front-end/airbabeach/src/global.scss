@@ -36,7 +36,20 @@ h1 {
   line-height: 1.75rem; //28px
 }
 
+.h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem; //24px
+  line-height: 1.75rem; //28px
+}
+
 h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem; //20px
+  line-height: 1.5rem; //24px
+}
+.h2 {
   font-style: normal;
   font-weight: 700;
   font-size: 1.25rem; //20px
@@ -49,8 +62,20 @@ h3 {
   font-size: 1rem; //16px
   line-height: 1.25rem; //20px
 }
+.h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem; //16px
+  line-height: 1.25rem; //20px
+}
 
 h4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.875rem; //14px
+  line-height: 1rem; //16px
+}
+.h4 {
   font-style: normal;
   font-weight: 700;
   font-size: 0.875rem; //14px
@@ -63,8 +88,20 @@ h5 {
   font-size: 1rem; //16px
   line-height: 1.25rem; //20px
 }
+.h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem; //16px
+  line-height: 1.25rem; //20px
+}
 
 h6 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.875rem; //14px
+  line-height: 1rem; //16px
+}
+.h6 {
   font-style: normal;
   font-weight: 700;
   font-size: 0.875rem; //14px
@@ -100,6 +137,16 @@ h6 {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
