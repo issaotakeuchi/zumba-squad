@@ -59,7 +59,7 @@ export function Header() {
   return (
     <section className="headerFull">
       <section className="logoSection">
-        <img onClick={() => changeScreen('home')} className="logoImg" src="src/assets/logo1-3.svg" alt="logotipo" />
+        <div onClick={() => changeScreen('home')} className="logoImg" ></div>
         <h2 className="logoTagline">Sinta-se em casa</h2>
       </section>
 
@@ -79,13 +79,20 @@ export function Header() {
 
         {user == '' &&
           <>
-            {(urlPath === '/login' || urlPath === '/home') &&
+            {urlPath !== '/createUser' &&
+              <button className='btnHeader' onClick={() => changeScreen('createUser')}>Criar conta</button>
+            }
+
+            {urlPath !== '/login' &&
+              <button className='btnHeader' onClick={() => changeScreen('login')}>Iniciar sessão</button>
+            }
+            {/* {(urlPath === '/login' || urlPath === '/home') &&
               <button className='btnHeader' onClick={() => changeScreen('createUser')}>Criar conta</button>
             }
 
             {(urlPath === '/createUser' || urlPath === '/home') &&
               <button className='btnHeader' onClick={() => changeScreen('login')}>Iniciar sessão</button>
-            }
+            } */}
 
           </>
 

@@ -1,7 +1,8 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  redirect
+  redirect,
+  useRouteError
 } from "react-router-dom"
 
 import 'sweetalert2/src/sweetalert2.scss'
@@ -19,39 +20,54 @@ import { Category } from "./pages/Category"
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
+function ErrorBoundary() {
+  let error = useRouteError();
+  console.error(error);
+
+  return <p>Ocorreu um problema ao carregar, recarregue a página </p>;
+}
 
 const appRouter = createBrowserRouter([
   {
     path: "",
     element: <App />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: '',
-        loader: () => redirect('/home')
+        loader: () => redirect('/home'),
+        errorElement: <ErrorBoundary />
+        
       },
       {
         path: '*',
-        loader: () => redirect('https://http.cat/404')
+        loader: () => redirect('https://http.cat/404'),
+        errorElement: <ErrorBoundary />
       },
       {
         path: "home",
         element: <Home />,
+        errorElement: <ErrorBoundary />
       },
       {
         path: "login",
         element: <Login />,
+        errorElement: <ErrorBoundary />
       },
       {
         path: "createUser",
         element: <CreateUser />,
+        errorElement: <ErrorBoundary />
       },
       {
         path: "product/:id",
         element: <Product />,
+        errorElement: <ErrorBoundary />
       },
       {
         path: "category/:id",
         element: <Category />,
+        errorElement: <ErrorBoundary />
       },
       {
         path: "rotaProtegida",
@@ -59,19 +75,23 @@ const appRouter = createBrowserRouter([
           <ProtectedRoute redirectPath="/home">
             <CreateUser />
           </ProtectedRoute>,
+          errorElement: <ErrorBoundary />
       },
-    ]
+    ],
+    
   }
-])
+
+]
+)
 
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
 
     <AuthProvider>
       <RouterProvider router={appRouter} />
     </AuthProvider>
 
-  </React.StrictMode>
+  //</React.StrictMode>
 )
 
 

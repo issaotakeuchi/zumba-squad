@@ -31,6 +31,7 @@
 }
 
 
+
 .sidebar {
     max-width: 19rem;
     width: 100%;
@@ -45,6 +46,7 @@
     transform: translateX(19rem);
     transition: 0.3s ease-in-out;
     z-index: 6;
+
 
     &.active {
         transform: translateX(0);
@@ -150,10 +152,7 @@
                 color: white;
                 font-weight: 400;
                 font-size: 1.25rem;
-
-                &[type="/home"] {
-                    margin: 8.75rem 0.75rem 0 0;
-                }
+                margin: 8.75rem 0.75rem 0 0;
 
                 &[type="/login"] {
                     margin: 4.75rem 0.75rem 0 0;

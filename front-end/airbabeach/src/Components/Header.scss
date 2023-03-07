@@ -16,19 +16,26 @@
     animation-fill-mode: both;
     animation-name: fadeIn;
 
-    .logoSection{
+    .logoSection {
         display: flex;
         align-items: center;
-        gap: 0.5rem;       
+        gap: 1rem;
+        width: 100%;
 
         .logoImg {
-            width: 9rem;
+            background-image: url('../assets/logo1-3.svg');
+            min-width: 160px;
+            height: 2.5rem;
             border: 1px solid var(--green-light);
             border-radius: 10px;
-            padding: 0.4rem;
+            padding: 2rem;
             cursor: pointer;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:  8rem;
+            object-fit: contain;
         }
-    
+
         .logoTagline {
             max-width: fit-content;
             width: 100%;
@@ -47,14 +54,16 @@
         width: 100%;
         justify-content: flex-end;
 
-        &[type='/home']{
-            max-width: 26.625rem;  
+        &[type='/home'] {
+            max-width: 26.625rem;
         }
-        &[type='/login']{
-            max-width: 13rem;  
+
+        &[type='/login'] {
+            max-width: 13rem;
         }
-        &[type='/createUser']{
-            max-width: 13rem;  
+
+        &[type='/createUser'] {
+            max-width: 13rem;
         }
 
 
