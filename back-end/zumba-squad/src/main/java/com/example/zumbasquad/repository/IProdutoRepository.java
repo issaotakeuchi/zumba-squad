@@ -13,4 +13,8 @@ public interface IProdutoRepository extends JpaRepository<Produto, Long> {
     List<Produto> findByCidadeId(final Long id);
 
     List<Produto> findByCategoriaId(final Long id);
+
+    List<Produto> findByCidadeNome(String nome);
+
+    List<Produto> findByCategoriaQualificacao(String qualificacao);
 }

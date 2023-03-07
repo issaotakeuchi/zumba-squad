@@ -21,4 +21,12 @@ public class ProdutoService {
     public List<Produto> getAllProductsByCityId(Long id) { return repository.findByCidadeId(id); }
 
     public List<Produto> getAllProductsByCategoryId(Long id) { return repository.findByCategoriaId(id); }
+
+    public List<Produto> getAllProductsByCityName(String nome){
+        return repository.findByCidadeNome(nome);
+    }
+
+    public List<Produto> getAllProductsByCategoryQualification(String qualificacao){
+        return repository.findByCategoriaQualificacao(qualificacao);
+    }
 }
