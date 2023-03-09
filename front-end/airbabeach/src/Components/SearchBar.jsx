@@ -16,38 +16,46 @@ export function SearchBar() {
     const litepickerRef = useRef(null);
 
     useEffect(() => {
-
         if (!litepickerRef.current) {
-            litepickerRef.current = new Litepicker({
-                element: datepickerRef.current,
-                numberOfMonths: 2,
-                numberOfColumns: 2,
-                selectForward: true,
-                singleMode: false,
-                lang: "pt-BR",
-                format: "DD MMM",
-                autoApply: false,
-                autoClose: true,
-                tooltipText: { "one": "dia", "other": "dias" },
-                buttonText: {
-                    apply: 'Aplicar', cancel: 'Cancelar',
-                },
-                onSelect: (startDate, endDate) => {
-                    setDatesSelected(true);
-                    if (endDate) {
-                        litepickerRef.current.close();
-                    }
-                },
-                onCancel: () => {
-                    handleHideCalendar();
-                },
-                onApply: (startDate, endDate) => {
-                    handleHideCalendar();
-                }
-            });
+          litepickerRef.current = new Litepicker({
+            element: datepickerRef.current,
+            numberOfMonths: 2,
+            numberOfColumns: 2,
+            selectForward: true,
+            singleMode: false,
+            horizontalPosition: 'middle',
+            lang: "pt-BR",
+            format: "DD MMM",
+            autoApply: false,
+            autoClose: true,
+            tooltipText: { "one": "dia", "other": "dias" },
+            buttonText: {
+              apply: 'Aplicar', cancel: 'Cancelar',
+            },
+            onSelect: (startDate, endDate) => {
+              setDatesSelected(true);
+              if (endDate) {
+                litepickerRef.current.close();
+              }
+            },
+            onCancel: () => {
+              handleHideCalendar();
+            },
+            onApply: (startDate, endDate) => {
+              handleHideCalendar();
+            }
+          });
         }
-    }, []);
-
+      
+        const mediaQuery = window.matchMedia("(max-width: 768px)");
+        if (mediaQuery.matches) {
+          litepickerRef.current.setOptions({ numberOfColumns: 1 });
+        } else {
+          litepickerRef.current.setOptions({ numberOfColumns: 2 });
+        }
+      
+      }, []);
+      
 
     function cleanForm() {
         setCity('');
@@ -123,7 +131,7 @@ export function SearchBar() {
 
                 <div className='citySection'>
                     <label htmlFor="city" >
-                        <MapPin size={20} color="#54577689" weight="fill" className='mapIcon' />
+                        <MapPin size={20} color="#545776" weight="regular" className='mapIcon' />
                     </label>
 
                     <input
@@ -138,7 +146,7 @@ export function SearchBar() {
                 </div>
                 <div className='dateSection'>
                     <label htmlFor="date" >
-                        <Calendar size={20} color="#545776" weight="fill" className='mapIcon' />
+                        <Calendar size={20} color="#545776" weight="light" className='calendarIcon' />
                     </label>
 
                     <input
