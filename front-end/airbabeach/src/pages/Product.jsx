@@ -1,28 +1,76 @@
-import "./Product.scss";
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import axios from "axios";
-import { toast } from 'react-toastify';
 import { products } from '/public/cardsMock.js'
+
+import "./Product.scss";
+import { useState, useEffect, useRef } from "react";
+import { Link, useParams } from 'react-router-dom'
 import { ShareNetwork, X, CaretLeft, Star, MapPin, WifiHigh, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
+import { Carousel } from "../Components/Carousel";
+import { HeartIcon } from "../Components/HeartIcon";
+import { Map } from "../Components/Map";
 import { gradeStatus } from '../utils/gradeStatus'
 import { breakLines } from '../utils/breakLines'
-import { Carousel } from "../Components/Carousel";
 
+import axios from "axios";
 import Swal from 'sweetalert2'
-import { HeartIcon } from "../Components/HeartIcon";
+import { toast } from 'react-toastify';
+import Litepicker from 'litepicker';
 
 
 
 export function Product() {
     const { id } = useParams()
-    //const navigate = useNavigate();
-    //const [productData, setProductData] = useState(recomendations[0]);
     const [productData, setProductData] = useState('');
     const [modal, setModal] = useState(false);
-    //const [lines, setLines] = useState('');
-    //const [details, setDetails] = useState('');
-    //const [differential, setDifferential] = useState('');
+    const [datePicker, setDatePicker] = useState(false);
+
+    //const [date, setDate] = useState('');
+    const litepickerRef = useRef(null);
+
+
+    function createDatepicker() {
+        if (datePicker) {
+            litepickerRef.current.destroy()
+        }
+
+
+        litepickerRef.current = new Litepicker({
+            element: document.getElementById('datepicker'),
+            numberOfMonths: 2,
+            numberOfColumns: 2,
+            mobileFriendly: true,
+            splitView: true,
+            selectForward: true,
+            singleMode: false,
+            lang: "pt-BR",
+            format: "DD MMM",
+            autoApply: true,
+            autoClose: true,
+            tooltipText: { "one": "dia", "other": "dias" },
+            inlineMode: true,
+
+            setup: (picker) => {
+
+                picker.on('destroy', (tooltip, day) => {
+                    console.log("destruido")
+                });
+                picker.on('selected', (date1, date2) => {
+                    console.log("selecionado");
+                });
+                picker.on('render', (ui) => {
+                    console.log("mostrou");
+                    setDatePicker(true)
+                });
+
+            },
+        });
+
+        const mediaQuery = window.matchMedia("(max-width: 560px)");
+        if (mediaQuery.matches) {
+            litepickerRef.current.setOptions({ numberOfColumns: 1 });
+        } else {
+            litepickerRef.current.setOptions({ numberOfColumns: 2 });
+        }
+    }
 
 
     //useffect usado para simular a requisição
@@ -30,14 +78,16 @@ export function Product() {
         let produtoSelecionado = products.find((item) => {
             return item.id == id
         })
-        console.log(produtoSelecionado);
+        //console.log(produtoSelecionado);
         setProductData(produtoSelecionado)
 
-        //setLines(produtoSelecionado.description.text.replaceAll('. ', '. \n').split('\n'))
-        //setLines(produtoSelecionado.description.text)
-        //setDetails(produtoSelecionado.details)
-        //setDifferential(produtoSelecionado.differential)
+
+        setTimeout(() => {
+            createDatepicker()
+        }, 1);
     }, [])
+
+
 
     /* useEffect(() => {
 
@@ -57,6 +107,49 @@ export function Product() {
 
 
 
+    function cleanForm() {
+        litepickerRef.current.clearSelection()
+        litepickerRef.current.destroy()
+        createDatepicker()
+    }
+
+    function validateForm() {
+        let startDate = litepickerRef.current.options.startDate == null
+        let endDate = litepickerRef.current.options.endDate == null
+
+        if (startDate || endDate) {
+            toast.error('Selecione as datas');
+            return false
+        }
+        return true
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        if (!validateForm()) return;
+
+        let url = 'https://www.airbabeach/searchProductAvailability';
+        let data = {
+            startDate: litepickerRef.current.options.startDate.dateInstance.toISOString(),
+            endDate: litepickerRef.current.options.endDate.dateInstance.toISOString()
+        }
+
+        console.log(data);
+
+        /* axios.post(url, data).then((response) => {
+            toast.success("Próximo destino econtrado!")
+        }, (error) => {
+            //console.log(error.code);
+            if (error.status == 404) return toast.error('Destino não encontrada');
+            if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
+            if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
+        }); */
+
+        cleanForm();
+    }
+
+
 
 
 
@@ -67,9 +160,9 @@ export function Product() {
                 <section className="productContainer">
                     {modal &&
                         <div className="carouselContainer" >
-                            <div className="controle" onClick={() => setModal(!modal)}></div>
+                            <div className="controle" onClick={() => setModal(false)}></div>
                             <Carousel imgs={productData.img} />
-                            <X size={32} className='closeIcon' color="#ffffff" weight="bold" onClick={() => setModal(!modal)} />
+                            <X size={32} className='closeIcon' color="#ffffff" weight="bold" onClick={() => setModal(false)} />
 
                         </div>
                     }
@@ -86,8 +179,7 @@ export function Product() {
                     <section className="locationSection">
                         <div className="locationText">
                             <MapPin className="mapPinStyle" size={20} color="#545776" weight="fill" />
-                            <p className="text-normal">Buenos Aires, Cidade Autônoma de Buenos Aires, Argentina
-                                940 m para o centro</p>
+                            <p className="text-normal">Buenos Aires, Cidade Autônoma de Buenos Aires, Argentina {productData.location.distance}m para o centro</p>
                         </div>
 
                         <div className="locationGrade">
@@ -162,46 +254,53 @@ export function Product() {
 
                     <section className="mapSection">
                         <h1 className="h1">Localização</h1>
+                        <Map location={productData.location.location} downtown={productData.location.downtown} address={productData.location.address} />
                     </section>
 
                     <section className="availabilitySection">
+
                         <h1 className="h1">Datas disponíveis</h1>
+
+                        <section className="datePickerSection">
+
+                            <div className="datepickerStyle" id='datepicker' ref={litepickerRef} />
+
+                            <section className='initReserveSection'>
+                                <p className='text-normal paragraphText'>Adicione as datas da sua viagem para obter preços exatos</p>
+                                <button className='btnInitReserve' onClick={handleSubmit}>
+                                    Iniciar Reserva
+                                </button>
+                            </section>
+
+                        </section>
+
                     </section>
 
                     <section className="politicsSection">
                         <h1 className="h1">O que você precisa saber:</h1>
-
                         <section className="politicDetails">
-                            <section>
+                            <section className='politicsText'>
                                 <h2 className="h3">Regras da casa</h2>
-
                                 {breakLines(productData.details.houseRules).map((itens, index) => (
                                     <p key={index} className='text-normal detailText'>{itens}</p>
                                 ))}
-
-
                             </section>
 
-                            <div>
+                            <section className='politicsText'>
                                 <h2 className="h3">Saúde e Segurança</h2>
                                 {breakLines(productData.details.healthSafety).map((itens, index) => (
                                     <p key={index} className='text-normal detailText'>{itens}</p>
                                 ))}
+                            </section>
 
-                            </div>
-
-                            <div>
+                            <section className='politicsText'>
                                 <h2 className="h3">Política de cancelamento</h2>
                                 {breakLines(productData.details.refundPolitics).map((itens, index) => (
                                     <p key={index} className='text-normal detailText'>{itens}</p>
                                 ))}
-
-                            </div>
+                            </section>
                         </section>
-
-
                     </section>
-
                 </section>
             }
         </>

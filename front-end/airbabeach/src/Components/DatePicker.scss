@@ -1,0 +1,140 @@
+/* .litepicker {
+    width: fit-content;
+
+    .container__main {
+        width: fit-content;
+
+        .container__months {
+            width: fit-content;
+
+            .month-item {
+                width: 190px;
+            }
+        }
+    }
+
+    .container__days {
+
+        .day-item.is-end-date {
+            background-color: var(--green-light);
+        }
+
+        .day-item.is-start-date {
+            background-color: var(--green-light);
+        }
+
+        .day-item.is-in-range {
+            background-color: #1dbeb450;
+        }
+    }
+
+    .container__footer {
+        display: flex;
+        justify-content: flex-end;
+
+        .button-apply {
+            width: 5rem;
+            height: 2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--green-light);
+            box-shadow: 0px 2px 4px rgb(0 0 0 / 12%);
+            color: var(--grey-light);
+            font-style: normal;
+            font-weight: 700;
+            font-size: .875rem;
+            line-height: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: var(--green-medium);
+            }
+        }
+
+        .button-cancel {
+            width: 5rem;
+            height: 2rem;
+            border: 1px solid var(--green-light) !important;
+            border-radius: 5px;
+            background-color: var(--grey-light);
+            box-shadow: 0px 2px 4px rgb(0 0 0 / 12%);
+            color: var(--grey-darker);
+            font-style: normal;
+            font-weight: 700;
+            font-size: .875rem;
+            line-height: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: var(--grey-medium);
+            }
+        }
+    }
+}
+
+.datepickerSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .calendarIcon {
+        height: 1.7rem;
+        width: 1.7rem;
+        position: relative;
+        top: 0.1rem;
+        right: -1.75rem;
+        margin-left: -1.75rem;
+        padding: 0;
+        z-index: 100;
+        cursor: pointer;
+    }
+
+
+    .inputSearchStyle {
+        height: 2.5rem;
+        width: 100%;
+        //min-width: 20rem;
+        padding-left: 2rem;
+        z-index: 0;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+    }
+}
+
+@media (max-width: 624px) {
+    .litepicker {
+        max-width: 260px;
+        width: 100%;
+        .container__main {
+            .container__months {
+                .month-item {
+                    width: 276px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 610px) {
+    .searchBarStyle {
+        .formStyle {
+            flex-direction: column;
+
+            .btnSearchBar {
+                max-width: none;
+            }
+        }
+    }
+
+    .litepicker {
+        .container__footer {
+            width: 276px;
+        }
+    }
+}
+
+//@media (max-width: 414px) {} */

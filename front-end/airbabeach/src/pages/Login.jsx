@@ -1,14 +1,12 @@
 import { Form } from "../Components/Form";
-import { Header } from '../Components/Header';
-import { Footer } from '../Components/Footer';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./Login.scss";
 
 export function Login() {
 
   return (
-
-    <Form type={'login'} />
-
+    <section className="loginPage">
+      <Form type={'login'} />
+    </section>
   )
 }

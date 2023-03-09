@@ -4,10 +4,10 @@ import { convertNumber } from '../utils/convertNumber'
 import axios from "axios";
 import { gradeStatus } from '../utils/gradeStatus'
 import { toast } from 'react-toastify';
-import { Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
+import { X, Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
 import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon } from './HeartIcon';
-
+import { Map } from './Map'
 
 export function Card({
     id,
@@ -25,8 +25,9 @@ export function Card({
 
 }) {
     const navigate = useNavigate();
+    const [modal, setModal] = useState(false);
 
-   
+
 
     function descriptionText() {
         if (description.length > 75) {
@@ -41,23 +42,11 @@ export function Card({
         console.log(category);
     }
 
-   /*  function favoriteToggle() {
-
-        if (!compareToken()) {
-            toast.error('Você precisa estar logado para favoritar os itens')
-        }else {
-            return console.log('Favorito salvo');
-        }
-    } */
-
-    
 
     return (
         <>
 
             {type === 'category' &&
-
-
                 <Link to={`/category/${id}`} type='category' className='cardBodyStyle'>
                     <section className='thumbStyle'>
                         <img className='imgStyle' src={img} />
@@ -67,14 +56,24 @@ export function Card({
                         <h2>{category}</h2>
                         <p>{convertNumber(quantity)} hotéis</p>
                     </section>
-                </Link>}
-
+                </Link>
+            }
 
             {(type === 'recomendations') &&
                 <div type='recomendations' className='cardBodyStyle'>
+
+                    {modal &&
+                        <div className="mapModalContainer" >
+                            <div className="controle" onClick={() => setModal(false)}></div>
+                            <Map location={location.location} downtown={location.downtown} address={location.address}/> 
+                            <X size={32} className='closeIcon' color="#ffffff" weight="bold" onClick={() => setModal(false)} />
+
+                        </div>
+                    }
+
                     <section className='thumbStyle'>
                         <img className='imgStyle' src={img} />
-                        <HeartIcon className='heartIconStyle' id={id} favorite={favorite}/>
+                        <HeartIcon className='heartIconStyle' id={id} favorite={favorite} />
                     </section>
 
                     <section className='detailsStyle'>
@@ -105,34 +104,34 @@ export function Card({
                         </section>
 
                         <section className='section2'>
-                            <p className='locationText text-normal'>
+                            <div className='locationContainer'>
                                 <MapPin size={20} color="#545776" weight="fill" />
-                                {location} -
-                                <Link to={'/createUser'} className='linkStyle'>MOSTRAR NO MAPA</Link>
-                            </p>
+                                <p className='locationText text-normal'>À {convertNumber(location.distance)}m do centro - </p>
+                                <a className='googleMapsImg' onClick={()=>setModal(true)} ></a>
+                            </div>
 
                             <div className='diferentialsStyle'>
                                 {differential.includes('wi-fi') && <WifiHigh size={20} color="#383b58" />}
-                                {differential.includes('pool') && <div  className='poolIcon'/>}
+                                {differential.includes('pool') && <div className='poolIcon' />}
                                 {differential.includes('pets') && <PawPrint size={20} color="#383b58" weight="fill" />}
                                 {differential.includes('tv') && <Television size={20} color="#383b58" />}
                                 {differential.includes('kitchen') && <CookingPot size={20} color="#383b58" />}
-                                {differential.includes('parking') && <Car size={20} color="#383b58" />} 
+                                {differential.includes('parking') && <Car size={20} color="#383b58" />}
                                 {differential.includes('jacuzzi') && <Bathtub size={20} color="#383b58" />}
-                                {differential.includes('air-conditioning') && <Wind size={20} color="#383b58" />} 
+                                {differential.includes('air-conditioning') && <Wind size={20} color="#383b58" />}
                             </div>
                         </section>
 
                         <section className='section3 text-normal'>
                             <p className='textStyle'>
-                                {descriptionText()}
-                                {description.length > 75 && <Link to={`/product/${id}`} className='maisTexto '>mais...</Link>}
+                                {description}
+                                {/* {descriptionText()}
+                                {description.length > 75 && <Link to={`/product/${id}`} className='maisTexto '>mais...</Link>} */}
                             </p>
                         </section>
                         <Link to={`/product/${id}`}><button className='btn'>Ver mais</button></Link>
                     </section>
                 </div>
-
             }
         </>
     )
