@@ -25,10 +25,11 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody Categoria categoria) throws BadRequestException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Categoria cadastrarCategoria(@RequestBody Categoria categoria) throws BadRequestException {
         try {
             log.info("Cadastrado nova categoria com sucesso.");
-            return ResponseEntity.ok(service.add(categoria));
+            return service.add(categoria);
         } catch (Exception e) {
             log.info("Não foi possível cadastrar a categoria com base nas informações recebidas.");
             throw  new BadRequestException("Não foi possível cadastrar a categoria.");

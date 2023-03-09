@@ -23,10 +23,11 @@ public class ProdutoController {
     public ProdutoController(ProdutoService service) { this.service = service; }
 
     @PostMapping
-    public ResponseEntity<Produto> cadastrarProduto(@RequestBody Produto produto) throws BadRequestException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Produto cadastrarProduto(@RequestBody Produto produto) throws BadRequestException {
         try {
             log.info("Cadastrado novo produto com sucesso.");
-            return  ResponseEntity.ok(service.add(produto));
+            return service.add(produto);
         } catch (Exception e) {
             log.info("Não foi possível cadastrar o produto com base nas informações recebidas.");
             throw new BadRequestException("Não foi possível cadastrar o produto com base nas informações recebidas.");
