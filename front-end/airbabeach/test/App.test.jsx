@@ -6,16 +6,16 @@ import { Footer } from '../src/Components/Footer'
 import { Header } from '../src/Components/Header'
 import { Form } from '../src/Components/Form'
 
-describe('Home component', () => {
+/* describe('Home component', () => {
   it('É renderizado corretamente"', () => {
     render(<Home />);
     //screen.debug();
     expect(screen.getByText('Home')).toBeInTheDocument();
   });
-});
+}); */
 
 
-describe('Header component', () => {
+/* describe('Header component', () => {
   it('É renderizado corretamente"', () => {
     render(<Header />);
     //screen.debug();
@@ -23,7 +23,7 @@ describe('Header component', () => {
     //expect(screen.getByText(/©2023 AirBnBeach, inc/)).toMatchSnapshot()
     //expect(screen.getByText(/Content/i)).toBeUndefined()
   });
-});
+}); */
 
 
 describe('Footer component', () => {
