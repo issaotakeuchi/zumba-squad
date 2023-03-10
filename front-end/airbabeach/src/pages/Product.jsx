@@ -32,13 +32,17 @@ export function Product() {
             litepickerRef.current.destroy()
         }
 
+        const lockedDates = [
+            '2023-03-01', '2023-03-05', '2023-03-08', 
+            '2023-03-12', '2023-03-15', '2023-03-19',
+          ];
 
         litepickerRef.current = new Litepicker({
             element: document.getElementById('datepicker'),
             numberOfMonths: 2,
             numberOfColumns: 2,
-            mobileFriendly: true,
-            splitView: true,
+            //mobileFriendly: true,
+            //splitView: true,
             selectForward: true,
             singleMode: false,
             lang: "pt-BR",
@@ -47,6 +51,10 @@ export function Product() {
             autoClose: true,
             tooltipText: { "one": "dia", "other": "dias" },
             inlineMode: true,
+
+            lockDaysFilter: (date1, date2, pickedDates) => {
+                return lockedDates.includes(date1.format('YYYY-MM-DD'));
+            },
 
             setup: (picker) => {
 
@@ -64,11 +72,13 @@ export function Product() {
             },
         });
 
-        const mediaQuery = window.matchMedia("(max-width: 560px)");
+        const mediaQuery = window.matchMedia("(max-width: 640px)");
         if (mediaQuery.matches) {
             litepickerRef.current.setOptions({ numberOfColumns: 1 });
+            litepickerRef.current.setOptions({ numberOfMonths: 1 });
         } else {
             litepickerRef.current.setOptions({ numberOfColumns: 2 });
+            litepickerRef.current.setOptions({ numberOfMonths: 2 });
         }
     }
 
@@ -149,7 +159,17 @@ export function Product() {
         cleanForm();
     }
 
+       
 
+    /* setTimeout(() => {
+
+        if (window.screen.width < 800) {
+
+            let perpx = 2 / 1920;
+            let ratio = perpx * window.screen.width;
+            document.getElementById('datepicker').style.transform = "scale(" + ratio + ")";
+        }
+    }, 1); */
 
 
 
