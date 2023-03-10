@@ -10,7 +10,7 @@ import { useAuth } from "../contexts/auth";
 
 export function Form({ type }) {
 
-    const { saveToken, saveUser  } = useAuth();
+    const { saveToken } = useAuth();
     const navigate = useNavigate();
 
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.*[0-9]).{8,}$");
@@ -92,10 +92,10 @@ export function Form({ type }) {
             if (type === 'login') {
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
-                saveUser()
+                //saveUser()
                 if (error.status == 404) return toast.error('Usuário não encontrado');
                 if (error.status == 404) return toast.error('Usuário ou senha não encontrados');
-                if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
+                if (error.code === 'ERR_NETWORK') return  ;
 
             } else {
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });

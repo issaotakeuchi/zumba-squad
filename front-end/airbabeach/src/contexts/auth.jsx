@@ -38,13 +38,13 @@ export function AuthProvider(props) {
     }
   }
 
-  function saveUser(userReceived) {
+  /* function saveUser(userReceived) {
     setUser(userReceived)
     setUser({
       name: 'Bruno Rocha',
       shortName: 'BR'
     })
-  }
+  } */
 
   function deleteUser() {
     setUser('');
@@ -91,7 +91,7 @@ export function AuthProvider(props) {
 
   return (
 
-    <AuthContext.Provider value={{ auth, saveToken, deleteToken, compareToken, user, saveUser, deleteUser }}>
+    <AuthContext.Provider value={{ auth, saveToken, deleteToken, compareToken, user, deleteUser }}>
       {props.children}
     </AuthContext.Provider>
 

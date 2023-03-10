@@ -5,28 +5,29 @@ import { useState, useEffect } from "react";
 
 
 //posso receber por props o estado inicial do coração e seta-lo em fav ao usar o componente
-export function HeartIcon({id, favorite, border}){
+export function HeartIcon({id, favorite=false, border}){
     const { compareToken } = useAuth();
-    const [fav, setFav] = useState(favorite?favorite:false);
+    const [check, setCheck] = useState(favorite);
 
 
     function favoriteToggle(e) {
         e.preventDefault();
-
+        
         if (!compareToken()) {
             toast.error('Você precisa estar logado para favoritar os itens')
         }else {
-
+            
             toast.success('Adicionado a lista de favoritos')
-            setFav(!fav)
+            setCheck(!check)
         }
     }
 
 
 
     return (
-        <div className='heartIconStyle'>
-                            <input type="checkbox" checked={fav} disabled={!fav} onChange={(e)=>setFav(e.target.value)} id={`checkbox${id}`} className='inputFavStyle'  onClick={favoriteToggle}/>
+        <div className='heartIconStyle'  onClick={favoriteToggle}>
+                            <input type="checkbox" checked={check} onChange={(e)=>setCheck(e.target.value)} id={`checkbox${id}`} className={`inputFavStyle`}/>
+
                             <label htmlFor={`checkbox${id}`} className='labelStyle'>
                                 <svg className="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
                                     <g className="Group" fill='none' fillRule="evenodd" transform="translate(467 392)">

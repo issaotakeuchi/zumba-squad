@@ -10,109 +10,110 @@ export function SearchBar() {
     const navigate = useNavigate();
     const [city, setCity] = useState('');
     const [date, setDate] = useState('');
-    const [calendarId, setCalendarId] = useState('');
-    const [datesSelected, setDatesSelected] = useState(false);
-    const datepickerRef = useRef(null);
     const litepickerRef = useRef(null);
+    const [datePicker, setDatePicker] = useState(false);
+
+
+    function createDatepicker(){
+        if (datePicker) {
+            litepickerRef.current.destroy()
+        }
+        
+        litepickerRef.current = new Litepicker({
+            element: document.getElementById('datepicker'),
+            numberOfMonths: 2,
+            numberOfColumns: 2,
+            selectForward: true,
+            singleMode: false,
+            lang: "pt-BR",
+            format: "DD MMM",
+            autoApply: false,
+            autoClose: true,
+            tooltipText: { "one": "dia", "other": "dias" },
+            buttonText: {
+                apply: 'Aplicar', cancel: 'Cancelar',
+            },
+
+            setup: (picker) => {
+
+                picker.on('destroy', (tooltip, day) => {
+                    console.log("destruido")
+                });
+                picker.on('selected', (date1, date2) => {
+                    console.log("selecionado");
+                });
+
+                picker.on('render', (ui) => {
+                    console.log("mostrou");
+                    setDatePicker(true)
+                });
+            },
+        });
+
+        const mediaQuery = window.matchMedia("(max-width: 560px)");
+        if (mediaQuery.matches) {
+          litepickerRef.current.setOptions({ numberOfColumns: 1 });
+        } else {
+          litepickerRef.current.setOptions({ numberOfColumns: 2 });
+        }
+
+    }
+
+    
 
     useEffect(() => {
-
-        if (!litepickerRef.current) {
-            litepickerRef.current = new Litepicker({
-                element: datepickerRef.current,
-                numberOfMonths: 2,
-                numberOfColumns: 2,
-                selectForward: true,
-                singleMode: false,
-                lang: "pt-BR",
-                format: "DD MMM",
-                autoApply: false,
-                autoClose: true,
-                tooltipText: { "one": "dia", "other": "dias" },
-                buttonText: {
-                    apply: 'Aplicar', cancel: 'Cancelar',
-                },
-                onSelect: (startDate, endDate) => {
-                    setDatesSelected(true);
-                    if (endDate) {
-                        litepickerRef.current.close();
-                    }
-                },
-                onCancel: () => {
-                    handleHideCalendar();
-                },
-                onApply: (startDate, endDate) => {
-                    handleHideCalendar();
-                }
-            });
-        }
+        createDatepicker()
     }, []);
-
 
     function cleanForm() {
         setCity('');
         setDate('');
-        setDatesSelected(false);
+        litepickerRef.current.clearSelection()
+        litepickerRef.current.destroy()
+        createDatepicker()
     }
 
     function validateForm() {
+        let startDate = litepickerRef.current.options.startDate == null
+        let endDate = litepickerRef.current.options.endDate == null
         if (city === undefined || city === null || city.length < 1) {
+            toast.error('Selecione uma cidade')
             return false
         }
-        if (date === undefined || date === null || date.length < 1) {
+        if (startDate || endDate) {
+            toast.error('Selecione as datas');
             return false
         }
-
-        return true;
+        return true
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(date);
-        //if (!validateForm()) return;
+
+        if (!validateForm()) return;
 
         let url = 'https://www.airbabeach/searchAcomodations';
-
         let data = {
             city: city,
-            startDate: "",
-            endDate: ""
-        }
-
-        if (datesSelected) {
-            const dates = litepickerRef.current.getDate();
-            data.startDate = dates[0].toISOString();
-            data.endDate = dates[1].toISOString();
+            startDate: litepickerRef.current.options.startDate.dateInstance.toISOString(),
+            endDate: litepickerRef.current.options.endDate.dateInstance.toISOString()
         }
 
         console.log(data);
 
-        const options = {
-            headers: { 'X-Custom-Header': 'value' }
-        }
-
-        axios.post(url, data, options).then((response) => {
-            console.log(response);
-
+        /* axios.post(url, data).then((response) => {
             toast.success("Próximo destino econtrado!")
-            navigate('/login')
-
         }, (error) => {
-            console.log(error.code);
-
+            //console.log(error.code);
             if (error.status == 404) return toast.error('Destino não encontrada');
             if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
-        });
+        }); */
 
         cleanForm();
     }
 
-    function handleHideCalendar() {
-        if (!litepickerRef.current.isVisible()) return;
-        setDatesSelected(true);
-        litepickerRef.current.close();
-    }
+
 
     return (
         <section className='searchBarStyle'>
@@ -136,24 +137,25 @@ export function SearchBar() {
                         placeholder='Onde vamos?'
                     />
                 </div>
-                <div className='dateSection'>
-                    <label htmlFor="date" >
-                        <Calendar size={20} color="#545776" weight="fill" className='mapIcon' />
+
+                <section className="datepickerSection">
+
+                    <label htmlFor="date" className="datepickerLabel">
+                        <Calendar size={28} color="#545776" weight="fill" className='calendarIcon' />
                     </label>
 
                     <input
                         className="text-small inputSearchStyle"
                         type="text"
                         name="date"
-                        id={calendarId} // usa o ID gerado para o calendário
+                        id='datepicker'
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                         autoComplete="off"
                         placeholder="Check in  -  Check out"
-                        ref={datepickerRef}
+                        ref={litepickerRef}
                     />
-
-                </div>
+                </section>
 
                 <button className="btnSearchBar" type="submit"> Buscar </button>
             </form>

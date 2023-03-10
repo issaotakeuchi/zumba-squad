@@ -13,7 +13,7 @@
         animation: animateHeartOut .3s linear forwards;
         fill: var(--grey-light);
         transition: 0.2s;
-        
+
         &:hover {
             fill: var(--red-favorite);
         }
@@ -41,7 +41,10 @@
 
 .inputFavStyle {
     display: none;
+
+
 }
+
 
 .inputFavStyle:checked+.labelStyle svg {
     z-index: 1000;
@@ -208,6 +211,27 @@
         transition: .1s opacity .3s;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @keyframes animateCircle {
     40% {
