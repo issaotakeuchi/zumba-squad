@@ -84,5 +84,20 @@ public class CategoriaControllerTest {
                 .andExpect(status().isOk());
     }
 
-    //TODO test do update
+    @Test
+    void deveAtualizarCategoria() throws Exception{
+        categorias.get(0).setQualificacao("teste update");
+
+        given(service.update(categorias.get(0))).willReturn(categorias.get(0));
+
+        mockMvc.
+                perform(put("/categorias/atualizar")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(objectMapper.writeValueAsString(categorias.get(0))))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.qualificacao", is(categorias.get(0).getQualificacao())));
+    }
+
+    //TODO excluir id que nao existe
+    //TODO buscar id que nao existe
 }

@@ -1,5 +1,6 @@
 package com.example.zumbasquad.controller;
 
+import com.example.zumbasquad.exceptions.BadRequestException;
 import com.example.zumbasquad.model.Caracteristica;
 import com.example.zumbasquad.service.CaracteristicaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -67,5 +70,21 @@ public class CaracteristicaControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.nome", is(caracteristicas.get(0).getNome())));
 
+    }
+
+    @Test
+    void deveDarBadRequestExceptionAoTentarCriarSemBodyCorreto(){
+        final Caracteristica caracteristica = new Caracteristica();
+        caracteristica.setId(1L);
+
+        try {
+            given(service.add(any(Caracteristica.class))).willAnswer(invocation -> invocation.getArgument(0));
+
+            this.mockMvc
+                    .perform(post("/caracteristicas"));
+        } catch (Exception e){
+            assertThatExceptionOfType(BadRequestException.class);
+            assertEquals("Não foi possível cadastrar a característica com base nas informações recebidas.", e.getMessage());
+        }
     }
 }

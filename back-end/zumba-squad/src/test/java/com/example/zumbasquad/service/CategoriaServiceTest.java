@@ -5,6 +5,7 @@ import com.example.zumbasquad.model.Produto;
 import com.example.zumbasquad.repository.ICategoriaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,8 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CategoriaServiceTest {
@@ -59,6 +59,19 @@ public class CategoriaServiceTest {
     }
 
     @Test
+    void deveAtualizarCategoria(){
+        final Categoria categoria = new Categoria(1L, "teste", "descricao", "url", null);
+        final Categoria categoriaAtualizada = new Categoria(1L, "teste atualizado", "descricao", "url", null);
+
+        //doReturn(categoria).when(repository).findById(isA(Long.class));
+        doAnswer(AdditionalAnswers.returnsFirstArg()).when(repository).saveAndFlush(isA(Categoria.class));
+
+        Categoria categoriaNova = service.update(categoriaAtualizada);
+
+        assertEquals(categoriaAtualizada, categoriaNova);
+    }
+
+    @Test
     void deveBuscarTodasCategorias(){
         List<Categoria> categorias = new ArrayList<>();
         categorias.add(new Categoria(1L, "teste1", "desc1", "url1", null));
@@ -84,9 +97,6 @@ public class CategoriaServiceTest {
         assertThat(categoria).isNotNull();
     }
 
-    //TODO buscar por id que nao existe
-    //TODO teste do update
-
     @Test
     void deveExcluirCategoriaExistente(){
         final Long id = 1L;
@@ -95,6 +105,4 @@ public class CategoriaServiceTest {
 
         verify(repository, times(1)).deleteById(id);
     }
-
-    //TODO excluir id que nao existe
 }

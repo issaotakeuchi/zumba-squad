@@ -4,6 +4,7 @@ import com.example.zumbasquad.exceptions.BadRequestException;
 import com.example.zumbasquad.exceptions.ResourceNotFoundException;
 import com.example.zumbasquad.model.Categoria;
 import com.example.zumbasquad.model.Cidade;
+import com.example.zumbasquad.model.Imagem;
 import com.example.zumbasquad.model.Produto;
 import com.example.zumbasquad.service.ProdutoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,9 +18,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -42,6 +44,7 @@ public class ProdutoControllerTest {
     private List<Produto> produtos;
     private Cidade cidade;
     private Categoria categoria;
+    private Set<Imagem> imagens;
 
     private ObjectMapper objectMapper;
 
@@ -49,9 +52,11 @@ public class ProdutoControllerTest {
     void setup(){
         this.cidade = new Cidade(1L, "nomeCidade", "pais", null);
         this.categoria = new Categoria(1L, "qualificacao", "descricao", "urlImagem", null);
+        this.imagens = new HashSet<>();
+        this.imagens.add(new Imagem(1L, "titulo", "url", null));
 
         this.produtos = new ArrayList<>();
-        this.produtos.add(new Produto(1L, "nome", "descricao", null, null, cidade, categoria));
+        this.produtos.add(new Produto(1L, "nome", "descricao", imagens, null, cidade, categoria));
         this.produtos.add(new Produto(2L, "nome2", "descricao2", null, null, null, null));
 
         this.objectMapper = new ObjectMapper();
