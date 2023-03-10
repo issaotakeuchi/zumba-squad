@@ -28,7 +28,7 @@ public class CaracteristicaController {
             log.info("cadastrada nova característica com sucesso.");
             return service.add(caracteristica);
         } catch (Exception e) {
-            log.info("Não foi possível cadastrar a característica com base nas informações recebidas.");
+            log.error("Não foi possível cadastrar a característica com base nas informações recebidas.");
             throw new BadRequestException("Não foi possível cadastrar a característica com base nas informações recebidas.");
         }
     }

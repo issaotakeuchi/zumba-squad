@@ -31,7 +31,7 @@ public class CategoriaController {
             log.info("Cadastrado nova categoria com sucesso.");
             return service.add(categoria);
         } catch (Exception e) {
-            log.info("Não foi possível cadastrar a categoria com base nas informações recebidas.");
+            log.error("Não foi possível cadastrar a categoria com base nas informações recebidas.");
             throw  new BadRequestException("Não foi possível cadastrar a categoria.");
         }
     }
@@ -47,7 +47,7 @@ public class CategoriaController {
             log.info("A categoria com id: " + categoria.getId() + " foi atualizada com sucesso.");
             return ResponseEntity.ok(service.update(categoria));
         } catch (Exception e) {
-            log.info("Não foi possível atualizar a categoria.");
+            log.error("Não foi possível atualizar a categoria.");
             throw new BadRequestException("Não foi possível atualizar os dados da categoria");
         }
     }
@@ -59,7 +59,7 @@ public class CategoriaController {
             log.info("A categoria de id: " + id + " foi localizada no banco de dados e removida com sucesso.");
             return ResponseEntity.ok("Categoria excluída.");
         } catch (Exception e) {
-            log.info("Não foi encontrado a categoria de id " + id + " para efetuar a exclusão.");
+            log.error("Não foi encontrado a categoria de id " + id + " para efetuar a exclusão.");
             throw new ResourceNotFoundException("Não foi possível excluir a categoria de id: " + id);
         }
     }

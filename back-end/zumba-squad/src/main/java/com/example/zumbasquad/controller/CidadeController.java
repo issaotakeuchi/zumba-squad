@@ -26,7 +26,7 @@ public class CidadeController {
             log.info("cadastrada nova cidade com sucesso.");
             return service.add(cidade);
         } catch (Exception e) {
-            log.info("Não foi possível cadastrar a cidade com base nas informações recebidas.");
+            log.error("Não foi possível cadastrar a cidade com base nas informações recebidas.");
             throw new BadRequestException("Não foi possível cadastrar a cidade com base nas informações recebidas.");
         }
     }
