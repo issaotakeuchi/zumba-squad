@@ -20,12 +20,13 @@ public class CidadeController {
     public CidadeController(CidadeService service) { this.service = service; }
 
     @PostMapping
-    public ResponseEntity<Cidade> cadastrarCidade(@RequestBody Cidade cidade) throws BadRequestException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cidade cadastrarCidade(@RequestBody Cidade cidade) throws BadRequestException {
         try {
             log.info("cadastrada nova cidade com sucesso.");
-            return ResponseEntity.ok(service.add(cidade));
+            return service.add(cidade);
         } catch (Exception e) {
-            log.info("Não foi possível cadastrar a cidade com base nas informações recebidas.");
+            log.error("Não foi possível cadastrar a cidade com base nas informações recebidas.");
             throw new BadRequestException("Não foi possível cadastrar a cidade com base nas informações recebidas.");
         }
     }
