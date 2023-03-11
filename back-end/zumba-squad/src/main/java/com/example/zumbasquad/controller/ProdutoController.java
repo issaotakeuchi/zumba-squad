@@ -85,10 +85,10 @@ public class ProdutoController {
     }
 
     @GetMapping("/categoria")
-    public List<Produto> buscarProdutosPorCategoria(@RequestParam String categoria) throws ResourceNotFoundException {
+    public List<Produto> buscarProdutosPorCategoria(@RequestParam String qualificacao) throws ResourceNotFoundException {
         try {
             log.info("Encontrado a lista de produtos solicitado");
-            return service.getAllProductsByCategoryQualification(categoria);
+            return service.getAllProductsByCategoryQualification(qualificacao);
         } catch (Exception e) {
             log.error("Não foi encontrado a lista de produtos solicitado");
             throw new ResourceNotFoundException("Não foi encontrado a lista de produtos solicitado.");

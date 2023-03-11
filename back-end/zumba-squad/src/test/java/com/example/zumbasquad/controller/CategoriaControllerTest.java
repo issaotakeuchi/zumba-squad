@@ -1,8 +1,12 @@
 package com.example.zumbasquad.controller;
 
+import com.example.zumbasquad.exceptions.BadRequestException;
+import com.example.zumbasquad.model.Caracteristica;
 import com.example.zumbasquad.model.Categoria;
 import com.example.zumbasquad.service.CategoriaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.assertj.core.error.ShouldBeBlank;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
@@ -72,6 +78,21 @@ public class CategoriaControllerTest {
     }
 
     @Test
+    void deveRetornarBadRequestAoCriarComBodyErrado() throws Exception {
+        String categoria = new JSONObject()
+                .put("id", 1L)
+                .toString();
+
+        this.mockMvc
+                .perform(post("/categorias")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(objectMapper.writeValueAsString(categoria)))
+                .andExpect(status().isBadRequest());
+//                .andExpect(result -> assertTrue(result.getResolvedException() instanceof BadRequestException))
+//                .andExpect(result -> assertEquals("Não foi possível cadastrar a categoria.", result.getResolvedException().getMessage()));
+    }
+
+    @Test
     void deveExcluirCategoria() throws Exception{
         Long id = 1L;
         Categoria categoria = new Categoria(1L, "teste1", "desc1", "url1", null);
@@ -98,6 +119,4 @@ public class CategoriaControllerTest {
                 .andExpect(jsonPath("$.qualificacao", is(categorias.get(0).getQualificacao())));
     }
 
-    //TODO excluir id que nao existe
-    //TODO buscar id que nao existe
 }

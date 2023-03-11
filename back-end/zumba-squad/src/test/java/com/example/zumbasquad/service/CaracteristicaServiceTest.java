@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,5 +51,17 @@ public class CaracteristicaServiceTest {
         List<Caracteristica> caracteristicasEsperadas = service.getAll();
 
         assertEquals(caracteristicasEsperadas, caracteristicas);
+    }
+
+    @Test
+    void deveBuscarCaracteristicaPorIdExistente(){
+        final Long id = 1L;
+        final Caracteristica caracteristica = new Caracteristica(1L, "nome", "icone", null);
+
+        given(repository.findById(id)).willReturn(Optional.of(caracteristica));
+
+        final Optional<Caracteristica> caracteristicaEsperada = Optional.ofNullable(service.getById(id));
+
+        assertThat(caracteristicaEsperada).isNotNull();
     }
 }

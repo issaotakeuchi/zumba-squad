@@ -111,7 +111,8 @@ public class ProdutoControllerTest {
                 .andExpect(jsonPath("$.nome", is(produtos.get(0).getNome())));
     }
 
-    @Test void deveDarResourceNotFoundAoBuscarIdQueNaoExiste(){
+    @Test
+    void deveDarResourceNotFoundAoBuscarIdQueNaoExiste(){
         try {
             //given(service.getById(3L)).willThrow(ResourceNotFoundException.class);
 
@@ -122,6 +123,73 @@ public class ProdutoControllerTest {
         }
     }
 
-    //TODO teste para get by id da cidade/categoria
-    //TODO teste para get by name da cidade/categoria
+    @Test
+    void deveBuscarProdutosPeloIdDaCidade() throws Exception {
+        List<Produto> produtosTodos = new ArrayList<>();
+        produtosTodos.add(new Produto(1L, "nome", "descricao", null, null, new Cidade(1L, "nome", "pais", null), null));
+        produtosTodos.add(new Produto(2L, "nome", "descricao", null, null, new Cidade(2L, "nome2", "pais", null), null));
+        produtosTodos.add(new Produto(3L, "nome", "descricao", null, null, new Cidade(1L, "nome", "pais", null), null));
+
+        List<Produto> produtosFiltrados = produtosTodos.stream().filter(produto -> produto.getCidade().getId().equals(1L)).toList();
+
+        given(service.getAllProductsByCityId(1L)).willReturn(produtosFiltrados);
+
+        this.mockMvc
+                .perform(get("/produtos/por_cidade/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", is(2)));
+    }
+
+    @Test
+    void deveBuscarProdutosPeloNomeDaCidade() throws Exception {
+        List<Produto> produtosTodos = new ArrayList<>();
+        produtosTodos.add(new Produto(1L, "nome", "descricao", null, null, new Cidade(1L, "nome", "pais", null), null));
+        produtosTodos.add(new Produto(2L, "nome", "descricao", null, null, new Cidade(2L, "nome2", "pais", null), null));
+        produtosTodos.add(new Produto(3L, "nome", "descricao", null, null, new Cidade(1L, "nome", "pais", null), null));
+
+        List<Produto> produtosFiltrados = produtosTodos.stream().filter(produto -> produto.getCidade().getNome().equals("nome")).toList();
+
+        given(service.getAllProductsByCityName("nome")).willReturn(produtosFiltrados);
+
+        this.mockMvc
+                .perform(get("/produtos/cidade")
+                        .param("nomeCidade", "nome"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", is(2)));
+    }
+
+    @Test
+    void deveBuscarProdutosPeloIdDaCategoria() throws Exception {
+        List<Produto> produtosTodos = new ArrayList<>();
+        produtosTodos.add(new Produto(1L, "nome", "descricao", null, null, null, new Categoria(1L, "qualificacao", "descricao", "url", null)));
+        produtosTodos.add(new Produto(2L, "nome", "descricao", null, null, null,new Categoria(2L, "qualificacao2", "descricao", "url", null)));
+        produtosTodos.add(new Produto(3L, "nome", "descricao", null, null, null,new Categoria(1L, "qualificacao", "descricao", "url", null)));
+
+        List<Produto> produtosFiltrados = produtosTodos.stream().filter(produto -> produto.getCategoria().getId().equals(1L)).toList();
+
+        given(service.getAllProductsByCategoryId(1L)).willReturn(produtosFiltrados);
+
+        this.mockMvc
+                .perform(get("/produtos/por_categoria/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", is(2)));
+    }
+
+    @Test
+    void deveBuscarProdutosPeloNomeDaCategoria() throws Exception {
+        List<Produto> produtosTodos = new ArrayList<>();
+        produtosTodos.add(new Produto(1L, "nome", "descricao", null, null, null, new Categoria(1L, "qualificacao", "descricao", "url", null)));
+        produtosTodos.add(new Produto(2L, "nome", "descricao", null, null, null,new Categoria(2L, "qualificacao2", "descricao", "url", null)));
+        produtosTodos.add(new Produto(3L, "nome", "descricao", null, null, null,new Categoria(1L, "qualificacao", "descricao", "url", null)));
+
+        List<Produto> produtosFiltrados = produtosTodos.stream().filter(produto -> produto.getCategoria().getQualificacao().equals("qualificacao")).toList();
+
+        given(service.getAllProductsByCategoryQualification("qualificacao")).willReturn(produtosFiltrados);
+
+        this.mockMvc
+                .perform(get("/produtos/categoria")
+                        .param("qualificacao", "qualificacao"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", is(2)));
+    }
 }
