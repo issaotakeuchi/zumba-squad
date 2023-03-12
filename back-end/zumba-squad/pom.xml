@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>zumba-squad</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>zumba-squad</name>
 	<description>Back End do Projeto Integrador - Grupo 1</description>
 	<properties>
