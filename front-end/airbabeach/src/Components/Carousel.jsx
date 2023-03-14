@@ -8,24 +8,12 @@ import { FreeMode, Navigation, Autoplay, Pagination, Keyboard, Mousewheel, Zoom,
 
 export function Carousel(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    /* const [imgs, setImages] = useState([
-        'https://swiperjs.com/demos/images/nature-1.jpg',
-        'https://swiperjs.com/demos/images/nature-2.jpg',
-        'https://swiperjs.com/demos/images/nature-3.jpg',
-        'https://swiperjs.com/demos/images/nature-4.jpg',
-        'https://swiperjs.com/demos/images/nature-5.jpg',
-        'https://swiperjs.com/demos/images/nature-6.jpg',
-        'https://swiperjs.com/demos/images/nature-7.jpg',
-        'https://swiperjs.com/demos/images/nature-8.jpg',
-        'https://swiperjs.com/demos/images/nature-9.jpg',
-        'https://swiperjs.com/demos/images/nature-10.jpg'
-    ]); */
     const [imgs, setImages] = useState(props.imgs);
 
 
 
     return (
-        <section className="carouselSection ">
+        <section className="carouselSection">
             <Swiper
                 style={{
                     "--swiper-navigation-color": "#fff",

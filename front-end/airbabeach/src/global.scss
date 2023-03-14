@@ -189,3 +189,12 @@ h6 {
 
 }
 
+
+
+.litepicker .container__days .day-item.is-locked {
+  color: red;
+  text-decoration: line-through;
+  //border: 1px solid red;
+  //border-radius: 15px;
+  background-color: rgba(255, 0, 0, 0.13);
+}

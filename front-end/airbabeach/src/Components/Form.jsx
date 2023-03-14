@@ -2,8 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import './Form.scss'
 import { toast } from 'react-toastify';
-
-
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeSlash } from 'phosphor-react'
 import { useAuth } from "../contexts/auth";
@@ -67,10 +65,6 @@ export function Form({ type }) {
                 email: email,
                 password: password
             }
-        }
-
-        const options = {
-            headers: { 'X-Custom-Header': 'value' }
         }
 
         axios.post(url, data, options).then((response) => {

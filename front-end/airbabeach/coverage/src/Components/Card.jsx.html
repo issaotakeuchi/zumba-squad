@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.69% </span>
+                <span class="strong">9.48% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/138</span>
+                <span class='fraction'>13/137</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.69% </span>
+                <span class="strong">9.48% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/138</span>
+                <span class='fraction'>13/137</span>
             </div>
         
             
@@ -199,8 +199,7 @@
 <a name='L134'></a><a href='#L134'>134</a>
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L137'></a><a href='#L137'>137</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -212,8 +211,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -347,6 +345,7 @@ import { X, Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Ca
 import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon } from './HeartIcon';
 import { Map } from './Map'
+import { StarRate } from './StarRate';
 &nbsp;
 export <span class="fstat-no" title="function not covered" >function Card({</span>
 <span class="cstat-no" title="statement not covered" >    id,</span>
@@ -421,17 +420,15 @@ export <span class="fstat-no" title="function not covered" >function Card({</spa
 <span class="cstat-no" title="statement not covered" >                            &lt;div className='titleStyle'&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                &lt;div className='starsStyle'&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                    &lt;h4&gt;Hotel&lt;/h4&gt;</span>
-<span class="cstat-no" title="statement not covered" >                                    &lt;div className='stars'&gt;</span>
-<span class="cstat-no" title="statement not covered" >                                        {/* {stars.map((iten, index) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >                                            &lt;Star key={index} size={14} color="#1DBEB4" weight="fill" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                                        ))} */}</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;StarRate rate={stars} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                    </span>
+<span class="cstat-no" title="statement not covered" >                                    {/* &lt;div className='stars'&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                        &lt;Star size={14} color="#1DBEB4" weight="fill" /&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                        &lt;Star size={14} color="#1DBEB4" weight="fill" /&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                        &lt;Star size={14} color="#1DBEB4" weight="fill" /&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                        &lt;Star size={14} color="#1DBEB4" weight="fill" /&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                        &lt;Star size={14} color="#b6b9b9" weight="fill" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                                    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;/div&gt; */}</span>
 <span class="cstat-no" title="statement not covered" >                                &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                &lt;h1 className='title'&gt;{title}&lt;/h1&gt;</span>
 <span class="cstat-no" title="statement not covered" >                            &lt;/div&gt;</span>
@@ -481,7 +478,7 @@ export <span class="fstat-no" title="function not covered" >function Card({</spa
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-09T23:00:31.619Z
+                at 2023-03-10T22:28:29.759Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
