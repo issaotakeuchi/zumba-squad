@@ -3,25 +3,37 @@ import { products } from '/public/cardsMock.js'
 import "./Product.scss";
 import { useState, useEffect, useRef } from "react";
 import { Link, useParams } from 'react-router-dom'
-import { Copy, ShareNetwork, X, CaretLeft, Star, MapPin, WifiHigh, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
 import { Carousel } from "../Components/Carousel";
 import { HeartIcon } from "../Components/HeartIcon";
+import { StarRate } from '../Components/StarRate';
 import { Map } from "../Components/Map";
 import { gradeStatus } from '../utils/gradeStatus'
 import { breakLines } from '../utils/breakLines'
-
 import axios from "axios";
 import Swal from 'sweetalert2'
 import { toast } from 'react-toastify';
 import Litepicker from 'litepicker';
 
 import {
+    Copy,
+    ShareNetwork,
+    X,
+    CaretLeft,
+    MapPin,
+    WifiHigh,
+    PawPrint,
+    Television,
+    CookingPot,
+    Car,
+    Bathtub,
+    Wind
+} from 'phosphor-react'
+
+import {
     FacebookShareButton,
     FacebookMessengerShareButton,
     LinkedinShareButton,
-    RedditShareButton,
     TelegramShareButton,
-    TumblrShareButton,
     TwitterShareButton,
     WhatsappShareButton,
 } from "react-share";
@@ -30,14 +42,10 @@ import {
     FacebookIcon,
     FacebookMessengerIcon,
     LinkedinIcon,
-    RedditIcon,
     TelegramIcon,
-    TumblrIcon,
     TwitterIcon,
     WhatsappIcon,
 } from "react-share";
-import { StarRate } from '../Components/StarRate';
-
 
 
 export function Product() {
@@ -47,6 +55,7 @@ export function Product() {
     const [share, setShare] = useState(false);
     const [shareUrl, setShareUrl] = useState('');
     const [datePicker, setDatePicker] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     //const [date, setDate] = useState('');
     const litepickerRef = useRef(null);
@@ -82,29 +91,41 @@ export function Product() {
             },
 
             setup: (picker) => {
-
-                /* picker.on('destroy', (tooltip, day) => {
-                    console.log("destruido")
-                }); */
-                /* picker.on('selected', (date1, date2) => {
-                    console.log("selecionado");
-                }); */
                 picker.on('render', (ui) => {
                     setDatePicker(true)
                 });
-
             },
         });
-
-        const mediaQuery = window.matchMedia("(max-width: 640px)");
-        if (mediaQuery.matches) {
-            litepickerRef.current.setOptions({ numberOfColumns: 1 });
-            litepickerRef.current.setOptions({ numberOfMonths: 1 });
-        } else {
-            litepickerRef.current.setOptions({ numberOfColumns: 2 });
-            litepickerRef.current.setOptions({ numberOfMonths: 2 });
-        }
     }
+
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    });
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (windowWidth < 640) {
+                litepickerRef.current.setOptions({ numberOfColumns: 1 });
+                litepickerRef.current.setOptions({ numberOfMonths: 1 });
+            } else {
+                litepickerRef.current.setOptions({ numberOfColumns: 2 });
+                litepickerRef.current.setOptions({ numberOfMonths: 2 });
+            }
+        }, 2);
+
+    }, [windowWidth])
+
+
+
+
+
 
 
     //useffect usado para simular a requisição
@@ -138,8 +159,6 @@ export function Product() {
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
         });
     }, []) */
-
-
 
     function cleanForm() {
         litepickerRef.current.clearSelection()
@@ -218,7 +237,7 @@ export function Product() {
                             <div className="gradeRating">
                                 <p className='text-small gradeText'>{gradeStatus(productData.grade)}</p>
                                 <StarRate rate={productData.stars} />
-                                
+
                             </div>
                             <div className='grade'>{productData.grade.toFixed(1)}</div>
                         </div>
@@ -245,21 +264,19 @@ export function Product() {
 
 
                                     <div className='shareIcons'>
-                                        <FacebookShareButton url={shareUrl}><FacebookIcon size={32} round={true} /></FacebookShareButton>
-                                        <FacebookMessengerShareButton url={shareUrl}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
-                                        <LinkedinShareButton url={shareUrl}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
-                                        <TelegramShareButton url={shareUrl}><TelegramIcon size={32} round={true} /></TelegramShareButton>
-                                        {/* <RedditShareButton url={shareUrl}><RedditIcon size={32} round={true} /></RedditShareButton> */}
-                                        {/* <TumblrShareButton url={shareUrl}><TumblrIcon size={32} round={true} /></TumblrShareButton> */}
-                                        <TwitterShareButton url={shareUrl}><TwitterIcon size={32} round={true} /></TwitterShareButton>
-                                        <WhatsappShareButton url={shareUrl}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
+                                        <FacebookShareButton url={'https://github.com/AndrePedreschi'}><FacebookIcon size={32} round={true} /></FacebookShareButton>
+                                        <FacebookMessengerShareButton url={'https://github.com/AndrePedreschi'}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
+                                        <LinkedinShareButton url={'https://github.com/AndrePedreschi'}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
+                                        <TelegramShareButton url={'https://github.com/AndrePedreschi'}><TelegramIcon size={32} round={true} /></TelegramShareButton>
+                                        <TwitterShareButton url={'https://github.com/AndrePedreschi'}><TwitterIcon size={32} round={true} /></TwitterShareButton>
+                                        <WhatsappShareButton url={'https://github.com/AndrePedreschi'}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
                                     </div>
                                 </section>
 
                             </div>
                         }
 
-{/* 
+                        {/* 
                         <FacebookShareButton url={'https://github.com/AndrePedreschi'}><FacebookIcon size={32} round={true} /></FacebookShareButton>
                         <FacebookMessengerShareButton url={'https://github.com/AndrePedreschi'}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
                         <LinkedinShareButton url={'https://github.com/AndrePedreschi'}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>

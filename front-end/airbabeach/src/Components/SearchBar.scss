@@ -131,6 +131,9 @@
 
 //datepicker
 .litepicker {
+    left: calc(50% - 278px) !important;
+
+
     .container__days {
 
         .day-item.is-end-date {
@@ -192,9 +195,14 @@
 }
 
 
-@media (max-width: 854px) {
+/* @media (max-width: 1000px) {
     .litepicker {
     left: calc(50% - 278px) !important;
+    }
+} */
+@media (max-width: 640px) {
+    .litepicker {
+        left: calc(50% - 138px) !important;
     }
 }
 
@@ -210,8 +218,9 @@
     }
 }
 
-@media (max-width: 560px) {
+
+/* @media (max-width: 560px) {
     .litepicker {
         left: calc(50% - 138px) !important;
     }
-}
+} */

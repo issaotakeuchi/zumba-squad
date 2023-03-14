@@ -12,13 +12,13 @@ export function SearchBar() {
     const [date, setDate] = useState('');
     const litepickerRef = useRef(null);
     const [datePicker, setDatePicker] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-
-    function createDatepicker(){
+    function createDatepicker() {
         if (datePicker) {
             litepickerRef.current.destroy()
         }
-        
+
         litepickerRef.current = new Litepicker({
             element: document.getElementById('datepicker'),
             numberOfMonths: 2,
@@ -35,35 +35,38 @@ export function SearchBar() {
             },
 
             setup: (picker) => {
-
-                picker.on('destroy', (tooltip, day) => {
-                    console.log("destruido")
-                });
-                picker.on('selected', (date1, date2) => {
-                    console.log("selecionado");
-                });
-
                 picker.on('render', (ui) => {
-                    console.log("mostrou");
                     setDatePicker(true)
                 });
             },
         });
-
-        const mediaQuery = window.matchMedia("(max-width: 560px)");
-        if (mediaQuery.matches) {
-          litepickerRef.current.setOptions({ numberOfColumns: 1 });
-        } else {
-          litepickerRef.current.setOptions({ numberOfColumns: 2 });
-        }
-
     }
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    });
+    useEffect(() => {
+        setTimeout(() => {
+            if (windowWidth < 640) {
+                litepickerRef.current.setOptions({ numberOfColumns: 1 });
+                litepickerRef.current.setOptions({ numberOfMonths: 1 });
+            } else {
+                litepickerRef.current.setOptions({ numberOfColumns: 2 });
+                litepickerRef.current.setOptions({ numberOfMonths: 2 });
+            }
+        }, 2);
 
-    
-
+    }, [windowWidth])
     useEffect(() => {
         createDatepicker()
     }, []);
+
+
 
     function cleanForm() {
         setCity('');
@@ -117,7 +120,7 @@ export function SearchBar() {
 
     return (
         <section className='searchBarStyle'>
-
+            {/* <h2>Width: {windowWidth}</h2> */}
             <h1 className='searchTitle'>Buscar ofertas em hotéis, casas e muito mais</h1>
 
             <form onSubmit={handleSubmit} className='formStyle'>
