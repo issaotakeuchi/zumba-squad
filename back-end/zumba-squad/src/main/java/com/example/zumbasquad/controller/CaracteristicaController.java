@@ -22,13 +22,12 @@ public class CaracteristicaController {
     public CaracteristicaController(CaracteristicaService service) { this.service = service; }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Caracteristica cadastrarCaracteristica(@RequestBody Caracteristica caracteristica) throws BadRequestException {
+    public ResponseEntity<Caracteristica> cadastrarCaracteristica(@RequestBody Caracteristica caracteristica) throws BadRequestException {
         try {
             log.info("cadastrada nova característica com sucesso.");
-            return service.add(caracteristica);
+            return ResponseEntity.ok(service.add(caracteristica));
         } catch (Exception e) {
-            log.error("Não foi possível cadastrar a característica com base nas informações recebidas.");
+            log.info("Não foi possível cadastrar a característica com base nas informações recebidas.");
             throw new BadRequestException("Não foi possível cadastrar a característica com base nas informações recebidas.");
         }
     }
