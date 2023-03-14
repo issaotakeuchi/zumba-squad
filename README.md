@@ -46,6 +46,15 @@ yarn vite
 * Executar a aplicação em sua IDE (de preferência, IntelliJ)
 
 
+### Testes
+
+[Casos de Teste](https://docs.google.com/spreadsheets/d/1o5GTt-0AZ_h0EiyZiQvWlzjv-FV1ifQaIEeTxO_rmEY/edit?usp=sharing)
+
+[Formulário para relatar Erros](https://forms.gle/2M3MyyQMdCZNrCYG8)
+
+[Pasta para adicionar Evidências](https://drive.google.com/drive/folders/1yHWV3_4UKkQMf018Ro9jx2HyzXgRJ2lt?usp=sharing)
+
+
 
 
 
