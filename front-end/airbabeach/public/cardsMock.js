@@ -422,7 +422,7 @@ export const recomendations = [
         id: '01',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 0.5,
         title: 'Rancho Alto da Colina',
         grade: 8.0,
         location: {
@@ -439,7 +439,7 @@ export const recomendations = [
         id: '02',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: true,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 1.0,
         title: 'Rancho Alto da Colina',
         grade: 8.2,
         location: {
@@ -456,7 +456,7 @@ export const recomendations = [
         id: '03',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 1.5,
         title: 'Rancho Alto da Colina',
         grade: 8.4,
         location: {
@@ -473,7 +473,7 @@ export const recomendations = [
         id: '04',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 2.0,
         title: 'Rancho Alto da Colina',
         grade: 8.6,
         location: {
@@ -490,7 +490,7 @@ export const recomendations = [
         id: '05',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 2.5,
         title: 'Rancho Alto da Colina',
         grade: 8.8,
         location: {
@@ -507,7 +507,7 @@ export const recomendations = [
         id: '06',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: true,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 3.0,
         title: 'Rancho Alto da Colina',
         grade: 9.0,
         location: {
@@ -524,7 +524,7 @@ export const recomendations = [
         id: '07',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 3.5,
         title: 'Rancho Alto da Colina',
         grade: 9.2,
         location: {
@@ -541,7 +541,39 @@ export const recomendations = [
         id: '08',
         img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
         favorite: true,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 4.0,
+        title: 'Rancho Alto da Colina',
+        grade: 9.4,
+        location: {
+            address: 'Av. Pres. Figueroa Alcorta 7285, Buenos Aires, Argentina',
+            distance: 940,
+            location: [-34.596750, -58.373560],
+            downtown: [-34.604563, -58.456861]
+        },
+        differential: ['wi-fi', 'tv', 'parking', 'air-conditioning'],
+        description: 'No coração de San Telmo, desfrute de uma pousada inspirada nas paixões de Buenos Aires. No coração de San Telmo, desfrute de uma pousada inspirada nas paixões de Buenos Aires.',
+    },
+    {
+        id: '09',
+        img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
+        favorite: true,
+        stars: 4.5,
+        title: 'Rancho Alto da Colina',
+        grade: 9.4,
+        location: {
+            address: 'Av. Pres. Figueroa Alcorta 7285, Buenos Aires, Argentina',
+            distance: 940,
+            location: [-34.596750, -58.373560],
+            downtown: [-34.604563, -58.456861]
+        },
+        differential: ['wi-fi', 'tv', 'parking', 'air-conditioning'],
+        description: 'No coração de San Telmo, desfrute de uma pousada inspirada nas paixões de Buenos Aires. No coração de San Telmo, desfrute de uma pousada inspirada nas paixões de Buenos Aires.',
+    },
+    {
+        id: '10',
+        img: 'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
+        favorite: false,
+        stars: 5.0,
         title: 'Rancho Alto da Colina',
         grade: 9.4,
         location: {
@@ -573,7 +605,7 @@ export const products = [
                 'https://swiperjs.com/demos/images/nature-10.jpg'
             ],
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 0.5,
         title: 'Rancho Alto da Colina',
         grade: 8.0,
         location: {
@@ -611,7 +643,7 @@ export const products = [
                 'https://swiperjs.com/demos/images/nature-10.jpg'
             ],
         favorite: true,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 1.0,
         title: 'Rancho Alto da Colina',
         grade: 8.2,
         location: {
@@ -648,7 +680,7 @@ export const products = [
             'https://swiperjs.com/demos/images/nature-10.jpg'
         ],
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 1.5,
         title: 'Rancho Alto da Colina',
         grade: 8.4,
         location: {
@@ -685,7 +717,7 @@ export const products = [
             'https://swiperjs.com/demos/images/nature-10.jpg'
         ],
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 2.0,
         title: 'Rancho Alto da Colina',
         grade: 8.6,
         location: {
@@ -722,7 +754,7 @@ export const products = [
             'https://swiperjs.com/demos/images/nature-10.jpg'
         ],
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 2.5,
         title: 'Rancho Alto da Colina',
         grade: 8.8,
         location: {
@@ -759,7 +791,7 @@ export const products = [
             'https://swiperjs.com/demos/images/nature-10.jpg'
         ],
         favorite: true,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 3.0,
         title: 'Rancho Alto da Colina',
         grade: 9.0,
         location: {
@@ -796,7 +828,7 @@ export const products = [
             'https://swiperjs.com/demos/images/nature-10.jpg'
         ],
         favorite: false,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 3.5,
         title: 'Rancho Alto da Colina',
         grade: 9.2,
         location: {
@@ -828,7 +860,73 @@ export const products = [
         ],
 
         favorite: true,
-        stars: ['star', 'star', 'star', 'star', 'star'],
+        stars: 4.0,
+        title: 'Rancho Alto da Colina',
+        grade: 9.4,
+        location: {
+            address: 'Av. Pres. Figueroa Alcorta 7285, Buenos Aires, Argentina',
+            distance: 940,
+            location: [-34.596750, -58.373560],
+            downtown: [-34.604563, -58.456861]
+        },
+        differential: ['wi-fi', 'tv', 'parking', 'air-conditioning'],
+        description: {
+            title: 'Fique no coração de Buenos Aires',
+            text: "Está localizado a poucas quadras da Avenida Alvear, da Avenida Quintana, do Parque San Martín e do bairro da Recoleta. Nos arredores também existem vários locais de interesse, como a Rua Florida, o Centro Comercial Galerías Pacífico, a zona de Puerto Madero, a Plaza de Mayo e o Palácio Municipal. Nossos clientes afirmam que esta parte de Buenos Aires é a preferida, segundo avaliações independentes. O Hotel é um sofisticado hotel de 4 estrelas que goza de uma localização tranquila, a poucos passos de prestigiadas galerias de arte, teatros, museus e áreas comerciais. Há também WiFi gratuito. A propriedade serve um café da manhã variado das 07:00 h às 10:30 h."
+        },
+        details: {
+            houseRules: 'Café da manhã a partir as 6:30h. Check-out: 10:00h. Não é permitido festas. Não fumar.',
+            refundPolitics: 'Adicione as datas da viagem para obter detalhes de cancelamento para esta estadia.',
+            healthSafety: 'Deiretrizes de distanciamento social e outras regulamentações relacionadas ao coronavirus se aplicam. Detector de fumaça. Depósito de segurança.'
+
+        }
+
+    },
+    {
+        id: '09',
+        img: [
+            'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
+            'https://swiperjs.com/demos/images/nature-1.jpg',
+            'https://swiperjs.com/demos/images/nature-2.jpg',
+            'https://swiperjs.com/demos/images/nature-3.jpg',
+            'https://swiperjs.com/demos/images/nature-4.jpg',
+        ],
+
+        favorite: true,
+        stars: 4.5,
+        title: 'Rancho Alto da Colina',
+        grade: 9.4,
+        location: {
+            address: 'Av. Pres. Figueroa Alcorta 7285, Buenos Aires, Argentina',
+            distance: 940,
+            location: [-34.596750, -58.373560],
+            downtown: [-34.604563, -58.456861]
+        },
+        differential: ['wi-fi', 'tv', 'parking', 'air-conditioning'],
+        description: {
+            title: 'Fique no coração de Buenos Aires',
+            text: "Está localizado a poucas quadras da Avenida Alvear, da Avenida Quintana, do Parque San Martín e do bairro da Recoleta. Nos arredores também existem vários locais de interesse, como a Rua Florida, o Centro Comercial Galerías Pacífico, a zona de Puerto Madero, a Plaza de Mayo e o Palácio Municipal. Nossos clientes afirmam que esta parte de Buenos Aires é a preferida, segundo avaliações independentes. O Hotel é um sofisticado hotel de 4 estrelas que goza de uma localização tranquila, a poucos passos de prestigiadas galerias de arte, teatros, museus e áreas comerciais. Há também WiFi gratuito. A propriedade serve um café da manhã variado das 07:00 h às 10:30 h."
+        },
+        details: {
+            houseRules: 'Café da manhã a partir as 6:30h. Check-out: 10:00h. Não é permitido festas. Não fumar.',
+            refundPolitics: 'Adicione as datas da viagem para obter detalhes de cancelamento para esta estadia.',
+            healthSafety: 'Deiretrizes de distanciamento social e outras regulamentações relacionadas ao coronavirus se aplicam. Detector de fumaça. Depósito de segurança.'
+
+        }
+
+    },
+    {
+        id: '10',
+        img: [
+            'https://a0.muscache.com/im/pictures/8a16688a-1f1d-4530-ad1f-dfff1b7e5298.jpg?im_w=1200',
+            'https://swiperjs.com/demos/images/nature-1.jpg',
+            'https://swiperjs.com/demos/images/nature-2.jpg',
+            'https://swiperjs.com/demos/images/nature-3.jpg',
+            'https://swiperjs.com/demos/images/nature-4.jpg',
+        ],
+
+        favorite: true,
+        stars: 5.0,
         title: 'Rancho Alto da Colina',
         grade: 9.4,
         location: {

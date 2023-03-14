@@ -3,7 +3,7 @@ import { products } from '/public/cardsMock.js'
 import "./Product.scss";
 import { useState, useEffect, useRef } from "react";
 import { Link, useParams } from 'react-router-dom'
-import { ShareNetwork, X, CaretLeft, Star, MapPin, WifiHigh, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
+import { Copy, ShareNetwork, X, CaretLeft, Star, MapPin, WifiHigh, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
 import { Carousel } from "../Components/Carousel";
 import { HeartIcon } from "../Components/HeartIcon";
 import { Map } from "../Components/Map";
@@ -15,12 +15,37 @@ import Swal from 'sweetalert2'
 import { toast } from 'react-toastify';
 import Litepicker from 'litepicker';
 
+import {
+    FacebookShareButton,
+    FacebookMessengerShareButton,
+    LinkedinShareButton,
+    RedditShareButton,
+    TelegramShareButton,
+    TumblrShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+} from "react-share";
+
+import {
+    FacebookIcon,
+    FacebookMessengerIcon,
+    LinkedinIcon,
+    RedditIcon,
+    TelegramIcon,
+    TumblrIcon,
+    TwitterIcon,
+    WhatsappIcon,
+} from "react-share";
+import { StarRate } from '../Components/StarRate';
+
 
 
 export function Product() {
     const { id } = useParams()
     const [productData, setProductData] = useState('');
     const [modal, setModal] = useState(false);
+    const [share, setShare] = useState(false);
+    const [shareUrl, setShareUrl] = useState('');
     const [datePicker, setDatePicker] = useState(false);
 
     //const [date, setDate] = useState('');
@@ -33,9 +58,9 @@ export function Product() {
         }
 
         const lockedDates = [
-            '2023-03-01', '2023-03-05', '2023-03-08', 
+            '2023-03-01', '2023-03-05', '2023-03-08',
             '2023-03-12', '2023-03-15', '2023-03-19',
-          ];
+        ];
 
         litepickerRef.current = new Litepicker({
             element: document.getElementById('datepicker'),
@@ -58,14 +83,13 @@ export function Product() {
 
             setup: (picker) => {
 
-                picker.on('destroy', (tooltip, day) => {
+                /* picker.on('destroy', (tooltip, day) => {
                     console.log("destruido")
-                });
-                picker.on('selected', (date1, date2) => {
+                }); */
+                /* picker.on('selected', (date1, date2) => {
                     console.log("selecionado");
-                });
+                }); */
                 picker.on('render', (ui) => {
-                    console.log("mostrou");
                     setDatePicker(true)
                 });
 
@@ -90,7 +114,7 @@ export function Product() {
         })
         //console.log(produtoSelecionado);
         setProductData(produtoSelecionado)
-
+        setShareUrl(window.location.href)
 
         setTimeout(() => {
             createDatepicker()
@@ -159,18 +183,6 @@ export function Product() {
         cleanForm();
     }
 
-       
-
-    /* setTimeout(() => {
-
-        if (window.screen.width < 800) {
-
-            let perpx = 2 / 1920;
-            let ratio = perpx * window.screen.width;
-            document.getElementById('datepicker').style.transform = "scale(" + ratio + ")";
-        }
-    }, 1); */
-
 
 
     return (
@@ -182,7 +194,7 @@ export function Product() {
                         <div className="carouselContainer" >
                             <div className="controle" onClick={() => setModal(false)}></div>
                             <Carousel imgs={productData.img} />
-                            <X size={32} className='closeIcon' color="#ffffff" weight="bold" onClick={() => setModal(false)} />
+                            <X size={32} className='closeIcon' type='modal' color="#ffffff" weight="bold" onClick={() => setModal(false)} />
 
                         </div>
                     }
@@ -205,21 +217,58 @@ export function Product() {
                         <div className="locationGrade">
                             <div className="gradeRating">
                                 <p className='text-small gradeText'>{gradeStatus(productData.grade)}</p>
-                                <div className='stars'>
-                                    <Star size={14} color="#1DBEB4" weight="fill" />
-                                    <Star size={14} color="#1DBEB4" weight="fill" />
-                                    <Star size={14} color="#1DBEB4" weight="fill" />
-                                    <Star size={14} color="#1DBEB4" weight="fill" />
-                                    <Star size={14} color="#b6b9b9" weight="fill" />
-                                </div>
+                                <StarRate rate={productData.stars} />
+                                
                             </div>
                             <div className='grade'>{productData.grade.toFixed(1)}</div>
                         </div>
                     </section>
 
                     <section className="shareSection">
-                        <ShareNetwork size={24} color="#000000" style={{ "cursor": "pointer" }} />
                         <HeartIcon className='heartIconStyle' id={productData.id} border={true} favorite={productData.favorite} />
+                        <ShareNetwork size={24} color="#000000" className='shareButton' onClick={() => setShare(true)} />
+
+                        {share &&
+                            <div className="shareContainer" >
+                                <div className="controle" onClick={() => setShare(false)}></div>
+                                <X size={32} className='closeIcon' type='share' color="#ffffff" weight="bold" onClick={() => setShare(false)} />
+
+                                <section className='shareContent'>
+                                    <h1 className='shareTitle'>Compartilhe esta oportunidade!</h1>
+                                    <section className='shareInputContainer'>
+
+                                        <input type="text" defaultValue={shareUrl} readOnly={true} className='shareInput' />
+                                        <button className='copyStyle' onClick={() => { navigator.clipboard.writeText(shareUrl); }}>
+                                            <Copy className='copyButton' size={26} />
+                                        </button>
+                                    </section>
+
+
+                                    <div className='shareIcons'>
+                                        <FacebookShareButton url={shareUrl}><FacebookIcon size={32} round={true} /></FacebookShareButton>
+                                        <FacebookMessengerShareButton url={shareUrl}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
+                                        <LinkedinShareButton url={shareUrl}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
+                                        <TelegramShareButton url={shareUrl}><TelegramIcon size={32} round={true} /></TelegramShareButton>
+                                        {/* <RedditShareButton url={shareUrl}><RedditIcon size={32} round={true} /></RedditShareButton> */}
+                                        {/* <TumblrShareButton url={shareUrl}><TumblrIcon size={32} round={true} /></TumblrShareButton> */}
+                                        <TwitterShareButton url={shareUrl}><TwitterIcon size={32} round={true} /></TwitterShareButton>
+                                        <WhatsappShareButton url={shareUrl}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
+                                    </div>
+                                </section>
+
+                            </div>
+                        }
+
+{/* 
+                        <FacebookShareButton url={'https://github.com/AndrePedreschi'}><FacebookIcon size={32} round={true} /></FacebookShareButton>
+                        <FacebookMessengerShareButton url={'https://github.com/AndrePedreschi'}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
+                        <LinkedinShareButton url={'https://github.com/AndrePedreschi'}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
+                        <TelegramShareButton url={'https://github.com/AndrePedreschi'}><TelegramIcon size={32} round={true} /></TelegramShareButton>
+                        <TwitterShareButton url={'https://github.com/AndrePedreschi'}><TwitterIcon size={32} round={true} /></TwitterShareButton>
+                        <WhatsappShareButton url={'https://github.com/AndrePedreschi'}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
+ */}
+
+
                     </section>
 
                     <section className="imgsSection">
@@ -231,12 +280,6 @@ export function Product() {
                             <img className="img3" src={productData.img[3]} />
                             <img className="img4" src={productData.img[4]} />
                         </div>
-
-                        {/* {productData.img.length > 5 &&
-                            <div className="seeMoreStyle">
-                                <a onClick={() => setModal(!modal)}>Ver mais</a>
-                            </div>
-                        } */}
 
                         <div className="seeMoreStyle">
                             <a onClick={() => setModal(!modal)}>Ver mais</a>

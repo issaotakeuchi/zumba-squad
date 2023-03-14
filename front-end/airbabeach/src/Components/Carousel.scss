@@ -3,11 +3,13 @@
     height: 29.75rem;
     background-color: #ebebeb;
     border-radius: 8px;
-    z-index: 0;
+    
 
     .carousel {
         height: 22.75rem;
         border-radius: 8px 8px 0 0;
+        z-index: 0;
+
 
         .swiper-button-next,
         .swiper-button-prev {

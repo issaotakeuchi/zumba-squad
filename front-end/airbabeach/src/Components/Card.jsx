@@ -8,6 +8,7 @@ import { X, Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Ca
 import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon } from './HeartIcon';
 import { Map } from './Map'
+import { StarRate } from './StarRate';
 
 export function Card({
     id,
@@ -82,17 +83,15 @@ export function Card({
                             <div className='titleStyle'>
                                 <div className='starsStyle'>
                                     <h4>Hotel</h4>
-                                    <div className='stars'>
-                                        {/* {stars.map((iten, index) => (
-                                            <Star key={index} size={14} color="#1DBEB4" weight="fill" />
-                                        ))} */}
-
+                                    <StarRate rate={stars} />
+                                    
+                                    {/* <div className='stars'>
                                         <Star size={14} color="#1DBEB4" weight="fill" />
                                         <Star size={14} color="#1DBEB4" weight="fill" />
                                         <Star size={14} color="#1DBEB4" weight="fill" />
                                         <Star size={14} color="#1DBEB4" weight="fill" />
                                         <Star size={14} color="#b6b9b9" weight="fill" />
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <h1 className='title'>{title}</h1>
                             </div>
