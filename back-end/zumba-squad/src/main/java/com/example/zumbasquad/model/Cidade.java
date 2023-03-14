@@ -21,4 +21,9 @@ public class Cidade {
     private String pais;
     @OneToMany(mappedBy = "cidade")
     private Set<Produto> produtos;
+
+    public Cidade(String nome, String pais) {
+        this.nome = nome;
+        this.pais = pais;
+    }
 }

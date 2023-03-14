@@ -22,5 +22,9 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria")
     private Set<Produto> produtos;
 
-
+    public Categoria(String qualificacao, String descricao, String urlImagem) {
+        this.qualificacao = qualificacao;
+        this.descricao = descricao;
+        this.urlImagem = urlImagem;
+    }
 }

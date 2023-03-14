@@ -26,4 +26,8 @@ public class Caracteristica {
             inverseJoinColumns = {@JoinColumn(name = "produto_id")})
     private Set<Produto> produtos = new HashSet<>();
 
+    public Caracteristica(String nome, String icone) {
+        this.nome = nome;
+        this.icone = icone;
+    }
 }
