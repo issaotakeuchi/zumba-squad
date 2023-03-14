@@ -20,4 +20,9 @@ public class Imagem {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
+
+    public Imagem(String titulo, String url) {
+        this.titulo = titulo;
+        this.url = url;
+    }
 }
