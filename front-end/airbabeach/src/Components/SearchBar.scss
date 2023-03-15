@@ -131,7 +131,7 @@
 
 //datepicker
 .litepicker {
-    left: calc(50% - 278px) !important;
+    //left: calc(50% - 278px) !important;
 
 
     .container__days {
@@ -195,14 +195,14 @@
 }
 
 
-/* @media (max-width: 1000px) {
+@media (max-width: 1000px) {
     .litepicker {
     left: calc(50% - 278px) !important;
     }
-} */
+}
 @media (max-width: 640px) {
     .litepicker {
-        left: calc(50% - 138px) !important;
+        left: calc(50% - 138px) !important ;
     }
 }
 

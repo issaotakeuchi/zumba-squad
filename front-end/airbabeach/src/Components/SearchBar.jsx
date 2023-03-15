@@ -59,7 +59,7 @@ export function SearchBar() {
                 litepickerRef.current.setOptions({ numberOfColumns: 2 });
                 litepickerRef.current.setOptions({ numberOfMonths: 2 });
             }
-        }, 2);
+        }, 50);
 
     }, [windowWidth])
     useEffect(() => {

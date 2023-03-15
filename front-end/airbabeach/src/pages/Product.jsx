@@ -141,9 +141,6 @@ export function Product() {
             createDatepicker()
         }, 1);
     }, [])
-
-
-
     /* useEffect(() => {
 
         let url = `https://www.airbabeach/product/${id}`;
@@ -159,6 +156,8 @@ export function Product() {
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
         });
     }, []) */
+
+
 
     function cleanForm() {
         litepickerRef.current.clearSelection()
@@ -190,14 +189,14 @@ export function Product() {
 
         console.log(data);
 
-        /* axios.post(url, data).then((response) => {
+        axios.post(url, data).then((response) => {
             toast.success("Próximo destino econtrado!")
         }, (error) => {
             //console.log(error.code);
             if (error.status == 404) return toast.error('Destino não encontrada');
             if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
-        }); */
+        });
 
         cleanForm();
     }
@@ -255,41 +254,26 @@ export function Product() {
                                 <section className='shareContent'>
                                     <h1 className='shareTitle'>Compartilhe esta oportunidade!</h1>
                                     <section className='shareInputContainer'>
-
                                         <input type="text" defaultValue={shareUrl} readOnly={true} className='shareInput' />
                                         <button className='copyStyle' onClick={() => { navigator.clipboard.writeText(shareUrl); }}>
                                             <Copy className='copyButton' size={26} />
                                         </button>
                                     </section>
 
-
                                     <div className='shareIcons'>
-                                        <FacebookShareButton url={'https://github.com/AndrePedreschi'}><FacebookIcon size={32} round={true} /></FacebookShareButton>
-                                        <FacebookMessengerShareButton url={'https://github.com/AndrePedreschi'}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
-                                        <LinkedinShareButton url={'https://github.com/AndrePedreschi'}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
-                                        <TelegramShareButton url={'https://github.com/AndrePedreschi'}><TelegramIcon size={32} round={true} /></TelegramShareButton>
-                                        <TwitterShareButton url={'https://github.com/AndrePedreschi'}><TwitterIcon size={32} round={true} /></TwitterShareButton>
-                                        <WhatsappShareButton url={'https://github.com/AndrePedreschi'}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
+                                        <FacebookShareButton url={shareUrl}><FacebookIcon size={32} round={true} /></FacebookShareButton>
+                                        <FacebookMessengerShareButton url={shareUrl}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
+                                        <LinkedinShareButton url={shareUrl}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
+                                        <TelegramShareButton url={shareUrl}><TelegramIcon size={32} round={true} /></TelegramShareButton>
+                                        <TwitterShareButton url={shareUrl}><TwitterIcon size={32} round={true} /></TwitterShareButton>
+                                        <WhatsappShareButton url={shareUrl}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
                                     </div>
                                 </section>
-
                             </div>
                         }
-
-                        {/* 
-                        <FacebookShareButton url={'https://github.com/AndrePedreschi'}><FacebookIcon size={32} round={true} /></FacebookShareButton>
-                        <FacebookMessengerShareButton url={'https://github.com/AndrePedreschi'}><FacebookMessengerIcon size={32} round={true} /></FacebookMessengerShareButton>
-                        <LinkedinShareButton url={'https://github.com/AndrePedreschi'}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
-                        <TelegramShareButton url={'https://github.com/AndrePedreschi'}><TelegramIcon size={32} round={true} /></TelegramShareButton>
-                        <TwitterShareButton url={'https://github.com/AndrePedreschi'}><TwitterIcon size={32} round={true} /></TwitterShareButton>
-                        <WhatsappShareButton url={'https://github.com/AndrePedreschi'}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
- */}
-
-
                     </section>
 
                     <section className="imgsSection">
-
                         <div className="desktopStyle">
                             <img className="img0" src={productData.img[0]} />
                             <img className="img1" src={productData.img[1]} />
@@ -302,7 +286,6 @@ export function Product() {
                             <a onClick={() => setModal(!modal)}>Ver mais</a>
                         </div>
 
-
                         <div className='carouselComponent'>
                             <Carousel imgs={productData.img} />
                         </div>
@@ -310,11 +293,9 @@ export function Product() {
 
                     <section className="descriptionSection">
                         <h1 className=".h1 descriptionTitle">{productData.description.title}</h1>
-
                         {breakLines(productData.description.text).map((itens, index) => (
                             <p key={index} className='text-normal'>{itens}</p>
                         ))}
-
                     </section>
 
                     <section className="diferentialSection">
@@ -338,22 +319,16 @@ export function Product() {
                     </section>
 
                     <section className="availabilitySection">
-
                         <h1 className="h1">Datas disponíveis</h1>
-
                         <section className="datePickerSection">
-
                             <div className="datepickerStyle" id='datepicker' ref={litepickerRef} />
-
                             <section className='initReserveSection'>
                                 <p className='text-normal paragraphText'>Adicione as datas da sua viagem para obter preços exatos</p>
                                 <button className='btnInitReserve' onClick={handleSubmit}>
                                     Iniciar Reserva
                                 </button>
                             </section>
-
                         </section>
-
                     </section>
 
                     <section className="politicsSection">

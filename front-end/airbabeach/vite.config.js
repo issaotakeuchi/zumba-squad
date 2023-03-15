@@ -12,6 +12,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './test/setup.js',
   },
+  server:{
+    host: true,
+    port:80,
+  },
   /* build: {
     chunkSizeWarningLimit: 1600,
   }, */
