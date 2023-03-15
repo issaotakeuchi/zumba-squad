@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest --coverage",
-    "preview": "vite preview"
+    "preview": "vite preview --port 80"
   },
   "dependencies": {
     "@bcad1591/react-date-picker": "^0.1.1",
