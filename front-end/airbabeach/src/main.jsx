@@ -2,7 +2,8 @@ import {
   createBrowserRouter,
   RouterProvider,
   redirect,
-  useRouteError
+  useRouteError,
+  BrowserRouter
 } from "react-router-dom"
 
 import 'sweetalert2/src/sweetalert2.scss'
@@ -17,6 +18,8 @@ import { CreateUser } from './pages/CreateUser'
 import { ProtectedRoute } from "./utils/ProtectedRoute"
 import { Product } from "./pages/Product"
 import { Category } from "./pages/Category"
+import { Booking } from "./Components/Booking"
+import { ProductDetail } from "./Components/ProductDetail"
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -29,7 +32,7 @@ function ErrorBoundary() {
 
 const appRouter = createBrowserRouter([
   {
-    path: "",
+    path: "/airbnbeach",
     element: <App />,
     errorElement: <ErrorBoundary />,
     children: [
@@ -37,7 +40,13 @@ const appRouter = createBrowserRouter([
         path: '',
         loader: () => redirect('/home'),
         errorElement: <ErrorBoundary />
-        
+
+      },
+      {
+        path: '/',
+        loader: () => redirect('/home'),
+        errorElement: <ErrorBoundary />
+
       },
       {
         path: '*',
@@ -60,9 +69,24 @@ const appRouter = createBrowserRouter([
         errorElement: <ErrorBoundary />
       },
       {
-        path: "product/:id",
+        path: "product",
         element: <Product />,
-        errorElement: <ErrorBoundary />
+        errorElement: <ErrorBoundary />,
+        children: [
+          {
+            path: ":id",
+            element: <ProductDetail />,
+            errorElement: <ErrorBoundary />,
+          },
+          {
+            path: ":id/booking",
+            element:
+              //<ProtectedRoute redirectPath="/login" msg='Para fazer uma reserva você precisa estar logado!'>
+              <Booking />,
+            //</ProtectedRoute>,
+            errorElement: <ErrorBoundary />,
+          },
+        ]
       },
       {
         path: "category/:id",
@@ -72,24 +96,26 @@ const appRouter = createBrowserRouter([
       {
         path: "rotaProtegida",
         element:
-          <ProtectedRoute redirectPath="/home">
+          <ProtectedRoute redirectPath="/home" msg='Acesso negado' type='toast'>
             <CreateUser />
           </ProtectedRoute>,
-          errorElement: <ErrorBoundary />
+        errorElement: <ErrorBoundary />
       },
     ],
-    
   }
-
 ]
 )
 
 root.render(
   //<React.StrictMode>
+  <BrowserRouter basename="/airbnbeach">
 
     <AuthProvider>
+
       <RouterProvider router={appRouter} />
+
     </AuthProvider>
+  </BrowserRouter>
 
   //</React.StrictMode>
 )

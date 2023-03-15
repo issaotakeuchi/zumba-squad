@@ -67,7 +67,7 @@ export function Form({ type }) {
             }
         }
 
-        axios.post(url, data, options).then((response) => {
+        axios.post(url, data).then((response) => {
             console.log(response);
 
             if (type === 'login') {

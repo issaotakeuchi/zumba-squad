@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 
 
 export function Sidebar() {
-  const { auth, user, deleteUser } = useAuth();
+  const { user, deleteUser } = useAuth();
   const navigate = useNavigate();
 
   const [urlPath, setUrlPath] = useState(window.location.pathname);
