@@ -32,7 +32,7 @@ function ErrorBoundary() {
 
 const appRouter = createBrowserRouter([
   {
-    path: "/airbnbeach",
+    path: "",
     element: <App />,
     errorElement: <ErrorBoundary />,
     children: [
@@ -107,17 +107,9 @@ const appRouter = createBrowserRouter([
 )
 
 root.render(
-  //<React.StrictMode>
-  <BrowserRouter basename="/airbnbeach">
-
-    <AuthProvider>
-
-      <RouterProvider router={appRouter} />
-
-    </AuthProvider>
-  </BrowserRouter>
-
-  //</React.StrictMode>
+  <AuthProvider>
+    <RouterProvider router={appRouter} />
+  </AuthProvider>
 )
 
 
