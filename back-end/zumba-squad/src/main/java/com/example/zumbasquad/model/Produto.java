@@ -30,4 +30,13 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    public Produto(String nome, String descricao, Set<Imagem> imagens, Set<Caracteristica> caracteristicas, Cidade cidade, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.imagens = imagens;
+        this.caracteristicas = caracteristicas;
+        this.cidade = cidade;
+        this.categoria = categoria;
+    }
 }
