@@ -8,6 +8,7 @@ import { X, Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Ca
 import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon } from './HeartIcon';
 import { Map } from './Map'
+import { Map2 } from './Map2'
 import { StarRate } from './StarRate';
 
 export function Card({
@@ -66,7 +67,7 @@ export function Card({
                     {modal &&
                         <div className="mapModalContainer" >
                             <div className="controle" onClick={() => setModal(false)}></div>
-                            <Map location={location.location} downtown={location.downtown} address={location.address}/> 
+                            <Map2 location={location.location} downtown={location.downtown} address={location.address}/> 
                             <X size={32} className='closeIcon' color="#ffffff" weight="bold" onClick={() => setModal(false)} />
 
                         </div>
