@@ -11,7 +11,7 @@ export function Form({ type }) {
     const { saveToken } = useAuth();
     const navigate = useNavigate();
 
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.*[0-9]).{8,}$");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!+¨:=/@|#\$%\^&\*])(?=.*[0-9]).{8,}$");
     const [firstName, setFirstName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
@@ -125,7 +125,7 @@ export function Form({ type }) {
                     if (password == undefined || password === null) return setStatus({ type: 'passwordError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
                 } else {
                     if (password === '') return setStatus({ type: 'passwordError', message: 'Este campo é obrigatório' });
-                    if (!password.match(strongRegex)) return setStatus({ type: 'passwordError', message: 'A senha deve conter pelo menos um caracter especial, número, 7 letras, letra maiúscula e múscula ' });
+                    if (!password.match(strongRegex)) return setStatus({ type: 'passwordError', message: 'A senha deve conter pelo menos um número, 7 letras, letra maiúscula múscula e um caracter especial (!@#$%¨&*()/+|:)' });
                     if (confirnPassword !== '' && confirnPassword !== password) return setStatus({ type: 'confirnPasswordError', message: 'As duas senhas devem ser iguais' });
                     if (password == undefined || password === null) return setStatus({ type: 'passwordError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
                 }
@@ -151,7 +151,7 @@ export function Form({ type }) {
                     if (email === '') return setStatus({ type: 'emailError', message: 'Este campo é obrigatório' });
                     if (email == undefined || email === null) return setStatus({ type: 'emailError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
                     if (password === '') return setStatus({ type: 'passwordError', message: 'Este campo é obrigatório' });
-                    if (!password.match(strongRegex)) return setStatus({ type: 'passwordError', message: 'A senha deve conter pelo menos um caracter especial, número, 7 letras, letra maiúscula e múscula ' });
+                    if (!password.match(strongRegex)) return setStatus({ type: 'passwordError', message: 'A senha deve conter pelo menos um número, 7 letras, letra maiúscula múscula e um caracter especial (!@#$%¨&*()/+|:)' });
                     if (password == undefined || password === null) return setStatus({ type: 'passwordError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
                     if (confirnPassword === '') return setStatus({ type: 'confirnPasswordError', message: 'Este campo é obrigatório' });
                     if (confirnPassword !== password) return setStatus({ type: 'confirnPasswordError', message: 'As duas senhas devem ser iguais' });
