@@ -61,7 +61,7 @@ public class ProdutoController {
         }
     }
 
-    @GetMapping("/{nomeCidade}")
+    @GetMapping("/cidade")
     public List<Produto> buscarProdutosPorCidade(@RequestParam String nomeCidade) throws ResourceNotFoundException {
         try {
             log.info("Encontrado a lista de produtos solicitado");
@@ -83,7 +83,7 @@ public class ProdutoController {
         }
     }
 
-    @GetMapping("/{categoria}")
+    @GetMapping("/categoria")
     public List<Produto> buscarProdutosPorCategoria(@RequestParam String categoria) throws ResourceNotFoundException {
         try {
             log.info("Encontrado a lista de produtos solicitado");
