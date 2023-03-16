@@ -31,7 +31,7 @@ build_dev_front:
   artifacts:
     expire_in: 1 day
     paths:
-      - projeto-integrador/dist/
+      - front-end/airbabeach/dist/
   only:
     - dev
 
