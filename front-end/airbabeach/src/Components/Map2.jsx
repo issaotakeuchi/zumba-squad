@@ -1,6 +1,6 @@
 import './Map.scss'
-import { useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet'
+//import { useEffect, useRef } from "react";
+//import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
@@ -41,21 +41,39 @@ export function Map2({ location, downtown, address }) {
             .bindPopup(address)
             .openPopup();
 
+        /*  var LeafIcon = L.Icon.extend({
+             options: {
+                 iconUrl: "https://img.icons8.com/3d-fluency/94/null/map-pin.png",
+                 iconSize:     [38, 95],
+                 shadowSize:   [50, 64],
+                 iconAnchor:   [22, 94],
+                 shadowAnchor: [4, 62],
+                 popupAnchor:  [-3, -76]
+             }
+         });
+         L.marker(location, { icon: LeafIcon }).addTo(map).bindPopup(address).openPopup(); */
+
+
         var circle = L.circle(downtown, {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
             radius: 2000
         }).addTo(map);
+
         circle.bindPopup("Centro")
 
         map.addControl(new L.Control.Fullscreen());
+
     }, 10);
 
 
 
 
     return (
-        <div id="map" className='mapStyle'></div>
+        <>
+            {/* <img src="https://img.icons8.com/3d-fluency/94/null/map-pin.png" /> */}
+            <div id="map" className='mapStyle'></div>
+        </>
     )
 }
