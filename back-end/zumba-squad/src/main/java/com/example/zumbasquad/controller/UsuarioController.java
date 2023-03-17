@@ -22,7 +22,6 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    //TODO colocar isso em todos os posts e mudar semantica do log do error
     public Usuario cadastrarUsuario(@RequestBody Usuario usuario) throws BadRequestException{
         try{
             log.info("Cadastro novo usuário com sucesso");
