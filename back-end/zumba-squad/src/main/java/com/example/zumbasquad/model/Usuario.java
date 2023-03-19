@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "U")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +24,6 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "papel_id", referencedColumnName = "id")
     private Papel papel;
+    @Column(insertable=false, updatable=false)
+    private String tipo;
 }
