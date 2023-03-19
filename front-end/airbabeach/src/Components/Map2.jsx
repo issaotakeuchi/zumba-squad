@@ -4,6 +4,8 @@ import './Map.scss'
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
+import mapIconUrl from '../assets/map-icon.png';
+import mapIconShadowUrl from '../assets/map-icon-shadow.png';
 
 
 
@@ -37,7 +39,20 @@ export function Map2({ location, downtown, address }) {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        L.marker(location).addTo(map)
+        const LeafIcon = L.Icon.extend({
+            options: {
+                shadowUrl: mapIconShadowUrl,
+                iconSize: [30, 50],
+                shadowSize: [50, 64],
+                iconAnchor: [19, 74],
+                shadowAnchor: [20, 97],
+                popupAnchor: [-3, -76]
+            }
+        });
+
+        const mapIcon = new LeafIcon({ iconUrl: mapIconUrl });
+
+        L.marker(location, { icon: mapIcon }).addTo(map)
             .bindPopup(address)
             .openPopup();
 
