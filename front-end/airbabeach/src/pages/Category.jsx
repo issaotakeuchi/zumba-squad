@@ -20,10 +20,8 @@ export function Category() {
         }
 
         axios.get(url, options).then((response) => {
-            //console.log(response);
             setCategoryData(response)
         }, (error) => {
-            //console.log(error.code);
 
             if (error.status == 404) return toast.error('Categoria não encontrada, recarregue a página!');
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');

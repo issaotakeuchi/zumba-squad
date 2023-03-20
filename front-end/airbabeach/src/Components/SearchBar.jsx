@@ -1,7 +1,7 @@
 import './SearchBar.scss'
 import { toast } from 'react-toastify';
-import { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MapPin, Calendar } from 'phosphor-react'
 import Litepicker from 'litepicker';

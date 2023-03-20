@@ -26,18 +26,16 @@ export function Card({
     description,
 
 }) {
-    const navigate = useNavigate();
     const [modal, setModal] = useState(false);
 
 
-
-    function descriptionText() {
+    /* function descriptionText() {
         if (description.length > 75) {
             return description.slice(0, 75)
         } else {
             return description
         }
-    }
+    } */
 
     function chooseCategory(id, category) {
         console.log(id);
