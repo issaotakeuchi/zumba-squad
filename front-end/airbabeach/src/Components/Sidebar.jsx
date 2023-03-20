@@ -7,14 +7,14 @@ import Swal from 'sweetalert2'
 
 
 export function Sidebar() {
-  const { user, deleteUser } = useAuth();
+  const { user, userLogout } = useAuth();
   const navigate = useNavigate();
 
   const [urlPath, setUrlPath] = useState(window.location.pathname);
   const [sidebarDisplay, setSidebarDisplay] = useState(false);
   const [animation, setAnimation] = useState("");
 
-  console.log(urlPath);
+  //console.log(urlPath);
 
   useEffect(() => {
     setUrlPath(window.location.pathname)
@@ -45,7 +45,7 @@ export function Sidebar() {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteUser()
+        userLogout()
         navigate('/home')
         toggleSidebar()
       } else {
