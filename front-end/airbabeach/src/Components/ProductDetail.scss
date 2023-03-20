@@ -283,6 +283,7 @@
 
     .mapSection {
         padding: 1rem 2.5rem;
+        color: var(--navy-light);
     }
 
     .availabilitySection {
@@ -291,8 +292,10 @@
         background-color: #e6e5e5;
         height: auto;
 
+
         .h1 {
             margin-bottom: 1rem;
+            color: var(--navy-light);
         }
 
         .datePickerSection {
@@ -378,6 +381,7 @@
 
                 .paragraphText {
                     margin-bottom: 1rem;
+                    color: var(--navy-light);
                 }
 
                 .btnInitReserve {
@@ -491,12 +495,6 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
-
-        .politicsSection {
-            .politicDetails {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
     }
 }
 
@@ -538,10 +536,6 @@
             }
         }
 
-        .politicsSection {
-            .politicDetails {
-                grid-template-columns: 1fr;
-            }
-        }
+        
     }
 }

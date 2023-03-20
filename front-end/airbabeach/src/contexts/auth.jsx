@@ -6,9 +6,12 @@ import { createContext, useContext } from "react"
 const AuthContext = createContext()
 
 export function AuthProvider(props) {
-  const [user, setUser] = useState('')
+  //const [user, setUser] = useState('')
   const authLocalStorage = localStorage.getItem('auth')
+  const userLocalStorage = JSON.parse(localStorage.getItem('user'))
+
   const [auth, setAuth] = useState(authLocalStorage === null ? '' : authLocalStorage)
+  const [user, setUser] = useState(userLocalStorage === null ? '' : userLocalStorage)
 
 
   function saveToken(tokenReceived) {
@@ -38,26 +41,35 @@ export function AuthProvider(props) {
     }
   }
 
-  /* function saveUser(userReceived) {
-    setUser(userReceived)
-    setUser({
-      name: 'Bruno Rocha',
-      shortName: 'BR'
-    })
-  } */
+  function saveUser(userReceived) {
+    if (userReceived !== user) {
+      setUser(userReceived)
+      
+      localStorage.setItem('user', JSON.stringify(userReceived))
+    }
 
-  function deleteUser() {
-    setUser('');
-    deleteToken();
+    /* setUser({
+      name: 'Bruno',
+      surname: "Rocha",
+      shortName: 'BR',
+      email: 'brunomorenocrocante@gmail.com'
+    }) */
+
   }
 
-  //metodos para gerar o autorizathin automatiamente em cada requisição
+  function userLogout() {
+    setUser('');
+    setAuth('');
+    localStorage.removeItem('user');
+    localStorage.removeItem('auth');
+  }
+
+  //metodos para gerar o autorization automatiamente em cada requisição
   //método 1
-  axios.defaults.headers.common['Authorization'] = auth
+  axios.defaults.headers.common['Authorization'] = `Bearer ${auth}`
 
   //método 2
   //axios.defaults.headers.common['Auth_Token'] = 'teste 2'
-
 
   //método 3
   /* //Testando interceptor de rotas
@@ -91,7 +103,7 @@ export function AuthProvider(props) {
 
   return (
 
-    <AuthContext.Provider value={{ auth, saveToken, deleteToken, compareToken, user, deleteUser }}>
+    <AuthContext.Provider value={{ auth, saveToken, deleteToken, compareToken, user, userLogout, saveUser }}>
       {props.children}
     </AuthContext.Provider>
 

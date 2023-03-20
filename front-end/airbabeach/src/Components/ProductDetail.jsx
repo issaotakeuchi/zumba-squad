@@ -1,6 +1,6 @@
 import './ProductDetail.scss'
 import { useState, useEffect, useRef } from "react";
-import { Link, useParams, Outlet, useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import { Carousel } from "../Components/Carousel";
 import { HeartIcon } from "../Components/HeartIcon";
 import { StarRate } from '../Components/StarRate';
@@ -42,11 +42,8 @@ import {
 } from "react-share";
 
 
-
 export function ProductDetail() {
-    const productData = useOutletContext()
-    console.log(productData);
-    //const { id } = useParams()
+    const productData = useOutletContext();
     const [modal, setModal] = useState(false);
     const [share, setShare] = useState(false);
     const [shareUrl, setShareUrl] = useState('');
@@ -113,7 +110,6 @@ export function ProductDetail() {
             }
         }, 2);
     }, [windowWidth])
-
     //useffect usado para criar o calendário
     useEffect(() => {
         setShareUrl(window.location.href)
@@ -121,12 +117,6 @@ export function ProductDetail() {
             createDatepicker()
         }, 1);
     }, [])
-
-
-
-
-
-
 
 
     return (
@@ -144,7 +134,7 @@ export function ProductDetail() {
             <section className="locationSection">
                 <div className="locationText">
                     <MapPin className="mapPinStyle" size={20} color="#545776" weight="fill" />
-                    <p className="text-normal">Buenos Aires, Cidade Autônoma de Buenos Aires, Argentina {productData.location.distance}m para o centro</p>
+                    <p className="text-normal">{productData.location.address}, à {productData.location.distance}m do centro</p>
                 </div>
 
                 <div className="locationGrade">
@@ -239,7 +229,6 @@ export function ProductDetail() {
                     <div className="datepickerStyle" id='datepicker' ref={litepickerRef} />
                     <section className='initReserveSection'>
                         <p className='text-normal paragraphText'>Adicione as datas da sua viagem para obter preços exatos</p>
-                        {/* <Link to={`/product/${id}/booking`} className='btnInitReserve'>Iniciar Reserva</Link> */}
                         <Link to={`/product/${productData.id}/booking`} className='btnInitReserve'>Iniciar Reserva</Link>
                     </section>
                 </section>

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 
 
 export function Header() {
-  const { auth, user, deleteUser } = useAuth();
+  const { auth, user, userLogout } = useAuth();
   const navigate = useNavigate();
   const [urlPath, setUrlPath] = useState(window.location.pathname);
 
@@ -30,7 +30,7 @@ export function Header() {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteUser()
+        userLogout()
         navigate('/home')
       } else {
         return
