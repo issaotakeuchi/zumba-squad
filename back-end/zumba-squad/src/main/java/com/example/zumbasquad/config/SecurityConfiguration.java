@@ -22,6 +22,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .cors(cors -> cors.disable())
                 //disabling csrf
                 .csrf().disable()
                 //implementing allowlist
