@@ -2,7 +2,6 @@ package com.example.zumbasquad.auth;
 
 import com.example.zumbasquad.config.JwtService;
 import com.example.zumbasquad.enums.EnumPapel;
-//import com.example.zumbasquad.model.Papel;
 import com.example.zumbasquad.model.Usuario;
 import com.example.zumbasquad.repository.IUsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -50,5 +51,9 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    public Optional<Usuario> getData(String email){
+        return repository.findByEmail(email);
     }
 }

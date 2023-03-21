@@ -1,6 +1,7 @@
 package com.example.zumbasquad.model;
 
 import com.example.zumbasquad.enums.EnumPapel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,42 +30,50 @@ public class Usuario implements UserDetails {
     private String nome;
     private String sobrenome;
     private String email;
+    @JsonIgnore
     private String senha;
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "papel_id", referencedColumnName = "id")
     @Enumerated(EnumType.STRING)
     private EnumPapel papel;
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(papel.name()));
     }
 
+    @JsonIgnore
     @Override
     public String getPassword() {
         return senha;
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return email;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
