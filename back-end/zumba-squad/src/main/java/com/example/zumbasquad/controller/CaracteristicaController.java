@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/caracteristicas")
+@CrossOrigin
 public class CaracteristicaController {
     private final CaracteristicaService service;
     final static Logger log = LoggerFactory.getLogger(CidadeController.class);
