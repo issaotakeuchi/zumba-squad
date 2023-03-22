@@ -47,32 +47,66 @@ export function Form({ type }) {
 
         let url;
         if (type === 'login') {
-            url = 'https://www.airbabeach/login'
+            url = 'http://18.224.15.179:8080/auth/login'
         } else {
-            url = 'https://www.airbabeach/createuser'
+            url = 'http://18.224.15.179:8080/auth/register'
         }
 
         let data;
         if (type === 'login') {
             data = {
                 email: email,
-                password: password
+                senha: password
             }
         } else {
             data = {
-                firstName: firstName,
-                surname: surname,
+                nome: firstName,
+                sobrenome: surname,
                 email: email,
-                password: password
+                senha: password
             }
+            console.log(data);
         }
 
+        /* const options = {
+            headers: {
+
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json, application/x-www-form-urlencoded',
+                'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Headers': 'Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization',
+
+            },
+        } */
+        //axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
+        //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
+
+        /* axios.get(`http://18.224.15.179:8080/categorias`, options)
+                    .then(
+                        (response) => {
+                            console.log(response);
+                        }, (error) => {
+                            if (error.status == 404) return toast.error('Usuário não encontrado');
+                        }) */
+
+
         axios.post(url, data).then((response) => {
-            //console.log(response);
 
             if (type === 'login') {
+                console.log(response);
                 saveToken(response.token)
-                saveUser(response.user)
+
+                axios.get(`http://18.224.15.179:8080/auth/search?email=${email}`)
+                    .then(
+                        (response) => {
+                            console.log(response);
+                            saveUser(response.user)
+                        }, (error) => {
+                            //if (error.status == 404) return toast.error('Usuário não encontrado');
+                        })
+
                 toast.success("Usuário logado com sucesso")
                 navigate('/home')
             } else {
@@ -87,14 +121,13 @@ export function Form({ type }) {
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
                 saveUser({
-                    name: 'Bruno',
-                    surname: "Rocha",
-                    shortName: 'BR',
+                    nome: 'Bruno',
+                    sobrenome: "Rocha",
                     email: 'brunomorenocrocante@gmail.com'
-                  })
+                })
                 if (error.status == 404) return toast.error('Usuário não encontrado');
                 if (error.status == 404) return toast.error('Usuário ou senha não encontrados');
-                if (error.code === 'ERR_NETWORK') return  ;
+                if (error.code === 'ERR_NETWORK') return;
 
             } else {
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
@@ -164,8 +197,6 @@ export function Form({ type }) {
                 }
                 break;
         }
-
-        //apagar o status da mensagen
         setStatus({
             type: '',
             message: ''
@@ -177,8 +208,6 @@ export function Form({ type }) {
         <form className="formulario" onSubmit={handleSubmit}>
             {type && type === "createUser" && <h1>Criar conta</h1>}
             {type && type === "login" && <h1>Iniciar Sessão</h1>}
-
-
             {type && type === "createUser" &&
                 <div className="containerInputs">
                     <div className="errorContainer">
@@ -252,7 +281,6 @@ export function Form({ type }) {
             </div>
             {status.type === 'passwordError' ? <p className="text-small errorMsg">{status.message}</p> : ""}
 
-
             {type && type === "createUser" &&
                 <>
                     <div className="inputs">
@@ -292,6 +320,5 @@ export function Form({ type }) {
             }
 
         </form>
-
     )
 }

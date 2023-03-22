@@ -6,14 +6,14 @@ import axios from "axios";
 
 //posso receber por props o estado inicial do coração e seta-lo em fav ao usar o componente
 export function HeartIcon({ id, favorite = false, border }) {
-    const { compareToken } = useAuth();
+    const { auth } = useAuth();
     const [check, setCheck] = useState(favorite);
 
 
     function favoriteToggle(e) {
         e.preventDefault();
 
-        if (!compareToken()) {
+        if (!auth) {
             toast.error('Você precisa estar logado para favoritar os itens')
         } else {
             

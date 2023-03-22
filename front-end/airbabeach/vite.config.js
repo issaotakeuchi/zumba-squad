@@ -12,10 +12,14 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './test/setup.js',
   },
-  /* server:{
-    host: true,
-    port:80,
-  }, */
+  // server:{
+  //   //host: true,
+  //   //port:80,
+  //   proxy:{
+  //     '/api': 'http://18.224.15.179:8080'
+  //   }
+  // },
+  //plugins: [react()],
   /* build: {
     chunkSizeWarningLimit: 1600,
   }, */

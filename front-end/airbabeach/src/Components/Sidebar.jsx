@@ -7,14 +7,11 @@ import Swal from 'sweetalert2'
 
 
 export function Sidebar() {
-  const { user, userLogout } = useAuth();
+  const { user, auth, userLogout } = useAuth();
   const navigate = useNavigate();
-
   const [urlPath, setUrlPath] = useState(window.location.pathname);
   const [sidebarDisplay, setSidebarDisplay] = useState(false);
   const [animation, setAnimation] = useState("");
-
-  //console.log(urlPath);
 
   useEffect(() => {
     setUrlPath(window.location.pathname)
@@ -68,20 +65,20 @@ export function Sidebar() {
         <nav className="sidebarNav1">
           <X size={32} onClick={toggleSidebar} color="white" weight="bold" className="btnFechar" />
 
-          {user &&
+          {(auth && user)&&
             <div className="loggedIn">
-              <p className="profilePicture">{user.shortName}</p>
+              <p className="profilePicture">{user.nome[0]}{user.sobrenome[0]}</p>
 
               <div className="greetingAndName">
                 <p className="greeting">Olá,</p>
-                <p className="greetingAndNameCoral">{user.name}</p>
+                <p className="greetingAndNameCoral">{user.nome} {user.sobrenome}</p>
               </div>
 
               <p className="loggoutText" onClick={logout} >Deseja <a href="#" className="loggoutLink">encerrar a sessão</a>?</p>
             </div>
           }
 
-          {!user &&
+          {!auth &&
             <div className="loggedOut">
               <h2 type={urlPath} className="h2Menu">MENU</h2>
 
@@ -98,7 +95,7 @@ export function Sidebar() {
           }
 
           <div className="socialMidia">
-            {user && <hr className="hrStyle2" />}
+            {auth && <hr className="hrStyle2" />}
             <a href="#" className="socialMediaIcon" ><FacebookLogo size={28} weight="fill" /></a>
             <a href="#" className="socialMediaIcon" ><LinkedinLogo size={25} weight="bold" /></a>
             <a href="#" className="socialMediaIcon" ><TwitterLogo size={24} weight="fill" /></a>

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MapPin, Calendar } from 'phosphor-react'
 import Litepicker from 'litepicker';
 
-export function SearchBar() {
+export function SearchBar({ filteredData }) {
     const navigate = useNavigate();
     const [city, setCity] = useState('');
     const [date, setDate] = useState('');
@@ -94,24 +94,38 @@ export function SearchBar() {
         e.preventDefault();
 
         if (!validateForm()) return;
+        //.replaceAll(' ', '')
+        //.replace(/ /g,'')
+        //.replace(/\s/g, '')
+        //.replace(/^\s+|\s+$/gm,'')
+        //.split(' ').join('')
 
-        let url = 'https://www.airbabeach/searchAcomodations';
+
+
+        //url para filtrar por cidade
+        //let url = `http://18.224.15.179:8080/produtos/cidade?nomeCidade=${city.replace(/ /g,'')}`;
+
+        
+        let url = `http://18.224.15.179:8080/produtos/cidade?nomeCidade=${city.replace(/ /g, '')}`;
+
+
         let data = {
             city: city,
             startDate: litepickerRef.current.options.startDate.dateInstance.toISOString(),
             endDate: litepickerRef.current.options.endDate.dateInstance.toISOString()
         }
 
-        console.log(data);
+        //console.log(data);
 
-        /* axios.post(url, data).then((response) => {
+        axios.post(url, data).then((response) => {
+            filteredData(response)
             toast.success("Próximo destino econtrado!")
         }, (error) => {
             //console.log(error.code);
-            if (error.status == 404) return toast.error('Destino não encontrada');
+            if (error.status == 401) return toast.error('Nenhuma acomodação encontrada para essa cidade');
             if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
-        }); */
+        });
 
         cleanForm();
     }

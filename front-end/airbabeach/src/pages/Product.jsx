@@ -2,7 +2,7 @@ import { products } from '/public/cardsMock.js'
 
 import "./Product.scss";
 import { useState, useEffect, useRef } from "react";
-import { Link, useParams, Outlet } from 'react-router-dom'
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom'
 import { breakLines } from '../utils/breakLines'
 import axios from "axios";
 import Swal from 'sweetalert2'
@@ -12,23 +12,9 @@ import { CaretLeft } from 'phosphor-react'
 export function Product() {
     const { id } = useParams()
     const [productData, setProductData] = useState('');
-    const [urlPath, setUrlPath] = useState(window.location.pathname);
-
-
-    useEffect(() => {
-    //console.log(urlPath);
-    setUrlPath(window.location.pathname)
-    
-      
-    }, [])
-    useEffect(() => {
-    console.log(urlPath);
-    //setUrlPath(window.location.pathname)
-    
-      
-    }, [urlPath])
-    
-
+    const location = useLocation();
+ 
+  
 
 
     //useffect usado para simular a requisição
@@ -41,7 +27,7 @@ export function Product() {
 
     /* useEffect(() => {
 
-        let url = `https://www.airbabeach/product/${id}`;
+        let url = `http://18.224.15.179:8080/produtos/${id}`;
 
         axios.get(url).then((response) => {
             console.log(response);
@@ -55,6 +41,7 @@ export function Product() {
     }, []) */
 
 
+
     return (
         <>
             {productData !== '' &&
@@ -65,7 +52,7 @@ export function Product() {
                             <p className='title h1'>{productData.title}</p>
                         </div>
 
-                        <Link to={'/home'}><CaretLeft className="caretLeftIcon" size={32} color="#ffffff" weight="bold" /></Link>
+                        <Link to={location.pathname.includes('booking') ? `/product/${id}`: "/home" }><CaretLeft className="caretLeftIcon" size={32} color="#ffffff" weight="bold" /></Link>
                     </section>
 
                     <Outlet context={productData} />
