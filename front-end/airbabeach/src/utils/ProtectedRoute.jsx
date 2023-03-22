@@ -9,9 +9,9 @@ export function ProtectedRoute({
     type = 'swal',
     children,
 }) {
-    const { compareToken } = useAuth();
+    const { auth } = useAuth();
 
-    if (!compareToken()) {
+    if (!auth) {
         {
             type === 'toast' ? toast.error(msg) :
 

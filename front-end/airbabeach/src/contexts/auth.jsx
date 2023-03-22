@@ -25,7 +25,7 @@ export function AuthProvider(props) {
     localStorage.removeItem('auth')
   }
 
-  function compareToken() {
+  /* function compareToken() {
     let token = localStorage.getItem('auth')
 
     if (
@@ -39,7 +39,7 @@ export function AuthProvider(props) {
     } else {
       return false
     }
-  }
+  } */
 
   function saveUser(userReceived) {
     if (userReceived !== user) {
@@ -103,7 +103,7 @@ export function AuthProvider(props) {
 
   return (
 
-    <AuthContext.Provider value={{ auth, saveToken, deleteToken, compareToken, user, userLogout, saveUser }}>
+    <AuthContext.Provider value={{ auth, saveToken, deleteToken, user, userLogout, saveUser }}>
       {props.children}
     </AuthContext.Provider>
 

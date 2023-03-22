@@ -107,8 +107,8 @@ const appRouter = createBrowserRouter([
 )
 
 root.render(
-  <AuthProvider>
-    <RouterProvider router={appRouter} />
+  <AuthProvider >
+    <RouterProvider router={appRouter}/>
   </AuthProvider>
 )
 
