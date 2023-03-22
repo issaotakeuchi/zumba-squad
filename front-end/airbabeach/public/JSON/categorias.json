@@ -1,0 +1,54 @@
+[
+    {
+        "id": 1,
+        "qualificacao": "Hotéis",
+        "descricao": "Os hotéis mais bem avaliados do Brasil",
+        "urlImagem": "https://s3-pi-t6-grupo1.s3.us-east-2.amazonaws.com/imagens/categorias/hoteis.jpg",
+        "produtos": [
+            2,
+            3,
+            4,
+            11
+        ]
+    },
+    {
+        "id": 2,
+        "qualificacao": "Hostels",
+        "descricao": "O melhores em custo-benefício",
+        "urlImagem": "https://s3-pi-t6-grupo1.s3.us-east-2.amazonaws.com/imagens/categorias/hostels.jpg",
+        "produtos": [
+            5,
+            6,
+            10,
+            16
+        ]
+    },
+    {
+        "id": 3,
+        "qualificacao": "Apartamentos",
+        "descricao": "Todo o conforto e privacidade que você precisa",
+        "urlImagem": "https://s3-pi-t6-grupo1.s3.us-east-2.amazonaws.com/imagens/categorias/apartamentos.jpg",
+        "produtos": [
+            7,
+            13,
+            14,
+            17,
+            19,
+            20
+        ]
+    },
+    {
+        "id": 4,
+        "qualificacao": "Pousadas",
+        "descricao": "Descanso e calmaria nos melhores destinos",
+        "urlImagem": "https://s3-pi-t6-grupo1.s3.us-east-2.amazonaws.com/imagens/categorias/pousadas.jpg",
+        "produtos": [
+            1,
+            8,
+            9,
+            12,
+            15,
+            18
+        ]
+    }
+]
