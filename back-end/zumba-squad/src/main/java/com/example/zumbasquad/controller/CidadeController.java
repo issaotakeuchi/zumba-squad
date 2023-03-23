@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cidades")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class CidadeController {
     private final CidadeService service;
     final static Logger log = LoggerFactory.getLogger(CidadeController.class);
