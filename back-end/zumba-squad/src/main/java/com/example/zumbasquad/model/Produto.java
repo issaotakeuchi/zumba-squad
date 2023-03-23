@@ -20,6 +20,9 @@ public class Produto {
     private Long id;
     private String nome;
     private String descricao;
+    private boolean favorito;
+    private float estrelas;
+    private float avaliacao;
     @OneToMany(mappedBy = "produto")
     private Set<Imagem> imagens;
     @ManyToMany(mappedBy = "produtos")
