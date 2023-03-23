@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reservas")
-@CrossOrigin
+@CrossOrigin("*")
 public class ReservaController {
     private final ReservaService service;
     final static Logger log = LoggerFactory.getLogger(ProdutoController.class);
