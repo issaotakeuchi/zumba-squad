@@ -19,10 +19,18 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
-    private String descricao;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "descricao_id", referencedColumnName = "id")
+    private Descricao descricao;
     private boolean favorito;
     private float estrelas;
     private float avaliacao;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "localizacao_id", referencedColumnName = "id")
+    private Localizacao localizacao;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "detalhe_id", referencedColumnName = "id")
+    private Detalhe detalhes;
     @OneToMany(mappedBy = "produto")
     private Set<Imagem> imagens;
     @ManyToMany(mappedBy = "produtos")
@@ -37,7 +45,7 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private Set<Reserva> reservas;
 
-    public Produto(String nome, String descricao, Set<Imagem> imagens, Set<Caracteristica> caracteristicas, Cidade cidade, Categoria categoria) {
+    public Produto(String nome, Descricao descricao, Set<Imagem> imagens, Set<Caracteristica> caracteristicas, Cidade cidade, Categoria categoria) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagens = imagens;
@@ -46,7 +54,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto(String nome, String descricao, Set<Imagem> imagens, Set<Caracteristica> caracteristicas, Cidade cidade, Categoria categoria, Set<Reserva> reservas) {
+    public Produto(String nome, Descricao descricao, Set<Imagem> imagens, Set<Caracteristica> caracteristicas, Cidade cidade, Categoria categoria, Set<Reserva> reservas) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagens = imagens;
