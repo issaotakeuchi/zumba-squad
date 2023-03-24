@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -90,6 +91,17 @@ public class ProdutoController {
         try {
             log.info("Encontrado a lista de produtos solicitado");
             return service.getAllProductsByCategoryQualification(categoria);
+        } catch (Exception e) {
+            log.error("Não foi encontrado a lista de produtos solicitado");
+            throw new ResourceNotFoundException("Não foi encontrado a lista de produtos solicitado.");
+        }
+    }
+
+    @GetMapping("/datas")
+    public List<Produto> buscarProdutosPorDatas(@RequestParam LocalDate dataInicial, @RequestParam LocalDate dataFinal) throws ResourceNotFoundException{
+        try {
+            log.info("Encontrado a lista de produtos solicitado");
+            return service.getAllProductsByDates(dataInicial, dataFinal);
         } catch (Exception e) {
             log.error("Não foi encontrado a lista de produtos solicitado");
             throw new ResourceNotFoundException("Não foi encontrado a lista de produtos solicitado.");
