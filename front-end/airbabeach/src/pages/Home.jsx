@@ -13,20 +13,20 @@ const [produtos, setProdutos] = useState('')
 
 useEffect(() => {
 
-        const options = {
+        /* const options = {
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json, application/x-www-form-urlencoded',
+                //'Access-Control-Allow-Origin': '*',
+                //'Content-Type': 'application/json, application/x-www-form-urlencoded',
                 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-                'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Headers': 'Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization',
+                //'Access-Control-Allow-Credentials': true,
+                //'Access-Control-Allow-Headers': 'Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization',
             },
-        }
-        axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
+        } */
+        //axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
         //axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 
-        axios.get(`http://18.224.15.179:8080/categorias`, options).then(
+        axios.get(`http://18.224.15.179:8080/categorias`).then(
             (response) => {
                 console.log(response);
                 setCategorias(response);
@@ -36,7 +36,7 @@ useEffect(() => {
             }
         )
 
-        /* axios.get(`http://18.224.15.179:8080/produtos`).then(
+        axios.get(`http://18.224.15.179:8080/produtos`).then(
             (response) => {
                 console.log(response);
                 setProdutos(response);
@@ -44,7 +44,16 @@ useEffect(() => {
             (error) => {
                 //if (error.status == 404) return toast.error('Usuário não encontrado');
             }
-        ) */
+        )
+
+        axios.get(`https://dog.ceo/api/breeds/image/random`).then(
+            (response) => {
+                console.log(response);
+                setProdutos(response);
+            },
+            (error) => {
+            }
+        )
 
 
     }, [])
