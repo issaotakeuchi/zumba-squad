@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "detalhe")
+@Table(name = "detalhes")
 public class Detalhe {
 
     @Id
@@ -18,6 +18,6 @@ public class Detalhe {
     private String regrasDaCasa;
     private String politicaDeCancelamento;
     private String saudeESeguranca;
-    @OneToOne(mappedBy = "detalhe")
+    @OneToOne(mappedBy = "detalhes")
     private Produto produto;
 }

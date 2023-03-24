@@ -30,7 +30,7 @@ public class Produto {
     private Localizacao localizacao;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "detalhe_id", referencedColumnName = "id")
-    private Detalhe detalhe;
+    private Detalhe detalhes;
     @OneToMany(mappedBy = "produto")
     private Set<Imagem> imagens;
     @ManyToMany(mappedBy = "produtos")
