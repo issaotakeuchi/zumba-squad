@@ -66,7 +66,7 @@ export function AuthProvider(props) {
 
   //metodos para gerar o autorization automatiamente em cada requisição
   //método 1
-  axios.defaults.headers.common['Authorization'] = `Bearer ${auth}`
+  //axios.defaults.headers.common['Authorization'] = `Bearer ${auth}`
 
   //método 2
   //axios.defaults.headers.common['Auth_Token'] = 'teste 2'
