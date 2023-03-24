@@ -4,6 +4,7 @@ import com.example.zumbasquad.model.Produto;
 import com.example.zumbasquad.repository.IProdutoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,5 +29,9 @@ public class ProdutoService {
 
     public List<Produto> getAllProductsByCategoryQualification(String qualificacao){
         return repository.findByCategoriaQualificacao(qualificacao);
+    }
+
+    public List<Produto> getAllProductsByDates(LocalDate dataInicial, LocalDate dataFinal){
+        return repository.findByReservasDataInicialAndReservasDataFinal(dataInicial, dataFinal);
     }
 }
