@@ -9,6 +9,7 @@ import com.example.zumbasquad.service.ReservaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class ReservaController {
 
     public ReservaController(ReservaService service) { this.service = service; }
 
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @PostMapping
     public ResponseEntity<Reserva> cadastrarReserva(@RequestBody Reserva reserva) throws BadRequestException {
         try {
@@ -33,6 +35,7 @@ public class ReservaController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @GetMapping("/por_produto/{id}")
     public List<Reserva> buscarReservaPorProdutoId(@PathVariable Long id) throws ResourceNotFoundException {
         try {
