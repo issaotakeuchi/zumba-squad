@@ -1,120 +1,100 @@
 [
   {
-    "id": 1,
-    "nome": "Rio de Janeiro",
-    "pais": "Brasil",
-    "produtos": [
-      1,
-      15,
-      19
-    ]
+      "nome":"Rio de Janeiro",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 2,
-    "nome": "Florianópolis",
-    "pais": "Brasil",
-    "produtos": [
-      2,
-      17
-    ]
+      "nome":"Florianópolis",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 3,
-    "nome": "Salvador",
-    "pais": "Brasil",
-    "produtos": [
-      3
-    ]
+      "nome":"Salvador",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 4,
-    "nome": "Fortaleza",
-    "pais": "Brasil",
-    "produtos": [
-      4
-    ]
+      "nome":"Fortaleza",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 5,
-    "nome": "Natal",
-    "pais": "Brasil",
-    "produtos": [
-      13
-    ]
+      "nome":"Natal",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 6,
-    "nome": "Porto de Galinhas",
-    "pais": "Brasil",
-    "produtos": [
-      5
-    ]
+      "nome":"Porto de Galinhas",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 7,
-    "nome": "João Pessoa",
-    "pais": "Brasil",
-    "produtos": [
-      6,
-      16
-    ]
+      "nome":"João Pessoa",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 8,
-    "nome": "Maceió",
-    "pais": "Brasil",
-    "produtos": [
-      7
-    ]
+      "nome":"Maceió",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 9,
-    "nome": "Jericoacoara",
-    "pais": "Brasil",
-    "produtos": [
-      8
-    ]
+      "nome":"Jericoacoara",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 10,
-    "nome": "Maragogi",
-    "pais": "Brasil",
-    "produtos": [
-      9
-    ]
+      "nome":"Maragogi",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 11,
-    "nome": "Morro de São Paulo",
-    "pais": "Brasil",
-    "produtos": [
-      10
-    ]
+      "nome":"Morro de São Paulo",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 12,
-    "nome": "Tancredo",
-    "pais": "Brasil",
-    "produtos": [
-      11
-    ]
+      "nome":"Tancredo",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 13,
-    "nome": "Fernando de Noronha",
-    "pais": "Brasil",
-    "produtos": [
-      12,
-      18
-    ]
+      "nome":"Fernando de Noronha",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   },
   {
-    "id": 14,
-    "nome": "Ubatuba",
-    "pais": "Brasil",
-    "produtos": [
-      14,
-      20
-    ]
+      "nome":"Ubatuba",
+      "pais":"Brasil",
+      "produtos":[
+          
+      ]
   }
 ]
