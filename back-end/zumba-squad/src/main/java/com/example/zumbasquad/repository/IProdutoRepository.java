@@ -3,7 +3,6 @@ package com.example.zumbasquad.repository;
 import com.example.zumbasquad.model.Categoria;
 import com.example.zumbasquad.model.Cidade;
 import com.example.zumbasquad.model.Produto;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +20,6 @@ public interface IProdutoRepository extends JpaRepository<Produto, Long> {
     List<Produto> findByCategoriaQualificacao(String qualificacao);
 
     List<Produto> findByReservasDataInicialAndReservasDataFinal(LocalDate dataInicial, LocalDate dataFinal);
+
+    List<Produto> findByReservasDataInicialAndReservasDataFinalOrCidadeNome(LocalDate dataInicial, LocalDate dataFinal, String cidade);
 }

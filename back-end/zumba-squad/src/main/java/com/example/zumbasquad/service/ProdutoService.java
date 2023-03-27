@@ -1,6 +1,8 @@
 package com.example.zumbasquad.service;
 
+import com.example.zumbasquad.model.Cidade;
 import com.example.zumbasquad.model.Produto;
+import com.example.zumbasquad.model.Reserva;
 import com.example.zumbasquad.repository.IProdutoRepository;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,9 @@ public class ProdutoService {
 
     public List<Produto> getAllProductsByDates(LocalDate dataInicial, LocalDate dataFinal){
         return repository.findByReservasDataInicialAndReservasDataFinal(dataInicial, dataFinal);
+    }
+
+    public List<Produto> getAllProductsByDatesOrCity(LocalDate dataInicial, LocalDate dataFinal, String cidade){
+        return repository.findByReservasDataInicialAndReservasDataFinalOrCidadeNome(dataInicial, dataFinal, cidade);
     }
 }

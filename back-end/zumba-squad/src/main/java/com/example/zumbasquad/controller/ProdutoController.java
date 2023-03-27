@@ -108,6 +108,19 @@ public class ProdutoController {
         }
     }
 
+    @GetMapping("/search")
+    public List<Produto> buscarProdutosPorDatasOuCidade(@RequestParam(required = false) LocalDate dataInicial,
+                                                        @RequestParam(required = false) LocalDate dataFinal,
+                                                        @RequestParam(required = false) String cidade) throws ResourceNotFoundException{
+        try {
+            log.info("Encontrado a lista de produtos solicitado");
+            return service.getAllProductsByDatesOrCity(dataInicial, dataFinal, cidade);
+        } catch (Exception e) {
+            log.error("Não foi encontrado a lista de produtos solicitado");
+            throw new ResourceNotFoundException("Não foi encontrado a lista de produtos solicitado.");
+        }
+    }
+
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> processErrorBadRequest(BadRequestException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
