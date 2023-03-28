@@ -8,6 +8,7 @@ import com.example.zumbasquad.service.ProdutoService;
 import com.example.zumbasquad.service.ReservaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +24,11 @@ public class ReservaController {
     public ReservaController(ReservaService service) { this.service = service; }
 
     @PostMapping
-    public ResponseEntity<Reserva> cadastrarReserva(@RequestBody Reserva reserva) throws BadRequestException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reserva cadastrarReserva(@RequestBody Reserva reserva) throws BadRequestException {
         try {
             log.info("Cadastrado nova reserva com sucesso.");
-            return  ResponseEntity.ok(service.add(reserva));
+            return service.add(reserva);
         } catch (Exception e) {
             log.info("Não foi possível cadastrar a reserva com base nas informações recebidas.");
             throw new BadRequestException("Não foi possível cadastrar a reserva com base nas informações recebidas.");
