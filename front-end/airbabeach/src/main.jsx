@@ -3,7 +3,6 @@ import {
   RouterProvider,
   redirect,
   useRouteError,
-  BrowserRouter
 } from "react-router-dom"
 
 import 'sweetalert2/src/sweetalert2.scss'
@@ -20,6 +19,7 @@ import { Product } from "./pages/Product"
 import { Category } from "./pages/Category"
 import { Booking } from "./Components/Booking"
 import { ProductDetail } from "./Components/ProductDetail"
+import { ProductRegister } from "./pages/ProductResgister"
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -54,6 +54,14 @@ const appRouter = createBrowserRouter([
         errorElement: <ErrorBoundary />
       },
       {
+        path: "administrador",
+        element:
+          //<ProtectedRoute redirectPath="/home" role='admin' msg='Você não pode acessar essa área!'>
+            <ProductRegister />,
+          //</ProtectedRoute>,
+        errorElement: <ErrorBoundary />
+      },
+      {
         path: "home",
         element: <Home />,
         errorElement: <ErrorBoundary />
@@ -81,18 +89,20 @@ const appRouter = createBrowserRouter([
           {
             path: ":id/booking",
             element:
-              //<ProtectedRoute redirectPath="/login" msg='Para fazer uma reserva você precisa estar logado!'>
-              <Booking />,
-            //</ProtectedRoute>,
+              <ProtectedRoute redirectPath="/login" msg='Você precisa estar logado para fazer uma reserva!'>
+                <Booking />,
+              </ProtectedRoute>,
             errorElement: <ErrorBoundary />,
           },
         ]
       },
+
       {
         path: "category/:id",
         element: <Category />,
         errorElement: <ErrorBoundary />
       },
+
       {
         path: "rotaProtegida",
         element:
@@ -108,7 +118,7 @@ const appRouter = createBrowserRouter([
 
 root.render(
   <AuthProvider >
-    <RouterProvider router={appRouter}/>
+    <RouterProvider router={appRouter} />
   </AuthProvider>
 )
 

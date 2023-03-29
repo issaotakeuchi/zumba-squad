@@ -11,7 +11,7 @@ export function HeartIcon({ id, favorite = false, border }) {
 
 
     function favoriteToggle(e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         if (!auth) {
             toast.error('Você precisa estar logado para favoritar os itens')
@@ -24,7 +24,9 @@ export function HeartIcon({ id, favorite = false, border }) {
                 productId: id
             }
 
-            axios.post(url, data, options).then((response) => {
+            // toast.success('avoritar os itens')
+
+            /* axios.post(url, data, options).then((response) => {
                 setCheck(!check)
                 if (response = 'adicionado') {
                     toast.success('Adicionado a lista de favoritos')
@@ -37,7 +39,7 @@ export function HeartIcon({ id, favorite = false, border }) {
                 if (error.status == 404) return toast.error('Usuário não encontrado');
                 if (error.status == 404) return toast.error('Usuário ou senha não encontrados');
                 if (error.code === 'ERR_NETWORK') return;
-            });
+            }); */
 
 
         }
@@ -47,7 +49,7 @@ export function HeartIcon({ id, favorite = false, border }) {
 
     return (
         <div className='heartIconStyle' onClick={favoriteToggle}>
-            <input type="checkbox" checked={check} onChange={(e) => setCheck(e.target.value)} id={`checkbox${id}`} className={`inputFavStyle`} />
+            <input type="checkbox" value={check} defaultChecked={check} onChange={(e) => setCheck(e.target.value)} id={`checkbox${id}`} className={`inputFavStyle`} />
 
             <label htmlFor={`checkbox${id}`} className='labelStyle'>
                 <svg className="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">

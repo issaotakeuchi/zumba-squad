@@ -2,17 +2,20 @@ import './SearchBar.scss'
 import { toast } from 'react-toastify';
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { MapPin, Calendar } from 'phosphor-react'
+//import { Link, useNavigate } from "react-router-dom";
+import { MapPin, Calendar, X } from 'phosphor-react'
 import Litepicker from 'litepicker';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
 
 export function SearchBar({ filteredData }) {
-    const navigate = useNavigate();
     const [city, setCity] = useState('');
     const [date, setDate] = useState('');
     const litepickerRef = useRef(null);
     const [datePicker, setDatePicker] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [arrayCidades, setArrayCidades] = useState([]);
 
     function createDatepicker() {
         if (datePicker) {
@@ -21,8 +24,8 @@ export function SearchBar({ filteredData }) {
 
         litepickerRef.current = new Litepicker({
             element: document.getElementById('datepicker'),
-            numberOfMonths: 2,
-            numberOfColumns: 2,
+            numberOfMonths: windowWidth < 641? 1:2,
+            numberOfColumns: windowWidth < 641?1:2,
             selectForward: true,
             singleMode: false,
             lang: "pt-BR",
@@ -41,7 +44,7 @@ export function SearchBar({ filteredData }) {
             },
         });
     }
-    useEffect(() => {
+    useEffect(() => { 
         const handleWindowResize = () => {
             setWindowWidth(window.innerWidth);
         };
@@ -62,9 +65,22 @@ export function SearchBar({ filteredData }) {
         }, 50);
 
     }, [windowWidth])
+
     useEffect(() => {
         createDatepicker()
+
+        //Puxando as cidades
+        axios.get('http://3.128.201.181:8080/cidades').then((response) => {
+            setArrayCidades([...new Set(response.data.map((item) => item.nome))])
+        }, (error) => {
+            console.log(error.code);
+        });
     }, []);
+
+    /* useEffect(() => {
+        console.log(arrayCidades);
+    }, [arrayCidades]) */
+
 
 
 
@@ -79,51 +95,49 @@ export function SearchBar({ filteredData }) {
     function validateForm() {
         let startDate = litepickerRef.current.options.startDate == null
         let endDate = litepickerRef.current.options.endDate == null
-        if (city === undefined || city === null || city.length < 1) {
-            toast.error('Selecione uma cidade')
-            return false
-        }
-        if (startDate || endDate) {
-            toast.error('Selecione as datas');
+
+        if ((city === undefined || city === null || city.length < 1) && (startDate || endDate)) {
+            toast.error('Selecione uma data ou uma cidade')
             return false
         }
         return true
     }
 
+
     function handleSubmit(e) {
         e.preventDefault();
 
         if (!validateForm()) return;
-        //.replaceAll(' ', '')
-        //.replace(/ /g,'')
-        //.replace(/\s/g, '')
-        //.replace(/^\s+|\s+$/gm,'')
-        //.split(' ').join('')
 
 
+        let startDate = litepickerRef.current.options.startDate !== null ? litepickerRef.current.options.startDate.dateInstance.toISOString().slice(0, 10) : ''
+        let endDate = litepickerRef.current.options.endDate !== null ? litepickerRef.current.options.endDate.dateInstance.toISOString().slice(0, 10) : ''
+        let url
 
-        //url para filtrar por cidade
-        //let url = `http://18.224.15.179:8080/produtos/cidade?nomeCidade=${city.replace(/ /g,'')}`;
+        if ((city !== undefined & city !== null && city.length > 1) && (startDate !== '' && endDate !== '')) {
 
-        
-        let url = `http://18.224.15.179:8080/produtos/cidade?nomeCidade=${city.replace(/ /g, '')}`;
+            url = `dataInicial=${startDate}&dataFinal=${endDate}&cidade=${city}`
 
+        } else if (startDate !== '' && endDate !== '') {
 
-        let data = {
-            city: city,
-            startDate: litepickerRef.current.options.startDate.dateInstance.toISOString(),
-            endDate: litepickerRef.current.options.endDate.dateInstance.toISOString()
+            url = `dataInicial=${startDate}&dataFinal=${endDate}`
+
+        } else if (city !== undefined && city !== null && city.length > 1) {
+
+            url = `cidade=${city}`
         }
 
-        //console.log(data);
 
-        axios.post(url, data).then((response) => {
+        axios.get(`http://3.128.201.181:8080/produtos/search?${url}`).then((response) => {
+            console.log(response);
+
             filteredData(response)
             toast.success("Próximo destino econtrado!")
         }, (error) => {
-            //console.log(error.code);
-            if (error.status == 401) return toast.error('Nenhuma acomodação encontrada para essa cidade');
-            if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
+            //console.log(error.response.status);
+            if (error.response.status == 401) return toast.error('Nenhuma acomodação encontrada para essa cidade');
+            if (error.response.status == 403) return toast.error('Recarregue a página e tente novamente.');
+            if (error.response.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
         });
 
@@ -131,10 +145,8 @@ export function SearchBar({ filteredData }) {
     }
 
 
-
     return (
         <section className='searchBarStyle'>
-            {/* <h2>Width: {windowWidth}</h2> */}
             <h1 className='searchTitle'>Buscar ofertas em hotéis, casas e muito mais</h1>
 
             <form onSubmit={handleSubmit} className='formStyle'>
@@ -144,7 +156,7 @@ export function SearchBar({ filteredData }) {
                         <MapPin size={20} color="#54577689" weight="fill" className='mapIcon' />
                     </label>
 
-                    <input
+                    {/* <input
                         className="text-small inputSearchStyle"
                         type="text"
                         name="city"
@@ -152,7 +164,23 @@ export function SearchBar({ filteredData }) {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         placeholder='Onde vamos?'
-                    />
+                    /> */}
+
+                    {arrayCidades &&
+                        <Autocomplete
+                            className='inputSearchStyle'
+                            value={city}
+                            onChange={(event, newValue) => { setCity(newValue) }}
+                            //freeSolo={true}
+                            disablePortal
+                            isOptionEqualToValue={(option, value) => option.value === value.value}
+                            id="controllable-states-demo"
+                            options={arrayCidades}
+                            color='red'
+                            renderInput={(params) => <TextField {...params} placeholder='Onde vamos?' />}
+                        />
+                    }
+
                 </div>
 
                 <section className="datepickerSection">

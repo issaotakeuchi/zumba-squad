@@ -56,6 +56,8 @@
         justify-content: center;
         align-items: center;
 
+
+
         .recomendationContainer {
             display: grid;
             //grid-template-columns: fit-content(50%) fit-content(50%);
@@ -63,6 +65,51 @@
             grid-auto-rows: auto;
             grid-column-gap: 1rem;
             grid-row-gap: 1rem;
+
+
+        }
+
+
+        .react-paginate {
+            margin-top: 2rem;
+        }
+
+        ul.react-paginate {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0 5rem;
+        }
+
+        ul.react-paginate li a {
+            border-radius: 7px;
+            padding: 0.1rem 1rem;
+            border: gray 1px solid;
+            cursor: pointer;
+        }
+
+        ul.react-paginate li.previous a,
+        ul.react-paginate li.next a,
+        ul.react-paginate li.break a {
+            border-color: transparent;
+        }
+
+        ul.react-paginate li.selected a {
+            background-color: var(--green-light);
+            border-color: transparent;
+            color: white;
+            min-width: 32px;
+        }
+
+        ul.react-paginate li.disabled a {
+            color: grey;
+        }
+
+        ul.react-paginate li.disable,
+        ul.react-paginate li.disabled a {
+            cursor: default;
         }
     }
 }
@@ -93,7 +140,7 @@
     .mainStyle {
         .custonSection {
             >h1 {
-                align-self: center; 
+                align-self: center;
             }
         }
 

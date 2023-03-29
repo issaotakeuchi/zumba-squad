@@ -8,7 +8,7 @@ import { useAuth } from "../contexts/auth";
 
 export function Form({ type }) {
 
-    const { saveToken, saveUser } = useAuth();
+    const { saveToken, saveUser, user } = useAuth();
     const navigate = useNavigate();
 
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!+¨:=/@|#\$%\^&\*])(?=.*[0-9]).{8,}$");
@@ -47,9 +47,9 @@ export function Form({ type }) {
 
         let url;
         if (type === 'login') {
-            url = 'http://18.224.15.179:8080/auth/login'
+            url = 'http://3.128.201.181:8080/auth/login'
         } else {
-            url = 'http://18.224.15.179:8080/auth/register'
+            url = 'http://3.128.201.181:8080/auth/register'
         }
 
         let data;
@@ -65,74 +65,47 @@ export function Form({ type }) {
                 email: email,
                 senha: password
             }
-            console.log(data);
         }
-
-        /* const options = {
-            headers: {
-
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json, application/x-www-form-urlencoded',
-                'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-                'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Headers': 'Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization',
-
-            },
-        } */
-        //axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
-        //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-
-
-        /* axios.get(`http://18.224.15.179:8080/categorias`, options)
-                    .then(
-                        (response) => {
-                            console.log(response);
-                        }, (error) => {
-                            if (error.status == 404) return toast.error('Usuário não encontrado');
-                        }) */
-
 
         axios.post(url, data).then((response) => {
 
             if (type === 'login') {
                 console.log(response);
-                saveToken(response.token)
+                saveToken(response.data.token)
 
-                axios.get(`http://18.224.15.179:8080/auth/search?email=${email}`)
+                axios.get(`http://3.128.201.181:8080/auth/search?email=${email}`)
                     .then(
                         (response) => {
                             console.log(response);
-                            saveUser(response.user)
+                            saveUser(response.data)
+                            saveUser(...user, {role:adimin})
+                            toast.success("Usuário logado com sucesso")
+                            navigate('/home')
                         }, (error) => {
-                            //if (error.status == 404) return toast.error('Usuário não encontrado');
+                            if (error.code === 'ERR_NETWORK') return toast.error('Ocorreu um erro, por favor recarregue a página.');
                         })
-
-                toast.success("Usuário logado com sucesso")
-                navigate('/home')
             } else {
                 toast.success("Usuário criado com sucesso")
                 navigate('/login')
             }
 
         }, (error) => {
-            //console.log(error.code);
+            console.log(error);
 
             if (type === 'login') {
+
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário não encontrado' });
                 //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Usuário ou senha não encontrados.' });
-                saveUser({
-                    nome: 'Bruno',
-                    sobrenome: "Rocha",
-                    email: 'brunomorenocrocante@gmail.com'
-                })
-                if (error.status == 404) return toast.error('Usuário não encontrado');
+               
+                if (error.request.status == 403) return toast.error('Usuário não encontrado');
                 if (error.status == 404) return toast.error('Usuário ou senha não encontrados');
-                if (error.code === 'ERR_NETWORK') return;
+                if (error.code === 'ERR_NETWORK') return toast.error('Infelizmente não foi possivel logar. Por favor, tente novamente mais tarde.');
 
             } else {
-                //if (error.status == 404) return setStatus({ type: 'loginError', message: 'Erro ao preencher o formuário. Recarregue a página e tente novamente.' });
+                //if (error.status == 403) return toast.error('Usuário não encontrado');
                 if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
-                if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
+                if (error.code === 'ERR_NETWORK') return toast.error('Infelizmente não foi possivel registrar. Por favor, tente novamente mais tarde.');
+
             }
         });
 
@@ -216,6 +189,7 @@ export function Form({ type }) {
                             <input
                                 className="text-small"
                                 type="text"
+                                placeholder="Primeiro nome"
                                 name="firstName"
                                 id="firstName"
                                 value={firstName}
@@ -233,6 +207,7 @@ export function Form({ type }) {
                             <input
                                 className="text-small"
                                 type="text"
+                                placeholder="Último nome"
                                 name="surname"
                                 id="surname"
                                 value={surname}
@@ -251,6 +226,7 @@ export function Form({ type }) {
                 <input
                     className="text-small"
                     type="email"
+                    placeholder="Email que mais usa"
                     name="email"
                     id="email"
                     value={email}
@@ -265,6 +241,7 @@ export function Form({ type }) {
                 <input
                     className="text-small"
                     type={show ? 'text' : 'password'}
+                    placeholder="Digite a sua senha"
                     name="password"
                     id="password"
                     value={password}
@@ -288,6 +265,7 @@ export function Form({ type }) {
                         <input
                             className="text-small"
                             type={show ? 'text' : 'Password'}
+                            placeholder="Confirme a sua senha"
                             name="confirnPassword"
                             id="confirnPassword"
                             value={confirnPassword}
