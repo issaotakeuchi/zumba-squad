@@ -7,25 +7,50 @@ export function ProtectedRoute({
     redirectPath = '/home',
     msg,
     type = 'swal',
+    role = 'user',
     children,
 }) {
-    const { auth } = useAuth();
+    const { auth, user } = useAuth();
 
-    if (!auth) {
-        {
-            type === 'toast' ? toast.error(msg) :
+    if (role === 'user') {
+        if (!auth) {
+            {
+                type === 'toast' ? toast.error(msg) :
 
-            Swal.fire({
-                title: msg,
-                width: '360',
-                color: '#545776',
-                icon: 'error',
-                showConfirmButton: false,
-                timer: 2000
-            })
+                    Swal.fire({
+                        title: msg,
+                        width: '360',
+                        color: '#545776',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 4000
+                    })
+            }
+
+            return <Navigate to={redirectPath} replace />;
+        }
+    }
+
+
+    if (role === 'admin') {
+        if (!auth || user.role !== 'administrador') {
+            {
+                type === 'toast' ? toast.error(msg) :
+
+                    Swal.fire({
+                        title: msg,
+                        width: '360',
+                        color: '#545776',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 4000
+                    })
+            }
+
+            return <Navigate to={redirectPath} replace />;
         }
 
-        return <Navigate to={redirectPath} replace />;
     }
+    
     return children;
 }

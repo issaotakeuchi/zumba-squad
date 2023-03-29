@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { X } from 'phosphor-react'
 import "./Header.scss";
 import { useAuth } from "../contexts/auth";
@@ -7,15 +6,9 @@ import Swal from 'sweetalert2'
 
 
 export function Header() {
-  const { auth, user, userLogout } = useAuth();
+  const { auth, user, userLogout, urlPath, setUrlPath } = useAuth();
   const navigate = useNavigate();
-  const [urlPath, setUrlPath] = useState(window.location.pathname);
-
-  useEffect(() => {
-    setUrlPath(window.location.pathname)
-  }, [urlPath])
-
-
+  
   function logout() {
 
     Swal.fire({
@@ -32,6 +25,7 @@ export function Header() {
       if (result.isConfirmed) {
         userLogout()
         navigate('/home')
+        setUrlPath(window.location.pathname)
       } else {
         return
       }
@@ -42,20 +36,19 @@ export function Header() {
 
     if (type === 'login') {
       navigate('/login')
+      setUrlPath(window.location.pathname)
     }
     if (type === 'createUser') {
       navigate('/createUser')
+      setUrlPath(window.location.pathname)
     }
     if (type === 'home') {
       navigate('/home')
+      setUrlPath(window.location.pathname)
     }
-
-    setTimeout(() => { setUrlPath('') }, 1)
   }
 
 
-
-  //devemos trocar o 'user' pelo 'auth' na verificação para ver se tem alguém logado
   return (
     <section className="headerFull">
       <section className="logoSection">
@@ -65,20 +58,20 @@ export function Header() {
 
       <div className="asideHolder" type={urlPath}>
 
-        {user !== '' && (
+        {(auth && user !== "" )&& (
           <div className="loggedIn">
-            <p className="profilePicture">{user.shortName}</p>
+            <p className="profilePicture">{user.nome[0]}{user.sobrenome[0]}</p>
 
             <div className="greetingAndName">
               <p className="">Olá,</p>
-              <p className="greetingAndNameGreen">{user.name}</p>
+              <p className="greetingAndNameGreen">{user.nome} {user.sobrenome}</p>
             </div>
-            <X size={26} onClick={logout} alt="Sair" weight="bold" className="btnLoggout" />
+            <X onClick={logout} alt="Sair" weight="bold" className="btnLoggout" />
           </div>
         )}
 
-        {user == '' &&
-          <>
+        {!auth &&
+          <div className="btnContainer">
             {urlPath !== '/createUser' &&
               <button className='btnHeader' onClick={() => changeScreen('createUser')}>Criar conta</button>
             }
@@ -86,15 +79,7 @@ export function Header() {
             {urlPath !== '/login' &&
               <button className='btnHeader' onClick={() => changeScreen('login')}>Iniciar sessão</button>
             }
-            {/* {(urlPath === '/login' || urlPath === '/home') &&
-              <button className='btnHeader' onClick={() => changeScreen('createUser')}>Criar conta</button>
-            }
-
-            {(urlPath === '/createUser' || urlPath === '/home') &&
-              <button className='btnHeader' onClick={() => changeScreen('login')}>Iniciar sessão</button>
-            } */}
-
-          </>
+          </div>
 
         }
 

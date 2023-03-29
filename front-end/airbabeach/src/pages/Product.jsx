@@ -25,20 +25,20 @@ export function Product() {
         setProductData(produtoSelecionado)
     }, [])
 
-    /* useEffect(() => {
+    useEffect(() => {
 
-        let url = `http://18.224.15.179:8080/produtos/${id}`;
+        let url = `http://3.128.201.181:8080/produtos/${id}`;
 
         axios.get(url).then((response) => {
             console.log(response);
-            setProductData(response)
+            //setProductData(response)
         }, (error) => {
             console.log(error.code);
 
             if (error.status == 404) return toast.error('Houve um problema, recarregue a página');
             if (error.code === 'ERR_NETWORK') return toast.error('Verifique a sua conexão com a internet.');
         });
-    }, []) */
+    }, [])
 
 
 

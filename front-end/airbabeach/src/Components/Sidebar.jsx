@@ -6,10 +6,11 @@ import { useAuth } from "../contexts/auth";
 import Swal from 'sweetalert2'
 
 
+
+
 export function Sidebar() {
-  const { user, auth, userLogout } = useAuth();
+  const { user, auth, userLogout, urlPath, setUrlPath } = useAuth();
   const navigate = useNavigate();
-  const [urlPath, setUrlPath] = useState(window.location.pathname);
   const [sidebarDisplay, setSidebarDisplay] = useState(false);
   const [animation, setAnimation] = useState("");
 
@@ -52,7 +53,6 @@ export function Sidebar() {
   }
 
 
-  //devemos trocar o 'user' pelo 'auth' na verificação para ver se tem alguém logado
   return (
     <section className="sideSection">
       <div className={`hamburger ${sidebarDisplay ? "active" : ""}`} onClick={toggleSidebar}>

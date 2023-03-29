@@ -1,7 +1,6 @@
 import './Card.scss'
 import { useState, useEffect } from "react";
 import { convertNumber } from '../utils/convertNumber'
-import axios from "axios";
 import { gradeStatus } from '../utils/gradeStatus'
 import { toast } from 'react-toastify';
 import { X, Star, MapPin, WifiHigh, Shower, PawPrint, Television, CookingPot, Car, Bathtub, Wind } from 'phosphor-react'
@@ -24,7 +23,7 @@ export function Card({
     location,
     differential,
     description,
-
+    filteredData
 }) {
     const [modal, setModal] = useState(false);
 
@@ -37,17 +36,16 @@ export function Card({
         }
     } */
 
-    function chooseCategory(id, category) {
-        console.log(id);
-        console.log(category);
-    }
+
+
+
 
 
     return (
         <>
-
             {type === 'category' &&
-                <Link to={`/category/${id}`} type='category' className='cardBodyStyle'>
+                <div>
+                    {/* <Link to={`/category/${id}`} type='category' className='cardBodyStyle'>
                     <section className='thumbStyle'>
                         <img className='imgStyle' src={img} />
                     </section>
@@ -56,7 +54,18 @@ export function Card({
                         <h2>{category}</h2>
                         <p>{convertNumber(quantity)} hotéis</p>
                     </section>
-                </Link>
+                </Link> */}
+                    <div type='category' className='cardBodyStyle' onClick={()=>filteredData(category)}>
+                        <section className='thumbStyle'>
+                            <img className='imgStyle' src={img} />
+                        </section>
+
+                        <section className='textSection'>
+                            <h2>{category}</h2>
+                            <p>{convertNumber(quantity)} hotéis</p>
+                        </section>
+                    </div>
+                </div>
             }
 
             {(type === 'recomendations') &&
@@ -65,7 +74,7 @@ export function Card({
                     {modal &&
                         <div className="mapModalContainer" >
                             <div className="controle" onClick={() => setModal(false)}></div>
-                            <Map2 location={location.location} downtown={location.downtown} address={location.address}/> 
+                            <Map2 location={location.location} downtown={location.downtown} address={location.address} />
                             <X size={32} className='closeIcon' color="#ffffff" weight="bold" onClick={() => setModal(false)} />
 
                         </div>
@@ -83,14 +92,6 @@ export function Card({
                                 <div className='starsStyle'>
                                     <h4>Hotel</h4>
                                     <StarRate rate={stars} />
-                                    
-                                    {/* <div className='stars'>
-                                        <Star size={14} color="#1DBEB4" weight="fill" />
-                                        <Star size={14} color="#1DBEB4" weight="fill" />
-                                        <Star size={14} color="#1DBEB4" weight="fill" />
-                                        <Star size={14} color="#1DBEB4" weight="fill" />
-                                        <Star size={14} color="#b6b9b9" weight="fill" />
-                                    </div> */}
                                 </div>
                                 <h1 className='title'>{title}</h1>
                             </div>
@@ -105,7 +106,7 @@ export function Card({
                             <div className='locationContainer'>
                                 <MapPin size={20} color="#545776" weight="fill" />
                                 <p className='locationText text-normal'>À {convertNumber(location.distance)}m do centro - </p>
-                                <a className='googleMapsImg' onClick={()=>setModal(true)} ></a>
+                                <a className='googleMapsImg' onClick={() => setModal(true)} ></a>
                             </div>
 
                             <div className='diferentialsStyle'>

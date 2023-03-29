@@ -1,17 +1,17 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { createContext, useContext } from "react"
 
-// Criação do Contexto
 const AuthContext = createContext()
 
 export function AuthProvider(props) {
-  //const [user, setUser] = useState('')
+  const [urlPath, setUrlPath] = useState(window.location.pathname);
   const authLocalStorage = localStorage.getItem('auth')
   const userLocalStorage = JSON.parse(localStorage.getItem('user'))
 
   const [auth, setAuth] = useState(authLocalStorage === null ? '' : authLocalStorage)
   const [user, setUser] = useState(userLocalStorage === null ? '' : userLocalStorage)
+
 
 
   function saveToken(tokenReceived) {
@@ -44,17 +44,8 @@ export function AuthProvider(props) {
   function saveUser(userReceived) {
     if (userReceived !== user) {
       setUser(userReceived)
-      
       localStorage.setItem('user', JSON.stringify(userReceived))
     }
-
-    /* setUser({
-      name: 'Bruno',
-      surname: "Rocha",
-      shortName: 'BR',
-      email: 'brunomorenocrocante@gmail.com'
-    }) */
-
   }
 
   function userLogout() {
@@ -103,7 +94,7 @@ export function AuthProvider(props) {
 
   return (
 
-    <AuthContext.Provider value={{ auth, saveToken, deleteToken, user, userLogout, saveUser }}>
+    <AuthContext.Provider value={{ auth, saveToken, deleteToken, user, userLogout, saveUser, urlPath, setUrlPath }}>
       {props.children}
     </AuthContext.Provider>
 

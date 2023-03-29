@@ -1,6 +1,7 @@
 .cardBodyStyle[type="category"] {
     height: 15.5rem;
     max-width: 19.5rem;
+    //max-width: 17.5rem;
     width: 100%;
 
     background-color: #ffffff;
@@ -18,10 +19,12 @@
     .thumbStyle {
         display: flex;
 
+
         .imgStyle {
             height: 11.5rem;
             width: 100%;
             border-radius: 10px 10px 0 0;
+            
         }
     }
 
@@ -289,12 +292,14 @@
     .cardBodyStyle[type="category"] {
         height: 15.5rem;
         max-width: 20.75rem;
+        //max-width: 17.5rem;
 
         .thumbStyle {
             .imgStyle {
                 min-height: 11.5rem;
                 border-radius: 10px 10px 0 0;
                 max-width: 20.75rem;
+                //max-width: 20.75rem;
             }
         }
     }
@@ -318,20 +323,21 @@
     }
 }
 
-//de 590px a 414px o layout fica ruim, por isso o mobile está iniciando com 590px
+
 @media (max-width: 605px) {
     .cardBodyStyle[type="category"] {
         max-height: 17.25rem;
         height: auto;
         max-width: 24.75rem;
+        width: 100%;
 
         .thumbStyle {
 
             .imgStyle {
-                max-height: 12.875rem;
-                height: auto;
+                //height: 6.875rem;
+                //height: auto;
                 max-width: 24.75rem;
-                //width: 100%;
+                width: 100%;
                 border-radius: 10px 10px 0 0;
             }
         }

@@ -14,9 +14,7 @@ import { useAuth } from "../contexts/auth";
 
 export function Booking() {
     const productData = useOutletContext()
-    const { user } = useAuth();
-    //console.log(user);
-    //console.log(productData);
+    const { user, auth } = useAuth();
     const navigate = useNavigate();
     const [city, setCity] = useState('')
     const [datePicker, setDatePicker] = useState(false);
@@ -136,25 +134,17 @@ export function Booking() {
 
         if (!validateForm()) return;
 
-        let url = 'https://www.airbabeach/searchAcomodations';
+        let url = 'http://3.128.201.181:8080/reservas';
         let data = {
-            city: city,
-            startDate: startDate,
-            endDate: endDate,
-            arrivalHour: arrivalHour
+            //city: city,
+            dataInicial: startDate,
+            dataFinal: endDate,
+            hora: arrivalHour,
+            produto: null,
+            cliente: null
         }
 
-        Swal.fire({
-            title: 'Sua reserva foi feita com sucesso',
-            width: '360',
-            color: '#545776',
-            imageUrl: successIcon,
-            focusConfirm: false,
-            confirmButtonColor: '#1dbeb4',
-            confirmButtonText: 'Ok',
-        }).then((result) => {
-            navigate('/home')
-        })
+        axios.defaults.headers.post['Authorization'] = `Bearer ${auth}`;
 
         axios.post(url, data).then((response) => {
 
@@ -171,6 +161,7 @@ export function Booking() {
             })
 
         }, (error) => {
+            console.log(error);
             if (error.status == 404) return toast.error('Infelizmente, a reserva não pode ser completada. Por favor, tente novamente mais tarde.');
             //if (error.status == 404) return toast.error('Destino não encontrada');
             //if (error.status == 404) return toast.error('Erro ao preencher o formuário. Recarregue a página e tente novamente.');
@@ -182,9 +173,6 @@ export function Booking() {
 
 
 
-    //salvar nome, sobrenome e email do usuário no contexto ou local storage?
-
-
 
     return (
         <form className='productBookingContainer' onSubmit={handleSubmit}>
@@ -194,11 +182,11 @@ export function Booking() {
 
                     <div className='inputContainer'>
                         <label className='labelStyle h4'>Nome</label>
-                        <input defaultValue={user.name} readOnly={true} className="inputStyle" />
+                        <input defaultValue={user.nome} readOnly={true} className="inputStyle" />
                     </div>
                     <div className='inputContainer'>
                         <label className='labelStyle h4'>Sobrenome</label>
-                        <input defaultValue={user.surname} readOnly={true} className="inputStyle" />
+                        <input defaultValue={user.sobrenome} readOnly={true} className="inputStyle" />
                     </div>
                     <div className='inputContainer'>
                         <label className='labelStyle h4'>E-mail</label>
@@ -297,13 +285,7 @@ export function Booking() {
                         </section>
                     </div>
                 </section>
-
-
-
             </section>
-
-
-
         </form>
 
     )
